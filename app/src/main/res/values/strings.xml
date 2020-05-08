@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PeluqueriaTEA</string>
+    <string name="TextoBotonConsejosPantallaPrincipal">Consejos</string>
+    <string name="TextoBotonSecuenciaPantallaPrincipal">Vamos a la peluquería</string>
+    <string name="TextoBotonAvatarPantallaPrincipal">Elijo mi peinado</string>
+    <string name="TextoBotonJuegoPantallaPrincipal">Juegos</string>
 </resources>
