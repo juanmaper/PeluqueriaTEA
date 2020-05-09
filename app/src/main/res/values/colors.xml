@@ -4,5 +4,28 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="FondoPantallaPrincipal">#FFFECE</color>
+    <color name="amarillo_claro">#FFFECE</color>
+    <color name="amarillo_menos_claro">#FFFEBD</color>
+    <color name="malva">#663BC9</color>
+    <color name="malva_claro">#8864DC</color>
+    <color name="turquesa">#08AE9E</color>
+    <color name="turquesa_claro">#0BC5B3</color>
+
+    <color name="magenta">#e0a8ff</color>
+    <color name="rosa_claro">#ff85db</color>
+    <color name="magenta_claro">#d4d4ff</color>
+    <color name="naranja_claro">#f5ccc2</color>
+    <color name="salmon">#ffb0d1</color>
+    <color name="azul">#b0d1ff</color>
+    <color name="azul_claro">#a8edff</color>
+    <color name="aguamarina_claro">#99ffd4</color>
+    <color name="aguamarina">#94ffb3</color>
+    <color name="verde">#8aff78</color>
+    <color name="verde_menta">#ade36b</color>
+    <color name="verde_menta_claro">#BBEF7C</color>
+    <color name="verde_olivo">#c2cf87</color>
+    <color name="verde_oscuro">#275708</color>
+    <color name="amarillo">#edde6e</color>
+    <color name="naranja">#dead7a</color>
+    <color name="ocre">#c7baad</color>
 </resources>

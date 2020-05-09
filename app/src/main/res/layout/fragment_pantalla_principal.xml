@@ -4,50 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/FondoPantallaPrincipal"
+    android:background="@color/amarillo_menos_claro"
     android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/PantallaPrincipal_ConsejosButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Consejos"
+    <ImageButton
+        android:id="@+id/consejos_button"
+        style="@style/PantallaPrincipalButton"
+        android:layout_marginBottom="60dp"
+        android:adjustViewBounds="true"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/pantallaPrincipal_consejosButton"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PantallaPrincipal_SecuenciaButton"
+        app:layout_constraintEnd_toStartOf="@+id/secuencia_pasos_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_libro_azul" />
 
-    <Button
-        android:id="@+id/PantallaPrincipal_SecuenciaButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Secuencia"
+    <ImageButton
+        android:id="@+id/secuencia_pasos_button"
+        style="@style/PantallaPrincipalButton"
+        android:layout_marginBottom="60dp"
+        android:adjustViewBounds="true"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/pantallaPrincipal_secuenciaPasosButton"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PantallaPrincipal_AvatarButton"
+        app:layout_constraintEnd_toStartOf="@+id/avatar_button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/PantallaPrincipal_ConsejosButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/consejos_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_peluqueria" />
 
-    <Button
-        android:id="@+id/PantallaPrincipal_AvatarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Avatar"
+    <ImageButton
+        android:id="@+id/avatar_button"
+        style="@style/PantallaPrincipalButton"
+        android:layout_marginBottom="60dp"
+        android:adjustViewBounds="true"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/pantallaPrincipal_avatarButton"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PantallaPrincipal_JuegosButton"
+        app:layout_constraintEnd_toStartOf="@+id/juegos_button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/PantallaPrincipal_SecuenciaButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/secuencia_pasos_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_tinte_de_pelo" />
 
-    <Button
-        android:id="@+id/PantallaPrincipal_JuegosButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Juegos"
+    <ImageButton
+        android:id="@+id/juegos_button"
+        style="@style/PantallaPrincipalButton"
+        android:layout_marginBottom="60dp"
+        android:adjustViewBounds="true"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/pantallaPrincipal_juegosButton"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/PantallaPrincipal_AvatarButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/avatar_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_robot" />
+
+    <ImageButton
+        android:id="@+id/ajustes_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/amarillo_menos_claro"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/pantallaPrincipal_ajustesButton"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:srcCompat="@drawable/ic_engranaje_tipo4" />
+
+    <ImageButton
+        android:id="@+id/creditos_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/amarillo_menos_claro"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/pantallaPrincipal_creditosButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:srcCompat="@drawable/ic_informacion_tipo3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/consejos_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/pantallaPrincipal_consejosButton"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/consejos_button"
+        app:layout_constraintStart_toStartOf="@+id/consejos_button"
+        app:layout_constraintTop_toBottomOf="@+id/consejos_button" />
+
+    <TextView
+        android:id="@+id/secuencia_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/pantallaPrincipal_secuenciaPasosButton"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/secuencia_pasos_button"
+        app:layout_constraintStart_toStartOf="@+id/secuencia_pasos_button"
+        app:layout_constraintTop_toBottomOf="@+id/secuencia_pasos_button" />
+
+    <TextView
+        android:id="@+id/avatar_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/pantallaPrincipal_avatarButton"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/avatar_button"
+        app:layout_constraintStart_toStartOf="@+id/avatar_button"
+        app:layout_constraintTop_toBottomOf="@+id/avatar_button" />
+
+    <TextView
+        android:id="@+id/juegos_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/pantallaPrincipal_juegosButton"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/juegos_button"
+        app:layout_constraintStart_toStartOf="@+id/juegos_button"
+        app:layout_constraintTop_toBottomOf="@+id/juegos_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="PantallaPrincipalButton" >
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:background">@drawable/button_pantalla_principal</item>
+    </style>
+
 </resources>
