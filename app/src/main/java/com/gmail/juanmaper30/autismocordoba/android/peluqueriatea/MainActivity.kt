@@ -3,9 +3,11 @@ package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
-class MainActivity : AppCompatActivity() {
+private const val TAG = "MainActivity"
 
+class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,5 +25,18 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.fragment_container, fragmento)
                 .commit()
         }
+        Log.i(TAG, "Actividad creada")
+    }
+
+    /* Sobrescribo la funcion de ConsejosFragment que uso como interfaz. Al ser llamada,
+        monto el modulo Consejos */
+    override fun moduloConsejosSeleccionado() {
+        Log.i(TAG, "Montando modulo consejos")
+        val fragmentoConsejos = ConsejosFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoConsejos)
+            .addToBackStack(null)
+            .commit()
     }
 }

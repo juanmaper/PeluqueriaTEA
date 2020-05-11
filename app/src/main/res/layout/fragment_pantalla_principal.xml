@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
     <ImageButton
-        android:id="@+id/consejos_button"
+        android:id="@+id/pantallaPrincipal_consejosButton"
         style="@style/PantallaPrincipalButton"
         android:layout_marginBottom="60dp"
         android:adjustViewBounds="true"
@@ -17,14 +17,14 @@
         android:contentDescription="@string/pantallaPrincipal_consejosButton"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/secuencia_pasos_button"
+        app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_secuenciaPasosButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_libro_azul" />
 
     <ImageButton
-        android:id="@+id/secuencia_pasos_button"
+        android:id="@+id/pantallaPrincipal_secuenciaPasosButton"
         style="@style/PantallaPrincipalButton"
         android:layout_marginBottom="60dp"
         android:adjustViewBounds="true"
@@ -33,14 +33,14 @@
         android:contentDescription="@string/pantallaPrincipal_secuenciaPasosButton"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/avatar_button"
+        app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_avatarButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/consejos_button"
+        app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_consejosButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_peluqueria" />
 
     <ImageButton
-        android:id="@+id/avatar_button"
+        android:id="@+id/pantallaPrincipal_avatarButton"
         style="@style/PantallaPrincipalButton"
         android:layout_marginBottom="60dp"
         android:adjustViewBounds="true"
@@ -49,14 +49,14 @@
         android:contentDescription="@string/pantallaPrincipal_avatarButton"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/juegos_button"
+        app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_juegosButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/secuencia_pasos_button"
+        app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_secuenciaPasosButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_tinte_de_pelo" />
 
     <ImageButton
-        android:id="@+id/juegos_button"
+        android:id="@+id/pantallaPrincipal_juegosButton"
         style="@style/PantallaPrincipalButton"
         android:layout_marginBottom="60dp"
         android:adjustViewBounds="true"
@@ -67,12 +67,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/avatar_button"
+        app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_avatarButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_robot" />
 
     <ImageButton
-        android:id="@+id/ajustes_button"
+        android:id="@+id/pantallaPrincipal_ajustesButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="25dp"
@@ -84,10 +84,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:srcCompat="@drawable/ic_engranaje_tipo4" />
+        app:srcCompat="@drawable/ic_engranaje_ajustes" />
 
     <ImageButton
-        android:id="@+id/creditos_button"
+        android:id="@+id/pantallaPrincipal_creditosButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
@@ -98,7 +98,7 @@
         android:contentDescription="@string/pantallaPrincipal_creditosButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:srcCompat="@drawable/ic_informacion_tipo3" />
+        app:srcCompat="@drawable/ic_informacion_creditos" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -108,51 +108,51 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/consejos_textview"
+        android:id="@+id/pantallaPrincipal_consejosTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="@string/pantallaPrincipal_consejosButton"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/consejos_button"
-        app:layout_constraintStart_toStartOf="@+id/consejos_button"
-        app:layout_constraintTop_toBottomOf="@+id/consejos_button" />
+        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_consejosButton"
+        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_consejosButton"
+        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_consejosButton" />
 
     <TextView
-        android:id="@+id/secuencia_textview"
+        android:id="@+id/pantallaPrincipal_secuenciaPasosTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="@string/pantallaPrincipal_secuenciaPasosButton"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/secuencia_pasos_button"
-        app:layout_constraintStart_toStartOf="@+id/secuencia_pasos_button"
-        app:layout_constraintTop_toBottomOf="@+id/secuencia_pasos_button" />
+        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_secuenciaPasosButton"
+        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_secuenciaPasosButton"
+        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_secuenciaPasosButton" />
 
     <TextView
-        android:id="@+id/avatar_textview"
+        android:id="@+id/pantallaPrincipal_avatarTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="@string/pantallaPrincipal_avatarButton"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/avatar_button"
-        app:layout_constraintStart_toStartOf="@+id/avatar_button"
-        app:layout_constraintTop_toBottomOf="@+id/avatar_button" />
+        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_avatarButton"
+        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_avatarButton"
+        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_avatarButton" />
 
     <TextView
-        android:id="@+id/juegos_textview"
+        android:id="@+id/pantallaPrincipal_juegosTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="@string/pantallaPrincipal_juegosButton"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/juegos_button"
-        app:layout_constraintStart_toStartOf="@+id/juegos_button"
-        app:layout_constraintTop_toBottomOf="@+id/juegos_button" />
+        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_juegosButton"
+        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_juegosButton"
+        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_juegosButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

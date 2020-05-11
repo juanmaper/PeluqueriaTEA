@@ -6,4 +6,24 @@
     <string name="pantallaPrincipal_juegosButton">Juegos</string>
     <string name="pantallaPrincipal_ajustesButton">Ajustes</string>
     <string name="pantallaPrincipal_creditosButton">Créditos</string>
+
+    <string name="consejos_consejo_1">Favorecer la participación de la persona con TEA
+        en el cuidado diario del pelo en el ámbito familiar</string>
+    <string name="consejos_consejo_2">Facilitar que la persona con TEA conozca el espacio,
+        profesionales y utensilios de la peluquería</string>
+    <string name="consejos_consejo_3">Valorar el grado de molestia que pueden generar olores,
+        ruidos, iluminación, etc y reducirlos lo máximo posible</string>
+    <string name="consejos_consejo_4">Concertar la cita en una hora que sea más tranquila
+        y evitar esperas</string>
+    <string name="consejos_consejo_5">Proporcionar una banqueta que permita apoyar los pies
+        si al sentarse en la silla le genera mayor inestabilidad</string>
+    <string name="consejos_consejo_6">Proporcionarle material distractor, si es necesario,
+        mientras le cortan el pelo</string>
+    <string name="consejos_consejo_7">Proporcionar los apoyos necesarios, como apoyos
+        visuales, historias sociales, calendarios, etc, que favorezcan la comprensión de la situación</string>
+
+
+    <string name="atrasButton">Atrás</string>
+    <string name="siguienteButton">Siguiente</string>
+    <string name="chicoPeinandoseImageView">Niño peinándose</string>
 </resources>

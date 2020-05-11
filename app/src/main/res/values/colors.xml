@@ -22,10 +22,14 @@
     <color name="aguamarina">#94ffb3</color>
     <color name="verde">#8aff78</color>
     <color name="verde_menta">#ade36b</color>
+    <color name="verde_menta_claro_siguiente_atras">#B6EF71</color>
+    <color name="verde_menta_oscuro">#7FB143</color>
     <color name="verde_menta_claro">#BBEF7C</color>
     <color name="verde_olivo">#c2cf87</color>
     <color name="verde_oscuro">#275708</color>
     <color name="amarillo">#edde6e</color>
     <color name="naranja">#dead7a</color>
     <color name="ocre">#c7baad</color>
+
+    <color name="negro">#000000</color>
 </resources>
