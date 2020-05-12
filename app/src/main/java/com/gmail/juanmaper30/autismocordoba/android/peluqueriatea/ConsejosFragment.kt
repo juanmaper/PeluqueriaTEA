@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 
 
 private const val TAG = "ConsejosFragment"
+private const val KEY_INDICE = "indiceActual"
 private const val NUMERO_CONSEJOS = 7
 
 class ConsejosFragment : Fragment() {
@@ -23,14 +25,37 @@ class ConsejosFragment : Fragment() {
     private lateinit var consejoTextView: TextView
 
     private val consejosViewModel: ConsejosViewModel by lazy {
-        ViewModelProviders.of(this).get(ConsejosViewModel::class.java)
+        ViewModelProvider(this).get(ConsejosViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Fijo el numero de consejos en funcion de la constante definida en este fragmento
+        /* Fijo el numero de consejos en funcion de la constante definida en este fragmento.
+         Antes miro si hay algo en el bundle, por si el OS ha destruido el proceso, si no, pongo
+         el indice a 1 */
+        val indiceConsejoActual = savedInstanceState?.getInt(KEY_INDICE, 1) ?: 1
+        Log.i(TAG, "Valor cogido de savedInstanceState o defecto: $indiceConsejoActual")
+        consejosViewModel.indiceActual = indiceConsejoActual
+
         consejosViewModel.numeroConsejos = NUMERO_CONSEJOS
         Log.i(TAG, "Fragmento consejos creado")
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d(TAG, "Pulsado boton back")
+
+                    if (consejosViewModel.estoyEnPrimerConsejo) {
+                        isEnabled = false
+                        requireActivity().onBackPressed()
+                    } else {
+                        consejosViewModel.decrementarIndice()
+                        actualizarPantalla()
+                    }
+                }
+            }
+        )
     }
 
     //Hago un inflate al xml de consejos
@@ -72,7 +97,7 @@ class ConsejosFragment : Fragment() {
             // Si estoy en el ultimo consejo, entonces vuelvo a la pantalla principal.
             if (consejosViewModel.estoyEnUltimoConsejo) {
                 Log.i(TAG, "Saliendo de fragmento consejos por haber terminado")
-                activity?.onBackPressed()
+                activity?.supportFragmentManager?.popBackStack();
             } else { // Si no, incremento el indice y muestro el consejo correspondiente
                 consejosViewModel.incrementarIndice()
                 actualizarPantalla()
@@ -81,6 +106,12 @@ class ConsejosFragment : Fragment() {
             }
 
         }
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        Log.i(TAG, "Guardando saveInstanceState de ConsejosFragment con indice: ${consejosViewModel.indiceConsejoActual}")
+        savedInstanceState.putInt(KEY_INDICE, consejosViewModel.indiceConsejoActual)
     }
 
 
