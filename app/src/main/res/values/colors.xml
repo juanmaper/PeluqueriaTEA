@@ -10,6 +10,8 @@
     <color name="malva_claro">#8864DC</color>
     <color name="turquesa">#08AE9E</color>
     <color name="turquesa_claro">#0BC5B3</color>
+    <color name="turquesa_oscuro">#089A8C</color>
+    <color name="turquesa_oscuro2">#0A8176</color>
 
     <color name="magenta">#e0a8ff</color>
     <color name="rosa_claro">#ff85db</color>

@@ -7,6 +7,8 @@
     <string name="pantallaPrincipal_ajustesButton">Ajustes</string>
     <string name="pantallaPrincipal_creditosButton">Créditos</string>
 
+    <!-- Modulo 1 - Consejos. El nombre de las strings es clave para que luego se monte la imagen
+            y cadena adecuada -->
     <string name="consejos_consejo_1">Favorecer la participación de la persona con TEA
         en el cuidado diario del pelo en el ámbito familiar</string>
     <string name="consejos_consejo_2">Facilitar que la persona con TEA conozca el espacio,
@@ -17,10 +19,21 @@
         y evitar esperas</string>
     <string name="consejos_consejo_5">Proporcionar una banqueta que permita apoyar los pies
         si al sentarse en la silla le genera mayor inestabilidad</string>
-    <string name="consejos_consejo_6">Proporcionarle material distractor, si es necesario,
+    <string name="consejos_consejo_6">Proporcionar material distractor, si es necesario,
         mientras le cortan el pelo</string>
     <string name="consejos_consejo_7">Proporcionar los apoyos necesarios, como apoyos
         visuales, historias sociales, calendarios, etc, que favorezcan la comprensión de la situación</string>
+
+    <!-- Modulo 2 - Secuencia de pasos "Vamos a la peluquería" -->
+    <string name="vamosPeluqueria_paso_1">¡Vamos a la peluquería!</string>
+    <string name="vamosPeluqueria_paso_2">Entro y saludo al peluquero</string>
+    <string name="vamosPeluqueria_paso_3">Me siento y espero mi turno</string>
+    <string name="vamosPeluqueria_paso_4">Me pongo la capa</string>
+    <string name="vamosPeluqueria_paso_5">Me mojan el pelo</string>
+    <string name="vamosPeluqueria_paso_6">Me cortan el pelo</string>
+    <string name="vamosPeluqueria_paso_7">Me peinan</string>
+    <string name="vamosPeluqueria_paso_8">Me secan el pelo</string>
+    <string name="vamosPeluqueria_paso_9">¡Qué guapo estoy!</string>
 
 
     <string name="atrasButton">Atrás</string>

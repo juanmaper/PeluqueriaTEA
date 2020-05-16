@@ -8,17 +8,21 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 
+private const val TAG = "PantallaPrincipalFragment"
+
 class PantallaPrincipalFragment : Fragment() {
 
     // Interfaz para que MainActivity pueda hostear el fragmento y hacer callbacks
     interface Callbacks {
         fun moduloConsejosSeleccionado()
+        fun moduloVamosPeluqueriaSeleccionado()
     }
 
     private var callbacks: Callbacks? = null
 
 
     private lateinit var consejosButton: ImageButton
+    private lateinit var vamosPeluqueriaButton: ImageButton
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -38,6 +42,7 @@ class PantallaPrincipalFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_pantalla_principal, container, false)
 
         consejosButton = view.findViewById(R.id.pantallaPrincipal_consejosButton) as ImageButton
+        vamosPeluqueriaButton = view.findViewById(R.id.pantallaPrincipal_vamosPeluqueriaButton) as ImageButton
 
         return view
     }
@@ -49,6 +54,12 @@ class PantallaPrincipalFragment : Fragment() {
         consejosButton.setOnClickListener {
             callbacks?.moduloConsejosSeleccionado()
         }
+
+        vamosPeluqueriaButton.setOnClickListener {
+            callbacks?.moduloVamosPeluqueriaSeleccionado()
+        }
+
+
     }
 
     override fun onDetach() {

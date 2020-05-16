@@ -4,16 +4,35 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.WindowManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MainActivity"
 
-class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks {
+class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
+    VamosPeluqueriaPaso1Fragment.Callbacks, VamosPeluqueriaPaso2Fragment.Callbacks {
 
+
+    /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
+        Vamos a la peluqueria */
+    private val mainActivityViewModel: MainActivityViewModel by lazy {
+        ViewModelProvider(this).get(MainActivityViewModel::class.java)
+    }
+
+    private var vamosPeluqueria = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+          window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+          )
+
         setContentView(R.layout.activity_main)
 
         val fragmentoActual = supportFragmentManager.findFragmentById(R.id.fragment_container)
@@ -28,8 +47,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks {
         Log.i(TAG, "Actividad creada")
     }
 
-    /* Sobrescribo la funcion de ConsejosFragment que uso como interfaz. Al ser llamada,
-        monto el modulo Consejos */
+    /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
+        ha pulsado el boton del modulo de consejos. Al ser llamada, monto el modulo Consejos */
     override fun moduloConsejosSeleccionado() {
         Log.i(TAG, "Montando modulo consejos")
         val fragmentoConsejos = ConsejosFragment()
@@ -39,4 +58,53 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks {
             .addToBackStack(null)
             .commit()
     }
+
+    /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
+        ha pulsado el boton del modulo de vamos a la peluqueria. Al ser llamada, monto
+        el modulo Vamos a la peluqueria */
+    override fun moduloVamosPeluqueriaSeleccionado() {
+        Log.i(TAG, "Montando modulo vamos a la peluqueria")
+        vamosPeluqueria = true
+        mainActivityViewModel.reiniciar()
+        val fragmentoVamosPeluqueria = VamosPeluqueriaPaso1Fragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoVamosPeluqueria)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    /* Sobrescribo la funcion de VamosPeluqueriaPaso1Fragment que uso como interfaz para saber
+        que se ha pulsado el boton siguiente. Al ser llamada, monto el siguiente fragmento
+        de la secuencia de Vamos a la peluqueria */
+    override fun vamosPeluqueriaMontarSiguienteFragmento() {
+        // Si estoy en el ultimo consejo, desmonto los fragmentos y vuelvo a la pantalla principal
+        if (mainActivityViewModel.estoyEnUltimoConsejo) {
+            Log.d(TAG, "Terminado VamosPeluqueria. Saliendo")
+            supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+        // Si no, monto el fragmento correspondiente segun el indice del viewmodel
+        else {
+            mainActivityViewModel.incrementarIndice()
+
+            Log.i(TAG, "Montando vamosPeluqueria fragmento ${mainActivityViewModel.indicePasoActual}")
+
+            val fragmentoVamosPeluqueria = when(mainActivityViewModel.indicePasoActual) {
+                1 -> VamosPeluqueriaPaso1Fragment()
+                2 -> VamosPeluqueriaPaso2Fragment()
+                else -> VamosPeluqueriaPaso1Fragment()
+            }
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragmentoVamosPeluqueria)
+                .addToBackStack(null)
+                .commit()
+        }
+    }
+
+    override fun vamosPeluqueriaDecrementarIndiceCallback() {
+        mainActivityViewModel.decrementarIndice()
+        Log.i(TAG, "Indice decrementado a:${mainActivityViewModel.indiceInternoLista}")
+    }
+
 }

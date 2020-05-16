@@ -8,7 +8,8 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/consejos_consejoTextView"
+        android:id="@+id/vamosPeluqueria_paso1TextView"
+        android:text="@string/vamosPeluqueria_paso_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -19,11 +20,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/consejos_consejo_2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/consejos_siguienteButton"
+        android:id="@+id/vamosPeluqueria_siguienteButton"
         style="@style/ConsejosAtrasSiguienteButton"
         android:layout_marginStart="150dp"
         android:layout_marginBottom="8dp"
@@ -35,7 +35,7 @@
         android:background="@drawable/imagebutton_flecha_siguiente" />
 
     <ImageButton
-        android:id="@+id/consejos_atrasButton"
+        android:id="@+id/vamosPeluqueria_atrasButton"
         style="@style/ConsejosAtrasSiguienteButton"
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="8dp"
@@ -48,16 +48,17 @@
 
 
     <ImageView
-        android:id="@+id/consejos_pictogramaImageView"
+        android:id="@+id/vamosPeluqueria_pictogramaPaso1ImageView"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginBottom="32dp"
         android:adjustViewBounds="true"
-        android:contentDescription="Escena de la peluquería"
+        android:contentDescription="Primer paso"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/consejos_consejoTextView"
-        tools:src="@drawable/ic_consejo_2" />
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso1TextView"
+        app:srcCompat="@drawable/ic_peluqueria" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

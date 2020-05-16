@@ -25,6 +25,7 @@ class ConsejosFragment : Fragment() {
     private lateinit var consejoTextView: TextView
     private var botonSiguientePulsadoEnUltimoConsejo = false
 
+    // Me creo el viewmodel para guardar el indice, asi persiste esa informacion
     private val consejosViewModel: ConsejosViewModel by lazy {
         ViewModelProvider(this).get(ConsejosViewModel::class.java)
     }
@@ -50,9 +51,9 @@ class ConsejosFragment : Fragment() {
                 override fun handleOnBackPressed() {
                     Log.d(TAG, "Pulsado boton back")
 
-                    /* Si pulsan back y estoy en el primer consejo, o tengo la flag de destruir
-                    fragmento activada, pongo a falso la callback y pulso back. Si no, decremento el
-                    indice de los consejos y actualizo la pantalla
+                    /* Si pulsan back y estoy en el primer consejo, o tengo la flag que me indica que
+                    estoy en el ultimo consejo y han pulsado siguiente, pongo a falso la callback
+                    y pulso back. Si no, decremento el indice de los consejos y actualizo la pantalla
                      */
                     if (consejosViewModel.estoyEnPrimerConsejo or botonSiguientePulsadoEnUltimoConsejo) {
                         isEnabled = false

@@ -17,14 +17,14 @@
         android:contentDescription="@string/pantallaPrincipal_consejosButton"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_secuenciaPasosButton"
+        app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_vamosPeluqueriaButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_libro_azul" />
+        app:srcCompat="@drawable/ic_postit" />
 
     <ImageButton
-        android:id="@+id/pantallaPrincipal_secuenciaPasosButton"
+        android:id="@+id/pantallaPrincipal_vamosPeluqueriaButton"
         style="@style/PantallaPrincipalButton"
         android:layout_marginBottom="60dp"
         android:adjustViewBounds="true"
@@ -33,14 +33,14 @@
         android:contentDescription="@string/pantallaPrincipal_secuenciaPasosButton"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_avatarButton"
+        app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_elijoMiPeinadoButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_consejosButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_peluqueria" />
 
     <ImageButton
-        android:id="@+id/pantallaPrincipal_avatarButton"
+        android:id="@+id/pantallaPrincipal_elijoMiPeinadoButton"
         style="@style/PantallaPrincipalButton"
         android:layout_marginBottom="60dp"
         android:adjustViewBounds="true"
@@ -51,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pantallaPrincipal_juegosButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_secuenciaPasosButton"
+        app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_vamosPeluqueriaButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_tinte_de_pelo" />
 
@@ -67,7 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_avatarButton"
+        app:layout_constraintStart_toEndOf="@+id/pantallaPrincipal_elijoMiPeinadoButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_robot" />
 
@@ -127,9 +127,9 @@
         android:text="@string/pantallaPrincipal_secuenciaPasosButton"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_secuenciaPasosButton"
-        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_secuenciaPasosButton"
-        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_secuenciaPasosButton" />
+        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_vamosPeluqueriaButton"
+        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_vamosPeluqueriaButton"
+        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_vamosPeluqueriaButton" />
 
     <TextView
         android:id="@+id/pantallaPrincipal_avatarTextView"
@@ -139,9 +139,9 @@
         android:text="@string/pantallaPrincipal_avatarButton"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_avatarButton"
-        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_avatarButton"
-        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_avatarButton" />
+        app:layout_constraintEnd_toEndOf="@+id/pantallaPrincipal_elijoMiPeinadoButton"
+        app:layout_constraintStart_toStartOf="@+id/pantallaPrincipal_elijoMiPeinadoButton"
+        app:layout_constraintTop_toBottomOf="@+id/pantallaPrincipal_elijoMiPeinadoButton" />
 
     <TextView
         android:id="@+id/pantallaPrincipal_juegosTextView"
