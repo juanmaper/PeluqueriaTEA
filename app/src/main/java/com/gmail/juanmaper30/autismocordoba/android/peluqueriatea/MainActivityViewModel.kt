@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 class MainActivityViewModel : ViewModel() {
 
     var indiceInternoLista = 0
-    var listaIndicesPasosParaMostrar = mutableListOf<Int>(1, 2)
+    var listaIndicesPasosParaMostrar = mutableListOf<Int>(1, 2, 3, 4)
 
     val indicePasoActual: Int
         get() = listaIndicesPasosParaMostrar[indiceInternoLista]

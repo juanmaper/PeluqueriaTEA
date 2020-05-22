@@ -13,7 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
-    VamosPeluqueriaPaso1Fragment.Callbacks, VamosPeluqueriaPaso2Fragment.Callbacks {
+    VamosPeluqueriaPaso1Fragment.Callbacks, VamosPeluqueriaPaso2Fragment.Callbacks,
+    VamosPeluqueriaPaso3Fragment.Callbacks, VamosPeluqueriaPaso4Fragment.Callbacks,
+    VamosPeluqueriaPaso5Fragment.Callbacks, VamosPeluqueriaPaso6Fragment.Callbacks,
+    VamosPeluqueriaPaso7Fragment.Callbacks, VamosPeluqueriaPaso8Fragment.Callbacks,
+    VamosPeluqueriaPaso9Fragment.Callbacks{
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -21,8 +25,6 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     private val mainActivityViewModel: MainActivityViewModel by lazy {
         ViewModelProvider(this).get(MainActivityViewModel::class.java)
     }
-
-    private var vamosPeluqueria = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +66,6 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         el modulo Vamos a la peluqueria */
     override fun moduloVamosPeluqueriaSeleccionado() {
         Log.i(TAG, "Montando modulo vamos a la peluqueria")
-        vamosPeluqueria = true
         mainActivityViewModel.reiniciar()
         val fragmentoVamosPeluqueria = VamosPeluqueriaPaso1Fragment()
         supportFragmentManager
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun vamosPeluqueriaMontarSiguienteFragmento() {
         // Si estoy en el ultimo consejo, desmonto los fragmentos y vuelvo a la pantalla principal
         if (mainActivityViewModel.estoyEnUltimoConsejo) {
-            Log.d(TAG, "Terminado VamosPeluqueria. Saliendo")
+            Log.d(TAG, "Terminado vamosPeluqueria fragmento. Saliendo")
             supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         }
         // Si no, monto el fragmento correspondiente segun el indice del viewmodel
@@ -92,6 +93,13 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             val fragmentoVamosPeluqueria = when(mainActivityViewModel.indicePasoActual) {
                 1 -> VamosPeluqueriaPaso1Fragment()
                 2 -> VamosPeluqueriaPaso2Fragment()
+                3 -> VamosPeluqueriaPaso3Fragment()
+                4 -> VamosPeluqueriaPaso4Fragment()
+                5 -> VamosPeluqueriaPaso5Fragment()
+                6 -> VamosPeluqueriaPaso6Fragment()
+                7 -> VamosPeluqueriaPaso7Fragment()
+                8 -> VamosPeluqueriaPaso8Fragment()
+                9 -> VamosPeluqueriaPaso9Fragment()
                 else -> VamosPeluqueriaPaso1Fragment()
             }
             supportFragmentManager
