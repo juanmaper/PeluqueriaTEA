@@ -61,7 +61,7 @@
         app:srcCompat="@drawable/ic_peluquero" />
 
     <ImageView
-        android:id="@+id/vamosPeluqueria_pictogramaChicoEsperandoImageView"
+        android:id="@+id/vamosPeluqueria_pictogramaChicoSentadoImageView"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginEnd="32dp"

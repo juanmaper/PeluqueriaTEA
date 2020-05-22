@@ -56,7 +56,7 @@ class VamosPeluqueriaPaso5Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_vamos_a_la_peluqueria_paso4, container, false)
+        val view = inflater.inflate(R.layout.fragment_vamos_a_la_peluqueria_paso5, container, false)
 
         atrasButton = view.findViewById(R.id.vamosPeluqueria_atrasButton) as ImageButton
         siguienteButton = view.findViewById(R.id.vamosPeluqueria_siguienteButton) as ImageButton

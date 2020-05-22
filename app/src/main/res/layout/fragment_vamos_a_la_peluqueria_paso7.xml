@@ -8,11 +8,11 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/vamosPeluqueria_paso3TextView"
+        android:id="@+id/vamosPeluqueria_paso7TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/vamosPeluqueria_paso_3"
+        android:text="@string/vamosPeluqueria_paso_7"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/primary_text_light_nodisable"
@@ -49,54 +49,73 @@
 
     <ImageView
         android:id="@+id/vamosPeluqueria_pictogramaSillaBarberoImageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:adjustViewBounds="true"
-        android:contentDescription="Sillon"
+        android:contentDescription="Silla de peluqueria"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso3TextView"
-        app:srcCompat="@drawable/ic_sillon" />
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso7TextView"
+        app:srcCompat="@drawable/ic_barber_chair1" />
 
     <ImageView
         android:id="@+id/vamosPeluqueria_pictogramaChicoSentadoImageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="50dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="120dp"
         android:adjustViewBounds="true"
-        android:contentDescription="Chico esperando"
+        android:contentDescription="Chico sentado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso3TextView"
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso7TextView"
         app:srcCompat="@drawable/ic_chico_esperando" />
 
-    <TextView
-        android:id="@+id/RectanguloAmarilloTextView"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="205dp"
-        android:background="@color/amarillo_menos_claro"
+    <ImageView
+        android:id="@+id/zapatillasImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="200dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Zapatillas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_zapatillas" />
 
     <ImageView
         android:id="@+id/capaImageView"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="200dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
-        android:contentDescription="Reloj"
+        android:contentDescription="Capa de peluqueria"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/vamosPeluqueria_pictogramaChicoSentadoImageView"
-        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso3TextView"
-        app:srcCompat="@drawable/ic_reloj3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso7TextView"
+        app:layout_constraintVertical_bias="0.521"
+        app:srcCompat="@drawable/ic_capa" />
+
+    <ImageView
+        android:id="@+id/peineImageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="85dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Peine"
+        android:rotation="40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso7TextView"
+        app:srcCompat="@drawable/ic_peine5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

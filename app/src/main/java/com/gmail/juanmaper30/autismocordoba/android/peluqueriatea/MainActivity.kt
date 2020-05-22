@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MainActivity"
+private const val KEY_INDICE_VAMOS_PELUQUERIA = "Indice_VamosPeluqueria"
 
 class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     VamosPeluqueriaPaso1Fragment.Callbacks, VamosPeluqueriaPaso2Fragment.Callbacks,
@@ -28,6 +29,13 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /* Miro si hay algo en el bundle, por si el OS ha destruido el proceso, si no, pongo
+        el indice a 0 */
+        val indiceVamosPeluqueriaActual = savedInstanceState?.getInt(KEY_INDICE_VAMOS_PELUQUERIA, 0) ?: 0
+        Log.i(TAG, "Valor cogido de savedInstanceState o defecto de VamosPeluqueria: $indiceVamosPeluqueriaActual")
+        mainActivityViewModel.indiceInternoLista = indiceVamosPeluqueriaActual
+
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
           window.setFlags(
@@ -36,6 +44,9 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
           )
 
         setContentView(R.layout.activity_main)
+
+        Log.i(TAG, "Actividad creada")
+        Log.i(TAG, "Indice activityViewModel: ${mainActivityViewModel.indiceInternoLista}")
 
         val fragmentoActual = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
@@ -46,7 +57,16 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
                 .add(R.id.fragment_container, fragmento)
                 .commit()
         }
-        Log.i(TAG, "Actividad creada")
+
+    }
+
+    /* Por si el OS destruye el proceso, guardo los datos que necesite:
+        - Guardo el indice del modulo 2, VamosPeluqueria
+     */
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        Log.i(TAG, "Guardando saveInstanceState de VamosPeluqueria con indice: ${mainActivityViewModel.indiceInternoLista}")
+        savedInstanceState.putInt(KEY_INDICE_VAMOS_PELUQUERIA, mainActivityViewModel.indiceInternoLista)
     }
 
     /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
@@ -87,6 +107,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         // Si no, monto el fragmento correspondiente segun el indice del viewmodel
         else {
             mainActivityViewModel.incrementarIndice()
+            Log.i(TAG, "Indice incrementado a:${mainActivityViewModel.indiceInternoLista}")
 
             Log.i(TAG, "Montando vamosPeluqueria fragmento ${mainActivityViewModel.indicePasoActual}")
 
@@ -114,5 +135,12 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         mainActivityViewModel.decrementarIndice()
         Log.i(TAG, "Indice decrementado a:${mainActivityViewModel.indiceInternoLista}")
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(TAG, "Destruyendo actividad")
+    }
+
+
 
 }
