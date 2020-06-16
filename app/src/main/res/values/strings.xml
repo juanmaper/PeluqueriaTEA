@@ -37,6 +37,11 @@
     <string name="vamosPeluqueria_chica_paso_9">¡Qué guapa estoy!</string>
 
 
+    <!-- Modulo 5 - Ajustes -->
+    <string name="ajustes_opcionChicoButton">Chico</string>
+    <string name="ajustes_opcionChicaButton">Chica</string>
+    <string name="ajustes_seleccion_chico_chica">Seleccione el personaje que mostrar</string>
+
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>
     <string name="chicoPeinandoseImageView">Niño peinándose</string>

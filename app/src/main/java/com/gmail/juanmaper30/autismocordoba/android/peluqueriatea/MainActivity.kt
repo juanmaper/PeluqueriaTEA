@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     VamosPeluqueriaPaso3Fragment.Callbacks, VamosPeluqueriaPaso4Fragment.Callbacks,
     VamosPeluqueriaPaso5Fragment.Callbacks, VamosPeluqueriaPaso6Fragment.Callbacks,
     VamosPeluqueriaPaso7Fragment.Callbacks, VamosPeluqueriaPaso8Fragment.Callbacks,
-    VamosPeluqueriaPaso9Fragment.Callbacks{
+    VamosPeluqueriaPaso9Fragment.Callbacks,
+    AjustesFragment.Callbacks{
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -95,6 +96,23 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             .commit()
     }
 
+    /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
+        ha pulsado el boton del modulo de ajustes. Al ser llamada, monto
+        el modulo ajustes */
+    override fun moduloAjustesSeleccionado() {
+        Log.i(TAG, "Montando modulo ajustes")
+        val fragmentoAjustes = AjustesFragment.newInstance(mainActivityViewModel.opcionMostrarChicoElegida)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoAjustes)
+            .addToBackStack(null)
+            .commit()
+    }
+
+
+
+
+
     /* Sobrescribo la funcion de VamosPeluqueriaPaso1Fragment que uso como interfaz para saber
         que se ha pulsado el boton siguiente. Al ser llamada, monto el siguiente fragmento
         de la secuencia de Vamos a la peluqueria */
@@ -136,6 +154,12 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun vamosPeluqueriaDecrementarIndiceCallback() {
         mainActivityViewModel.decrementarIndice()
         Log.i(TAG, "Indice decrementado a:${mainActivityViewModel.indiceInternoLista}")
+    }
+
+
+    override fun ajustesCambiarOpcionChicoChica(chicoElegido: Boolean) {
+        mainActivityViewModel.opcionChicoElegida = chicoElegido
+        Log.i(TAG, "Opcion de chico cambiada en el viewmodel a: ${mainActivityViewModel.opcionChicoElegida}")
     }
 
     override fun onDestroy() {

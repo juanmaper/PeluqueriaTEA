@@ -16,6 +16,7 @@ class PantallaPrincipalFragment : Fragment() {
     interface Callbacks {
         fun moduloConsejosSeleccionado()
         fun moduloVamosPeluqueriaSeleccionado()
+        fun moduloAjustesSeleccionado()
     }
 
     private var callbacks: Callbacks? = null
@@ -23,6 +24,7 @@ class PantallaPrincipalFragment : Fragment() {
 
     private lateinit var consejosButton: ImageButton
     private lateinit var vamosPeluqueriaButton: ImageButton
+    private lateinit var ajustesButton: ImageButton
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -43,6 +45,7 @@ class PantallaPrincipalFragment : Fragment() {
 
         consejosButton = view.findViewById(R.id.pantallaPrincipal_consejosButton) as ImageButton
         vamosPeluqueriaButton = view.findViewById(R.id.pantallaPrincipal_vamosPeluqueriaButton) as ImageButton
+        ajustesButton = view.findViewById(R.id.pantallaPrincipal_ajustesButton) as ImageButton
 
         return view
     }
@@ -59,7 +62,10 @@ class PantallaPrincipalFragment : Fragment() {
             callbacks?.moduloVamosPeluqueriaSeleccionado()
         }
 
-
+        ajustesButton.setOnLongClickListener{
+            callbacks?.moduloAjustesSeleccionado()
+            true
+        }
     }
 
     override fun onDetach() {
