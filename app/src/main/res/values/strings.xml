@@ -33,7 +33,8 @@
     <string name="vamosPeluqueria_paso_6">Me cortan el pelo</string>
     <string name="vamosPeluqueria_paso_7">Me peinan</string>
     <string name="vamosPeluqueria_paso_8">Me secan el pelo</string>
-    <string name="vamosPeluqueria_paso_9">¡Qué guapo estoy!</string>
+    <string name="vamosPeluqueria_chico_paso_9">¡Qué guapo estoy!</string>
+    <string name="vamosPeluqueria_chica_paso_9">¡Qué guapa estoy!</string>
 
 
     <string name="atrasButton">Atrás</string>

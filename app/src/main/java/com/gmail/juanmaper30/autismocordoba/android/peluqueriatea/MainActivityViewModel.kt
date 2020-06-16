@@ -6,6 +6,7 @@ class MainActivityViewModel : ViewModel() {
 
     var indiceInternoLista = 0
     var listaIndicesPasosParaMostrar = mutableListOf<Int>(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    var opcionChicoElegida: Boolean = false
 
     val indicePasoActual: Int
         get() = listaIndicesPasosParaMostrar[indiceInternoLista]
@@ -24,5 +25,8 @@ class MainActivityViewModel : ViewModel() {
 
     val estoyEnUltimoConsejo: Boolean
         get() = indiceInternoLista + 1 == listaIndicesPasosParaMostrar.size
+
+    val opcionMostrarChicoElegida: Boolean
+        get() = opcionChicoElegida == true
 
 }

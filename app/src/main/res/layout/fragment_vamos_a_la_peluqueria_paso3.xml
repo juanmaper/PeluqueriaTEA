@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso3TextView"
-        app:srcCompat="@drawable/ic_chico_esperando" />
+        tools:srcCompat="@drawable/ic_chico_esperando" />
 
     <TextView
         android:id="@+id/RectanguloAmarilloTextView"

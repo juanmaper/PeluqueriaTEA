@@ -71,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso2TextView"
-        app:srcCompat="@drawable/ic_chico_saludando" />
+        tools:srcCompat="@drawable/ic_chico_saludando" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

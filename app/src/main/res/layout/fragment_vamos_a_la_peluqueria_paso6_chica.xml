@@ -8,10 +8,11 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/vamosPeluqueria_paso9TextView"
+        android:id="@+id/vamosPeluqueria_paso6TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:text="@string/vamosPeluqueria_paso_6"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/primary_text_light_nodisable"
@@ -47,39 +48,58 @@
 
 
     <ImageView
-        android:id="@+id/vamosPeluqueria_pictogramaChicoSentadoImageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="40dp"
+        android:id="@+id/vamosPeluqueria_pictogramaSillaBarberoImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:adjustViewBounds="true"
-        android:contentDescription="Niño feliz pelado"
+        android:contentDescription="Silla de peluqueria"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso9TextView"
-        tools:srcCompat="@drawable/ic_chico_tocandose_cabeza" />
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso6TextView"
+        app:srcCompat="@drawable/ic_barber_chair1" />
 
     <ImageView
-        android:id="@+id/estrellitas1ImageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="48dp"
+        android:id="@+id/vamosPeluqueria_pictogramaChicaSentadaImageView"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="108dp"
         android:adjustViewBounds="true"
-        android:contentDescription="Estrellitas"
-        app:layout_constraintEnd_toStartOf="@+id/vamosPeluqueria_pictogramaChicoSentadoImageView"
-        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso9TextView"
-        app:srcCompat="@drawable/ic_estrellitas1" />
+        android:contentDescription="Chica sentado siendo pelado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso6TextView"
+        app:srcCompat="@drawable/ic_chica_corte_de_pelo" />
 
     <ImageView
-        android:id="@+id/estrellitas2ImageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="48dp"
+        android:id="@+id/zapatillasImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="200dp"
         android:adjustViewBounds="true"
-        android:contentDescription="Estrellitas"
-        app:layout_constraintStart_toEndOf="@+id/vamosPeluqueria_pictogramaChicoSentadoImageView"
-        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso9TextView"
-        app:srcCompat="@drawable/ic_estrellitas3" />
+        android:contentDescription="Zapatillas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_zapatillas" />
+
+    <ImageView
+        android:id="@+id/capaImageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="23dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Capa de peluqueria"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso6TextView"
+        app:srcCompat="@drawable/ic_capa" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 
 private const val TAG = "VamosPeluqueriaPaso4"
+private const val ARG_OPCION_CHICO_ELEGIDA = "opcion_chico_elegida"
 
 class VamosPeluqueriaPaso4Fragment : Fragment() {
 
@@ -21,6 +23,8 @@ class VamosPeluqueriaPaso4Fragment : Fragment() {
     }
 
     private var callbacks: Callbacks? = null
+
+    private var opcionChicoElegida: Boolean = true
 
     private lateinit var atrasButton: ImageButton
     private lateinit var siguienteButton: ImageButton
@@ -33,7 +37,10 @@ class VamosPeluqueriaPaso4Fragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.i(TAG, "Fragmento $TAG creado")
+        /* Aqui obtengo el dato tipo boolean que le paso a newInstance desde MainActivity para
+        saber si he de mostrar un chico o una chica */
+        opcionChicoElegida = arguments?.getSerializable(ARG_OPCION_CHICO_ELEGIDA) as Boolean
+        Log.i(TAG, "Fragmento $TAG creado con opcion mostrar chico = $opcionChicoElegida")
 
         /* En los fragmentos no se puede hacer un override a onBackPressed() directamente,
         asi que creo esta callback para sobreescribir el funcionamiento del back button. Le digo
@@ -56,13 +63,17 @@ class VamosPeluqueriaPaso4Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_vamos_a_la_peluqueria_paso4, container, false)
+        val view = when(opcionChicoElegida) {
+            true -> inflater.inflate(R.layout.fragment_vamos_a_la_peluqueria_paso4_chico, container, false)
+            false -> inflater.inflate(R.layout.fragment_vamos_a_la_peluqueria_paso4_chica, container, false)
+        }
 
         atrasButton = view.findViewById(R.id.vamosPeluqueria_atrasButton) as ImageButton
         siguienteButton = view.findViewById(R.id.vamosPeluqueria_siguienteButton) as ImageButton
 
         return view
     }
+
 
     override fun onStart() {
         super.onStart()
@@ -86,5 +97,20 @@ class VamosPeluqueriaPaso4Fragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         callbacks = null
+    }
+
+    /* Companion object, se puede llamar a la funcion como si fuese un metodo */
+    companion object {
+        /* Crea instancias de VamosPeluqueriaPaso4Fragment, recogiendo el valor que se le haya
+        pasado como argumento, es decir, el boolean que indica si he de mostrar un chico o una chica
+         */
+        fun newInstance(opcionChicoElegida: Boolean): VamosPeluqueriaPaso4Fragment {
+            val args = Bundle().apply {
+                putSerializable(ARG_OPCION_CHICO_ELEGIDA, opcionChicoElegida)
+            }
+            return VamosPeluqueriaPaso4Fragment().apply {
+                arguments = args
+            }
+        }
     }
 }

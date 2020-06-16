@@ -111,16 +111,18 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
             Log.i(TAG, "Montando vamosPeluqueria fragmento ${mainActivityViewModel.indicePasoActual}")
 
+            val mostrarChico: Boolean = mainActivityViewModel.opcionMostrarChicoElegida
+
             val fragmentoVamosPeluqueria = when(mainActivityViewModel.indicePasoActual) {
                 1 -> VamosPeluqueriaPaso1Fragment()
-                2 -> VamosPeluqueriaPaso2Fragment()
-                3 -> VamosPeluqueriaPaso3Fragment()
-                4 -> VamosPeluqueriaPaso4Fragment()
-                5 -> VamosPeluqueriaPaso5Fragment()
-                6 -> VamosPeluqueriaPaso6Fragment()
-                7 -> VamosPeluqueriaPaso7Fragment()
-                8 -> VamosPeluqueriaPaso8Fragment()
-                9 -> VamosPeluqueriaPaso9Fragment()
+                2 -> VamosPeluqueriaPaso2Fragment.newInstance(mostrarChico)
+                3 -> VamosPeluqueriaPaso3Fragment.newInstance(mostrarChico)
+                4 -> VamosPeluqueriaPaso4Fragment.newInstance(mostrarChico)
+                5 -> VamosPeluqueriaPaso5Fragment.newInstance(mostrarChico)
+                6 -> VamosPeluqueriaPaso6Fragment.newInstance(mostrarChico)
+                7 -> VamosPeluqueriaPaso7Fragment.newInstance(mostrarChico)
+                8 -> VamosPeluqueriaPaso8Fragment.newInstance(mostrarChico)
+                9 -> VamosPeluqueriaPaso9Fragment.newInstance(mostrarChico)
                 else -> VamosPeluqueriaPaso1Fragment()
             }
             supportFragmentManager
