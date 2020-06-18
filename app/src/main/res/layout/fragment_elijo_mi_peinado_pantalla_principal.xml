@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillo_menos_claro"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/elijoMiPeinadoPrincipal_misCortesDePeloButton"
+        style="@style/PantallaPrincipalButton"
+        android:layout_marginBottom="30dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/elijoMiPeinadoPrincipal_misCortesDePeloButton"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_postit" />
+
+    <TextView
+        android:id="@+id/elijoMiPeinadoPrincipal_misCortesDePeloTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/elijoMiPeinadoPrincipal_misCortesDePeloButton"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/elijoMiPeinadoPrincipal_misCortesDePeloButton"
+        app:layout_constraintStart_toStartOf="@+id/elijoMiPeinadoPrincipal_misCortesDePeloButton"
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinadoPrincipal_misCortesDePeloButton" />
+
+    <ImageButton
+        android:id="@+id/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
+        style="@style/PantallaPrincipalButton"
+        android:layout_marginBottom="30dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
+        android:padding="25dp"
+
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/elijoMiPeinadoPrincipal_misCortesDePeloButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_capa" />
+
+    <TextView
+        android:id="@+id/pantallaPrincipal_consejosTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
+        app:layout_constraintStart_toStartOf="@+id/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

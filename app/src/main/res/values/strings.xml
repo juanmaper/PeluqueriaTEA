@@ -36,6 +36,10 @@
     <string name="vamosPeluqueria_chico_paso_9">¡Qué guapo estoy!</string>
     <string name="vamosPeluqueria_chica_paso_9">¡Qué guapa estoy!</string>
 
+    <!-- Modulo 3 - Elijo mi peinado -->
+    <string name="elijoMiPeinadoPrincipal_misCortesDePeloButton">Mis cortes de pelo</string>
+    <string name="elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton">Mi nuevo corte de pelo</string>
+
 
     <!-- Modulo 5 - Ajustes -->
     <string name="ajustes_opcionChicoButton">Chico</string>

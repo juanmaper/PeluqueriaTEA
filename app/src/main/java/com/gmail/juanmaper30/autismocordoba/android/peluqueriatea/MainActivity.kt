@@ -1,17 +1,17 @@
 package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
+import android.content.Context
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MainActivity"
 private const val KEY_INDICE_VAMOS_PELUQUERIA = "Indice_VamosPeluqueria"
+private const val SHARED_PREFERENCES_OPCION_CHICO_ESCOGIDA = "opcionChicoEscogida"
 
 class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     VamosPeluqueriaPaso1Fragment.Callbacks, VamosPeluqueriaPaso2Fragment.Callbacks,
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     VamosPeluqueriaPaso5Fragment.Callbacks, VamosPeluqueriaPaso6Fragment.Callbacks,
     VamosPeluqueriaPaso7Fragment.Callbacks, VamosPeluqueriaPaso8Fragment.Callbacks,
     VamosPeluqueriaPaso9Fragment.Callbacks,
-    AjustesFragment.Callbacks{
+    AjustesFragment.Callbacks, ElijoMiPeinadoPantallaPrincipalFragment.Callbacks{
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         el indice a 0 */
         val indiceVamosPeluqueriaActual = savedInstanceState?.getInt(KEY_INDICE_VAMOS_PELUQUERIA, 0) ?: 0
         Log.i(TAG, "Valor cogido de savedInstanceState o defecto de VamosPeluqueria: $indiceVamosPeluqueriaActual")
-        mainActivityViewModel.indiceInternoLista = indiceVamosPeluqueriaActual
+        mainActivityViewModel.indiceInternoSecuenciaPasos = indiceVamosPeluqueriaActual
+        mainActivityViewModel.opcionChicoElegida = recuperarOpcionChicoChica()
 
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         setContentView(R.layout.activity_main)
 
         Log.i(TAG, "Actividad creada")
-        Log.i(TAG, "Indice activityViewModel: ${mainActivityViewModel.indiceInternoLista}")
+        Log.i(TAG, "Indice activityViewModel: ${mainActivityViewModel.indiceInternoSecuenciaPasos}")
 
         val fragmentoActual = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
@@ -66,8 +67,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
      */
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
-        Log.i(TAG, "Guardando saveInstanceState de VamosPeluqueria con indice: ${mainActivityViewModel.indiceInternoLista}")
-        savedInstanceState.putInt(KEY_INDICE_VAMOS_PELUQUERIA, mainActivityViewModel.indiceInternoLista)
+        Log.i(TAG, "Guardando saveInstanceState de VamosPeluqueria con indice: ${mainActivityViewModel.indiceInternoSecuenciaPasos}")
+        savedInstanceState.putInt(KEY_INDICE_VAMOS_PELUQUERIA, mainActivityViewModel.indiceInternoSecuenciaPasos)
     }
 
     /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
@@ -97,6 +98,20 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     }
 
     /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
+        ha pulsado el boton del modulo de Elijo mi peinado. Al ser llamada, monto
+        el modulo Elijo mi peinado */
+    override fun moduloElijoMiPeinadoSeleccionado() {
+        Log.i(TAG, "Montando modulo Elijo mi peinado")
+        val fragmentoElijoMiPeinado = ElijoMiPeinadoPantallaPrincipalFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoElijoMiPeinado)
+            .addToBackStack(null)
+            .commit()
+    }
+
+
+    /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
         ha pulsado el boton del modulo de ajustes. Al ser llamada, monto
         el modulo ajustes */
     override fun moduloAjustesSeleccionado() {
@@ -108,6 +123,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             .addToBackStack(null)
             .commit()
     }
+
 
 
 
@@ -125,7 +141,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         // Si no, monto el fragmento correspondiente segun el indice del viewmodel
         else {
             mainActivityViewModel.incrementarIndice()
-            Log.i(TAG, "Indice incrementado a:${mainActivityViewModel.indiceInternoLista}")
+            Log.i(TAG, "Indice incrementado a:${mainActivityViewModel.indiceInternoSecuenciaPasos}")
 
             Log.i(TAG, "Montando vamosPeluqueria fragmento ${mainActivityViewModel.indicePasoActual}")
 
@@ -153,20 +169,51 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun vamosPeluqueriaDecrementarIndiceCallback() {
         mainActivityViewModel.decrementarIndice()
-        Log.i(TAG, "Indice decrementado a:${mainActivityViewModel.indiceInternoLista}")
+        Log.i(TAG, "Indice decrementado a:${mainActivityViewModel.indiceInternoSecuenciaPasos}")
     }
+
+    override fun elijoMiPeinadoMontarModuloMisCortesDePelo() {
+        Log.d(TAG, "Hola 1")
+    }
+
+    override fun elijoMiPeinadoMontarModuloMiNuevoCorteDePelo() {
+        Log.d(TAG, "Hola 2")
+    }
+
+
 
 
     override fun ajustesCambiarOpcionChicoChica(chicoElegido: Boolean) {
         mainActivityViewModel.opcionChicoElegida = chicoElegido
+        guardarOpcionChicoChica()
         Log.i(TAG, "Opcion de chico cambiada en el viewmodel a: ${mainActivityViewModel.opcionChicoElegida}")
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        guardarOpcionChicoChica()
         Log.i(TAG, "Destruyendo actividad")
     }
 
 
+
+
+    /* Funcion donde guardo en shared preferences la opcion elegida entre chico o chica */
+    fun guardarOpcionChicoChica() {
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            putBoolean(SHARED_PREFERENCES_OPCION_CHICO_ESCOGIDA, mainActivityViewModel.opcionChicoElegida)
+            apply()
+        }
+        Log.d(TAG, "Guardado en shared preferences valor de opcion chico = ${mainActivityViewModel.opcionChicoElegida}")
+    }
+
+    /* Funcion que recupera la opcion chico o chica guardada en shared preferences */
+    fun recuperarOpcionChicoChica(): Boolean {
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        val opcionGuardada = sharedPref.getBoolean(SHARED_PREFERENCES_OPCION_CHICO_ESCOGIDA, true)
+        Log.d(TAG, "Recuperada opcion chico guardada: $opcionGuardada")
+        return opcionGuardada
+    }
 
 }
