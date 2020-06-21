@@ -13,14 +13,14 @@
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/elijoMiPeinadoPrincipal_misCortesDePeloButton"
-        android:padding="25dp"
+        android:padding="30dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_postit" />
+        app:srcCompat="@drawable/ic_album" />
 
     <TextView
         android:id="@+id/elijoMiPeinadoPrincipal_misCortesDePeloTextView"
@@ -40,7 +40,7 @@
         android:layout_marginBottom="30dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton"
-        android:padding="25dp"
+        android:padding="35dp"
 
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/elijoMiPeinadoPrincipal_misCortesDePeloButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_capa" />
+        app:srcCompat="@drawable/ic_hair_cut" />
 
     <TextView
         android:id="@+id/pantallaPrincipal_consejosTextView"
