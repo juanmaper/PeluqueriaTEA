@@ -39,6 +39,15 @@
     <!-- Modulo 3 - Elijo mi peinado -->
     <string name="elijoMiPeinadoPrincipal_misCortesDePeloButton">Mis cortes de pelo</string>
     <string name="elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton">Mi nuevo corte de pelo</string>
+    <string name="elijoMiPeinadoNuevo_Paso1">Elige el peinado</string>
+    <string name="elijoMiPeinado_CortoButton">Corto</string>
+    <string name="elijoMiPeinado_MedioButton">Medio</string>
+    <string name="elijoMiPeinado_LargoButton">Largo</string>
+    <string name="elijoMiPeinadoNuevo_Paso2">Elige el color del pelo</string>
+    <string name="elijoMiPeinado_RubioButton">Rubio</string>
+    <string name="elijoMiPeinado_MarronButton">Castaño</string>
+    <string name="elijoMiPeinado_NegroButton">Negro</string>
+
 
 
     <!-- Modulo 5 - Ajustes -->

@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     VamosPeluqueriaPaso5Fragment.Callbacks, VamosPeluqueriaPaso6Fragment.Callbacks,
     VamosPeluqueriaPaso7Fragment.Callbacks, VamosPeluqueriaPaso8Fragment.Callbacks,
     VamosPeluqueriaPaso9Fragment.Callbacks,
-    AjustesFragment.Callbacks, ElijoMiPeinadoPantallaPrincipalFragment.Callbacks{
+    AjustesFragment.Callbacks, ElijoMiPeinadoPantallaPrincipalFragment.Callbacks,
+    ElijoMiPeinadoMiNuevoCorteDePeloPaso1.Callbacks, ElijoMiPeinadoMiNuevoCorteDePeloPaso2.Callbacks {
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         Log.i(TAG, "Valor cogido de savedInstanceState o defecto de VamosPeluqueria: $indiceVamosPeluqueriaActual")
         mainActivityViewModel.indiceInternoSecuenciaPasos = indiceVamosPeluqueriaActual
         mainActivityViewModel.opcionChicoElegida = recuperarOpcionChicoChica()
-
+        mainActivityViewModel
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
           window.setFlags(
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         el modulo Vamos a la peluqueria */
     override fun moduloVamosPeluqueriaSeleccionado() {
         Log.i(TAG, "Montando modulo vamos a la peluqueria")
-        mainActivityViewModel.reiniciar()
+        mainActivityViewModel.reiniciarIndice()
         val fragmentoVamosPeluqueria = VamosPeluqueriaPaso1Fragment()
         supportFragmentManager
             .beginTransaction()
@@ -116,7 +117,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         el modulo ajustes */
     override fun moduloAjustesSeleccionado() {
         Log.i(TAG, "Montando modulo ajustes")
-        val fragmentoAjustes = AjustesFragment.newInstance(mainActivityViewModel.opcionMostrarChicoElegida)
+        val fragmentoAjustes = AjustesFragment.newInstance(mainActivityViewModel.getOpcionChicoElegida)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustes)
@@ -143,11 +144,11 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             mainActivityViewModel.incrementarIndice()
             Log.i(TAG, "Indice incrementado a:${mainActivityViewModel.indiceInternoSecuenciaPasos}")
 
-            Log.i(TAG, "Montando vamosPeluqueria fragmento ${mainActivityViewModel.indicePasoActual}")
+            Log.i(TAG, "Montando vamosPeluqueria fragmento ${mainActivityViewModel.getIndicePasoActualVamosPeluqueria}")
 
-            val mostrarChico: Boolean = mainActivityViewModel.opcionMostrarChicoElegida
+            val mostrarChico: Boolean = mainActivityViewModel.getOpcionChicoElegida
 
-            val fragmentoVamosPeluqueria = when(mainActivityViewModel.indicePasoActual) {
+            val fragmentoVamosPeluqueria = when(mainActivityViewModel.getIndicePasoActualVamosPeluqueria) {
                 1 -> VamosPeluqueriaPaso1Fragment()
                 2 -> VamosPeluqueriaPaso2Fragment.newInstance(mostrarChico)
                 3 -> VamosPeluqueriaPaso3Fragment.newInstance(mostrarChico)
@@ -172,13 +173,48 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         Log.i(TAG, "Indice decrementado a:${mainActivityViewModel.indiceInternoSecuenciaPasos}")
     }
 
+
+    /* Modulo 3: Elijo mi peinado */
+
     override fun elijoMiPeinadoMontarModuloMisCortesDePelo() {
         Log.d(TAG, "Hola 1")
     }
 
     override fun elijoMiPeinadoMontarModuloMiNuevoCorteDePelo() {
-        Log.d(TAG, "Hola 2")
+        Log.i(TAG, "Montando modulo Elijo mi peinado Mi Nuevo Corte de Pelo Paso 1")
+        val fragmentoElijoMiPeinadoNuevoCorteDePeloPaso1 = ElijoMiPeinadoMiNuevoCorteDePeloPaso1
+            .newInstance(mainActivityViewModel.opcionChicoElegida)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoElijoMiPeinadoNuevoCorteDePeloPaso1)
+            .addToBackStack(null)
+            .commit()
     }
+
+    override fun elijoMiPeinadoNuevoCorteDePeloMontarPaso2(opcionPeinado: Int) {
+        mainActivityViewModel.opcionPeinadoEscogida = opcionPeinado
+
+        Log.i(TAG, "Montando modulo Elijo mi peinado Mi Nuevo Corte de Pelo Paso 2")
+        val fragmentoElijoMiPeinadoNuevoCorteDePeloPaso2 = ElijoMiPeinadoMiNuevoCorteDePeloPaso2
+            .newInstance(mainActivityViewModel.opcionChicoElegida, mainActivityViewModel.opcionPeinadoEscogida)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoElijoMiPeinadoNuevoCorteDePeloPaso2)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun elijoMiPeinadoNuevoCorteDePeloMontarResultado(opcionColor: Int) {
+        mainActivityViewModel.opcionColorPeinadoEscogida = opcionColor
+
+        Log.d(TAG, "chicoElegido: ${mainActivityViewModel.opcionChicoElegida}, " +
+                "peinado: ${mainActivityViewModel.opcionPeinadoEscogida}, " +
+                "color: ${mainActivityViewModel.opcionColorPeinadoEscogida}")
+    }
+
+
 
 
 

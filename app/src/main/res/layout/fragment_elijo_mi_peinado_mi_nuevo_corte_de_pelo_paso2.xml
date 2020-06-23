@@ -8,11 +8,11 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/elijoMiPeinado_MiNuevoCorteDePeloPaso1TextView"
+        android:id="@+id/elijoMiPeinado_MiNuevoCorteDePeloPaso2TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/elijoMiPeinadoNuevo_Paso1"
+        android:text="@string/elijoMiPeinadoNuevo_Paso2"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/primary_text_light_nodisable"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/elijoMiPeinado_Paso1ImageView"
+        android:id="@+id/elijoMiPeinado_Paso2ImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="32dp"
@@ -60,78 +60,78 @@
         app:srcCompat="@drawable/ic_personaje_peinado_chico_medio_marron" />
 
     <ImageButton
-        android:id="@+id/seleccionPeinadoCortoImageButton"
+        android:id="@+id/seleccionColorRubioImageButton"
         style="@style/ElijoMiPeinadoSeleccionButton"
         android:layout_marginStart="180dp"
         android:adjustViewBounds="true"
         android:background="@drawable/button_ajustes_chicochica_no_seleccionado"
-        android:contentDescription="Seleccion de peinado corto"
+        android:contentDescription="Seleccion de color del pelo rubio"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/seleccionPeinadoMedioImageButton"
+        app:layout_constraintEnd_toStartOf="@+id/seleccionColorMarronImageButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_Paso1ImageView"
-        app:srcCompat="@drawable/ic_peinado_chico_corto_marron" />
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_Paso2ImageView"
+        app:srcCompat="@drawable/ic_peinado_chico_medio_rubio" />
 
     <ImageButton
-        android:id="@+id/seleccionPeinadoMedioImageButton"
+        android:id="@+id/seleccionColorMarronImageButton"
         style="@style/ElijoMiPeinadoSeleccionButton"
         android:adjustViewBounds="true"
         android:background="@drawable/button_ajustes_chicochica_seleccionado"
-        android:contentDescription="Seleccion de peinado medio"
+        android:contentDescription="Seleccion de color del pelo castaño"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/seleccionPeinadoLargoImageButton"
+        app:layout_constraintEnd_toStartOf="@+id/seleccionColorNegroImageButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/seleccionPeinadoCortoImageButton"
-        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_Paso1ImageView"
+        app:layout_constraintStart_toEndOf="@+id/seleccionColorRubioImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_Paso2ImageView"
         app:srcCompat="@drawable/ic_peinado_chico_medio_marron" />
 
     <ImageButton
-        android:id="@+id/seleccionPeinadoLargoImageButton"
+        android:id="@+id/seleccionColorNegroImageButton"
         style="@style/ElijoMiPeinadoSeleccionButton"
         android:layout_marginEnd="180dp"
         android:adjustViewBounds="true"
         android:background="@drawable/button_ajustes_chicochica_no_seleccionado"
-        android:contentDescription="Seleccion de peinado corto"
+        android:contentDescription="Seleccion de color del pelo negro"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/seleccionPeinadoMedioImageButton"
-        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_Paso1ImageView"
-        app:srcCompat="@drawable/ic_peinado_chico_largo_marron" />
+        app:layout_constraintStart_toEndOf="@+id/seleccionColorMarronImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_Paso2ImageView"
+        app:srcCompat="@drawable/ic_peinado_chico_medio_negro" />
 
     <TextView
-        android:id="@+id/peinadoCortoTextView"
+        android:id="@+id/colorRubioTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/elijoMiPeinado_CortoButton"
-        app:layout_constraintEnd_toEndOf="@+id/seleccionPeinadoCortoImageButton"
-        app:layout_constraintStart_toStartOf="@+id/seleccionPeinadoCortoImageButton"
-        app:layout_constraintTop_toBottomOf="@+id/seleccionPeinadoCortoImageButton" />
+        android:text="@string/elijoMiPeinado_RubioButton"
+        app:layout_constraintEnd_toEndOf="@+id/seleccionColorRubioImageButton"
+        app:layout_constraintStart_toStartOf="@+id/seleccionColorRubioImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/seleccionColorRubioImageButton" />
 
     <TextView
-        android:id="@+id/peinadoMedioTextView"
+        android:id="@+id/colorMarronTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/elijoMiPeinado_MedioButton"
-        app:layout_constraintEnd_toEndOf="@+id/seleccionPeinadoMedioImageButton"
-        app:layout_constraintStart_toStartOf="@+id/seleccionPeinadoMedioImageButton"
-        app:layout_constraintTop_toBottomOf="@+id/seleccionPeinadoMedioImageButton" />
+        android:text="@string/elijoMiPeinado_MarronButton"
+        app:layout_constraintEnd_toEndOf="@+id/seleccionColorMarronImageButton"
+        app:layout_constraintStart_toStartOf="@+id/seleccionColorMarronImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/seleccionColorMarronImageButton" />
 
     <TextView
-        android:id="@+id/peinadoLargoTextView"
+        android:id="@+id/colorNegroTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/elijoMiPeinado_LargoButton"
-        app:layout_constraintEnd_toEndOf="@+id/seleccionPeinadoLargoImageButton"
-        app:layout_constraintStart_toStartOf="@+id/seleccionPeinadoLargoImageButton"
-        app:layout_constraintTop_toBottomOf="@+id/seleccionPeinadoLargoImageButton" />
+        android:text="@string/elijoMiPeinado_NegroButton"
+        app:layout_constraintEnd_toEndOf="@+id/seleccionColorNegroImageButton"
+        app:layout_constraintStart_toStartOf="@+id/seleccionColorNegroImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/seleccionColorNegroImageButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
