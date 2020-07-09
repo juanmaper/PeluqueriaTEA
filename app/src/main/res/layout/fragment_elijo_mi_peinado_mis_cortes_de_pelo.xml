@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillo_menos_claro"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/elijoMiPeinado_MisCortesDePeloTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/elijoMiPeinadoMisCortesDePelo"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/primary_text_light_nodisable"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/elijoMiPeinadoMisCortesDePelo_siguienteButton"
+        style="@style/ConsejosAtrasSiguienteButton"
+        android:layout_marginStart="150dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/imagebutton_flecha_siguiente"
+        android:contentDescription="@string/siguienteButton"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+    <ImageButton
+        android:id="@+id/elijoMiPeinadoMisCortesDePelo_atrasButton"
+        style="@style/ConsejosAtrasSiguienteButton"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/imagebutton_flecha_atras"
+        android:contentDescription="@string/atrasButton"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/avatar1_ImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Avatar chico o chica con peinado"
+        app:layout_constraintBottom_toTopOf="@+id/elijoMiPeinadoMisCortesDePelo_atrasButton"
+        app:layout_constraintEnd_toStartOf="@+id/avatar2_ImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_MisCortesDePeloTextView"
+        tools:srcCompat="@drawable/ic_personaje_peinado_chica_largo_marron" />
+
+    <ImageView
+        android:id="@+id/avatar2_ImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Avatar chico o chica con peinado"
+        app:layout_constraintBottom_toTopOf="@+id/elijoMiPeinadoMisCortesDePelo_atrasButton"
+        app:layout_constraintEnd_toStartOf="@+id/avatar3_ImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/avatar1_ImageView"
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_MisCortesDePeloTextView"
+        tools:srcCompat="@drawable/ic_personaje_peinado_chico_medio_rubio" />
+
+    <ImageView
+        android:id="@+id/avatar3_ImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Avatar chico o chica con peinado"
+        app:layout_constraintBottom_toTopOf="@+id/elijoMiPeinadoMisCortesDePelo_siguienteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/avatar2_ImageView"
+        app:layout_constraintTop_toBottomOf="@+id/elijoMiPeinado_MisCortesDePeloTextView"
+        tools:srcCompat="@drawable/ic_personaje_peinado_chico_largo_negro" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

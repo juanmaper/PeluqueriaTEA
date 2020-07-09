@@ -57,5 +57,25 @@
         app:layout_constraintStart_toEndOf="@+id/seleccionSexoTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/reiniciarListaAvataresButton"
+        android:layout_width="600dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="64dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/button_ajustes_chicochica_no_seleccionado"
+        android:contentDescription="Reiniciar lista de personajes creados en el modulo 3"
+        android:scaleType="fitCenter"
+        android:text="@string/ajustes_reiniciarListaAvatares"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seleccionSexoTextView"
+        app:layout_constraintVertical_bias="0.518" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

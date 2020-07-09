@@ -39,21 +39,28 @@
     <!-- Modulo 3 - Elijo mi peinado -->
     <string name="elijoMiPeinadoPrincipal_misCortesDePeloButton">Mis cortes de pelo</string>
     <string name="elijoMiPeinadoPrincipal_miNuevoCorteDePeloButton">Mi nuevo corte de pelo</string>
-    <string name="elijoMiPeinadoNuevo_Paso1">Elige el peinado</string>
+    <string name="elijoMiPeinadoNuevo_Paso1">Elijo mi peinado</string>
     <string name="elijoMiPeinado_CortoButton">Corto</string>
     <string name="elijoMiPeinado_MedioButton">Medio</string>
     <string name="elijoMiPeinado_LargoButton">Largo</string>
-    <string name="elijoMiPeinadoNuevo_Paso2">Elige el color del pelo</string>
+    <string name="elijoMiPeinadoNuevo_Paso2">Elijo mi color de pelo</string>
     <string name="elijoMiPeinado_RubioButton">Rubio</string>
     <string name="elijoMiPeinado_MarronButton">Castaño</string>
     <string name="elijoMiPeinado_NegroButton">Negro</string>
+    <string name="elijoMiPeinadoNuevo_chicoResultadoTextView">¡Ya estoy listo!</string>
+    <string name="elijoMiPeinadoNuevo_chicaResultadoTextView">¡Ya estoy lista!</string>
 
+    <string name="elijoMiPeinadoMisCortesDePelo">Mis cortes de pelo</string>
+
+    <!-- Modulo 4 - Juego de asociacion de sonidos -->
+    <string name="juegoAsociacionSonidos_TextView">¿Qué objeto suena?</string>
 
 
     <!-- Modulo 5 - Ajustes -->
     <string name="ajustes_opcionChicoButton">Chico</string>
     <string name="ajustes_opcionChicaButton">Chica</string>
     <string name="ajustes_seleccion_chico_chica">Seleccione el personaje que mostrar</string>
+    <string name="ajustes_reiniciarListaAvatares">Reiniciar personajes creados</string>
 
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>

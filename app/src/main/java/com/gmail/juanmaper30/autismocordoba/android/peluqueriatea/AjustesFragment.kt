@@ -17,6 +17,7 @@ class AjustesFragment : Fragment() {
     // Interfaz para comunicarme con MainActivity y decirle que cambie la opcion de chico o chica
     interface Callbacks {
         fun ajustesCambiarOpcionChicoChica(chicoElegido: Boolean)
+        fun ajustesReiniciarListaAvataresGuardados()
     }
 
     private var callbacks: Callbacks? = null
@@ -25,6 +26,7 @@ class AjustesFragment : Fragment() {
 
     private lateinit var chicoButton: Button
     private lateinit var chicaButton: Button
+    private lateinit var reiniciarListaAvataresButton: Button
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -48,6 +50,7 @@ class AjustesFragment : Fragment() {
 
         chicoButton = view.findViewById(R.id.opcionChicoButton)
         chicaButton = view.findViewById(R.id.opcionChicaButton)
+        reiniciarListaAvataresButton = view.findViewById(R.id.reiniciarListaAvataresButton)
 
         if (opcionChicoElegida){
             Log.i(TAG, "Mostrando boton de chico seleccionado en ajustes")
@@ -89,6 +92,10 @@ class AjustesFragment : Fragment() {
 
                 opcionChicoElegida = false
             }
+        }
+
+        reiniciarListaAvataresButton.setOnClickListener{
+            callbacks?.ajustesReiniciarListaAvataresGuardados()
         }
     }
 

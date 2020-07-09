@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "ElijoMiPeinadoNuevoCor1"
 private const val ARG_OPCION_CHICO_ELEGIDA = "opcion_chico_elegida"
+private const val KEY_PEINADO_ELEGIDO = "opcion_peinado_temporal"
 
 class ElijoMiPeinadoMiNuevoCorteDePeloPaso1 : Fragment() {
 
@@ -30,7 +32,11 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso1 : Fragment() {
     private lateinit var personajeImageView: ImageView
 
     private var opcionChicoElegida: Boolean = true
-    private var opcionPeinadoElegida: Int = 2
+
+    // Me creo el viewmodel para guardar el peinado escogido
+    private val NuevoCortePaso1ViewModel: ElijoMiPeinadoMiNuevoCorteDePeloPaso1ViewModel by lazy {
+        ViewModelProvider(this).get(ElijoMiPeinadoMiNuevoCorteDePeloPaso1ViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -44,6 +50,11 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso1 : Fragment() {
        saber si he de mostrar un chico o una chica */
         opcionChicoElegida = arguments?.getSerializable(ARG_OPCION_CHICO_ELEGIDA) as Boolean
         Log.i(TAG, "Fragmento $TAG creado con opcion mostrar chico = $opcionChicoElegida")
+
+        val opcionPeinadoActual = savedInstanceState?.getInt(KEY_PEINADO_ELEGIDO, 2) ?: 2
+        Log.i(TAG, "Valor cogido de savedInstanceState o defecto: $opcionPeinadoActual")
+
+        NuevoCortePaso1ViewModel.opcionPeinadoElegida = opcionPeinadoActual
     }
 
     override fun onCreateView(
@@ -89,7 +100,7 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso1 : Fragment() {
         }
 
         siguienteButton.setOnClickListener {
-            callbacks?.elijoMiPeinadoNuevoCorteDePeloMontarPaso2(opcionPeinadoElegida)
+            callbacks?.elijoMiPeinadoNuevoCorteDePeloMontarPaso2(NuevoCortePaso1ViewModel.opcionPeinadoElegida)
         }
 
         /* Listener en el boton del peinado corto. Solo funciona si no esta ya marcado, y en ese caso,
@@ -97,34 +108,45 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso1 : Fragment() {
             o chica
          */
         peinadoCortoButton.setOnClickListener {
-            if (opcionPeinadoElegida != 1) {
-                Log.d(TAG, "Pulsado boton de peinado corto con opcionPeinadoElegida = $opcionPeinadoElegida")
+            if (NuevoCortePaso1ViewModel.opcionPeinadoElegida != 1) {
+                Log.d(TAG, "Pulsado boton de peinado corto con opcionPeinado " +
+                        "= ${NuevoCortePaso1ViewModel.opcionPeinadoElegida}")
 
-                opcionPeinadoElegida = 1
+                NuevoCortePaso1ViewModel.opcionPeinadoElegida = 1
                 marcarBotonSeleccionado()
                 actualizarPersonaje()
             }
         }
 
         peinadoMedioButton.setOnClickListener {
-            if (opcionPeinadoElegida != 2) {
-                Log.d(TAG, "Pulsado boton de peinado medio con opcionPeinadoElegida = $opcionPeinadoElegida")
+            if (NuevoCortePaso1ViewModel.opcionPeinadoElegida != 2) {
+                Log.d(TAG, "Pulsado boton de peinado medio con opcionPeinado " +
+                        "= ${NuevoCortePaso1ViewModel.opcionPeinadoElegida}")
 
-                opcionPeinadoElegida = 2
+                NuevoCortePaso1ViewModel.opcionPeinadoElegida = 2
                 marcarBotonSeleccionado()
                 actualizarPersonaje()
             }
         }
 
         peinadoLargoButton.setOnClickListener {
-            if (opcionPeinadoElegida != 3) {
-                Log.d(TAG, "Pulsado boton de peinado largo con opcionPeinadoElegida = $opcionPeinadoElegida")
+            if (NuevoCortePaso1ViewModel.opcionPeinadoElegida != 3) {
+                Log.d(TAG, "Pulsado boton de peinado largo con opcionPeinado " +
+                        "= ${NuevoCortePaso1ViewModel.opcionPeinadoElegida}")
 
-                opcionPeinadoElegida = 3
+                NuevoCortePaso1ViewModel.opcionPeinadoElegida = 3
                 marcarBotonSeleccionado()
                 actualizarPersonaje()
             }
         }
+    }
+
+    // Por si el OS destruye el proceso, guardo el peinado que habia elegido
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        Log.i(TAG, "Guardando saveInstanceState de $TAG con opcionPeinado: " +
+                "${NuevoCortePaso1ViewModel.opcionPeinadoElegida}")
+        savedInstanceState.putInt(KEY_PEINADO_ELEGIDO, NuevoCortePaso1ViewModel.opcionPeinadoElegida)
     }
 
     override fun onDestroy() {
@@ -140,7 +162,7 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso1 : Fragment() {
 
     /* Funcion que actualiza que boton se marca segun la opcion escogida */
     fun marcarBotonSeleccionado() {
-        when (opcionPeinadoElegida) {
+        when (NuevoCortePaso1ViewModel.opcionPeinadoElegida) {
             1 -> {
                 peinadoCortoButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_seleccionado)
                 peinadoMedioButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_no_seleccionado)
@@ -166,13 +188,13 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso1 : Fragment() {
      */
     fun actualizarPersonaje() {
         if (opcionChicoElegida) {
-            when (opcionPeinadoElegida) {
+            when (NuevoCortePaso1ViewModel.opcionPeinadoElegida) {
                 1 -> personajeImageView.setImageResource(R.drawable.ic_personaje_peinado_chico_corto_marron)
                 2 -> personajeImageView.setImageResource(R.drawable.ic_personaje_peinado_chico_medio_marron)
                 3 -> personajeImageView.setImageResource(R.drawable.ic_personaje_peinado_chico_largo_marron)
             }
         } else {
-            when (opcionPeinadoElegida) {
+            when (NuevoCortePaso1ViewModel.opcionPeinadoElegida) {
                 1 -> personajeImageView.setImageResource(R.drawable.ic_personaje_peinado_chica_corto_marron)
                 2 -> personajeImageView.setImageResource(R.drawable.ic_personaje_peinado_chica_medio_marron)
                 3 -> personajeImageView.setImageResource(R.drawable.ic_personaje_peinado_chica_largo_marron)

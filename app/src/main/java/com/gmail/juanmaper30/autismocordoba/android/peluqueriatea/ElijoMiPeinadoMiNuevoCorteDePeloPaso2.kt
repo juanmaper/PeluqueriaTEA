@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_elijo_mi_peinado_mi_nuevo_corte_de_pelo_paso2.*
+import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "ElijoMiPeinadoNuevoCor2"
 private const val ARG_OPCION_CHICO_ELEGIDA = "opcion_chico_elegida"
-private const val ARG_OPCION_PEINADO_ELEGIDA = "opcion_chico_peinado"
+private const val ARG_OPCION_PEINADO_ELEGIDA = "opcion_peinado_elegida"
+private const val KEY_COLOR_ELEGIDO = "opcion_color_temporal"
+
 
 class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
 
@@ -33,7 +35,11 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
 
     private var opcionChicoElegida: Boolean = true
     private var opcionPeinadoElegida: Int = 2
-    private var opcionColorElegida: Int = 2
+
+    // Me creo el viewmodel para guardar el peinado escogido
+    private val NuevoCortePaso2ViewModel: ElijoMiPeinadoMiNuevoCorteDePeloPaso2ViewModel by lazy {
+        ViewModelProvider(this).get(ElijoMiPeinadoMiNuevoCorteDePeloPaso2ViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -50,6 +56,11 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
         opcionPeinadoElegida = arguments?.getSerializable(ARG_OPCION_PEINADO_ELEGIDA) as Int
         Log.i(TAG, "Fragmento $TAG creado con opcion mostrar chico = $opcionChicoElegida " +
                 "y opcion peinado = $opcionPeinadoElegida")
+
+        val opcionColorActual = savedInstanceState?.getInt(KEY_COLOR_ELEGIDO, 2) ?: 2
+        Log.i(TAG, "Valor cogido de savedInstanceState o defecto: $opcionColorActual")
+
+        NuevoCortePaso2ViewModel.opcionColorElegida = opcionColorActual
     }
 
     override fun onCreateView(
@@ -90,37 +101,40 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
         }
 
         siguienteButton.setOnClickListener {
-            callbacks?.elijoMiPeinadoNuevoCorteDePeloMontarResultado(opcionColorElegida)
+            callbacks?.elijoMiPeinadoNuevoCorteDePeloMontarResultado(NuevoCortePaso2ViewModel.opcionColorElegida)
         }
 
         /* Listener en el boton del color rubio. Funciona solo si no esta marcado, y al darle,
         poner el color a su correspondiente, y actualiza el personaje y el marcado de botones
          */
         colorRubioButton.setOnClickListener {
-            if (opcionColorElegida != 1) {
-                Log.d(TAG, "Pulsado boton de color rubio con opcionColor = $opcionColorElegida")
+            if (NuevoCortePaso2ViewModel.opcionColorElegida != 1) {
+                Log.d(TAG, "Pulsado boton de color rubio con opcionColor = " +
+                        "${NuevoCortePaso2ViewModel.opcionColorElegida}")
 
-                opcionColorElegida = 1
+                NuevoCortePaso2ViewModel.opcionColorElegida = 1
                 actualizarPersonaje()
                 marcarBotonSeleccionado()
             }
         }
 
         colorMarronButton.setOnClickListener {
-            if (opcionColorElegida != 2) {
-                Log.d(TAG, "Pulsado boton de color castaño con opcionColor = $opcionColorElegida")
+            if (NuevoCortePaso2ViewModel.opcionColorElegida != 2) {
+                Log.d(TAG, "Pulsado boton de color castaño con opcionColor = " +
+                        "${NuevoCortePaso2ViewModel.opcionColorElegida}")
 
-                opcionColorElegida = 2
+                NuevoCortePaso2ViewModel.opcionColorElegida = 2
                 actualizarPersonaje()
                 marcarBotonSeleccionado()
             }
         }
 
         colorNegroButton.setOnClickListener {
-            if (opcionColorElegida != 3) {
-                Log.d(TAG, "Pulsado boton de color negro con opcionColor = $opcionColorElegida")
+            if (NuevoCortePaso2ViewModel.opcionColorElegida != 3) {
+                Log.d(TAG, "Pulsado boton de color negro con opcionColor = " +
+                        "${NuevoCortePaso2ViewModel.opcionColorElegida}")
 
-                opcionColorElegida = 3
+                NuevoCortePaso2ViewModel.opcionColorElegida = 3
                 actualizarPersonaje()
                 marcarBotonSeleccionado()
             }
@@ -129,6 +143,13 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
 
     }
 
+    // Por si el OS destruye el proceso, guardo el color que habia elegido
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        Log.i(TAG, "Guardando saveInstanceState de $TAG con opcionColor: " +
+                "${NuevoCortePaso2ViewModel.opcionColorElegida}")
+        savedInstanceState.putInt(KEY_COLOR_ELEGIDO, NuevoCortePaso2ViewModel.opcionColorElegida)
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -145,61 +166,8 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
 
     fun actualizarPersonaje() {
 
-        val idRecursoPersonajeAMostrar: Int =
-
-        /* Devolvere el indice del recurso a usar, y luego lo pondre en el personaje. Para ello, primero
-        miro si se esta mostrando un chico o una chica, y luego en funcion del peinado escogido y
-        opcion de color, devuelvo un id de recurso u otro
-         */
-        if (opcionChicoElegida) {
-            when (opcionPeinadoElegida) {
-                1 -> when (opcionColorElegida) {
-                    1 -> R.drawable.ic_personaje_peinado_chico_corto_rubio
-                    2 -> R.drawable.ic_personaje_peinado_chico_corto_marron
-                    3 -> R.drawable.ic_personaje_peinado_chico_corto_negro
-                    else -> R.drawable.ic_personaje_peinado_chico_corto_marron
-                }
-
-                2 -> when (opcionColorElegida) {
-                    1 -> R.drawable.ic_personaje_peinado_chico_medio_rubio
-                    2 -> R.drawable.ic_personaje_peinado_chico_medio_marron
-                    3 -> R.drawable.ic_personaje_peinado_chico_medio_negro
-                    else -> R.drawable.ic_personaje_peinado_chico_medio_marron
-                }
-
-                3 -> when (opcionColorElegida) {
-                    1 -> R.drawable.ic_personaje_peinado_chico_largo_rubio
-                    2 -> R.drawable.ic_personaje_peinado_chico_largo_marron
-                    3 -> R.drawable.ic_personaje_peinado_chico_largo_negro
-                    else -> R.drawable.ic_personaje_peinado_chico_largo_marron
-                }
-                else -> R.drawable.ic_personaje_peinado_chico_medio_marron
-            }
-        } else {
-            when (opcionPeinadoElegida) {
-                1 -> when (opcionColorElegida) {
-                    1 -> R.drawable.ic_personaje_peinado_chica_corto_rubio
-                    2 -> R.drawable.ic_personaje_peinado_chica_corto_marron
-                    3 -> R.drawable.ic_personaje_peinado_chica_corto_negro
-                    else -> R.drawable.ic_personaje_peinado_chica_corto_marron
-                }
-
-                2 -> when (opcionColorElegida) {
-                    1 -> R.drawable.ic_personaje_peinado_chica_medio_rubio
-                    2 -> R.drawable.ic_personaje_peinado_chica_medio_marron
-                    3 -> R.drawable.ic_personaje_peinado_chica_medio_negro
-                    else -> R.drawable.ic_personaje_peinado_chica_medio_marron
-                }
-
-                3 -> when (opcionColorElegida) {
-                    1 -> R.drawable.ic_personaje_peinado_chica_largo_rubio
-                    2 -> R.drawable.ic_personaje_peinado_chica_largo_marron
-                    3 -> R.drawable.ic_personaje_peinado_chica_largo_negro
-                    else -> R.drawable.ic_personaje_peinado_chica_largo_marron
-                }
-                else -> R.drawable.ic_personaje_peinado_chica_medio_marron
-            }
-        }
+        val idRecursoPersonajeAMostrar: Int = Avatar(opcionChicoElegida, opcionPeinadoElegida,
+            NuevoCortePaso2ViewModel.opcionColorElegida).idRecursoAsociado()
 
         personajeImageView.setImageResource(idRecursoPersonajeAMostrar)
     }
@@ -250,7 +218,7 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
 
     /* Funcion que actualiza que boton se marca segun la opcion escogida */
     fun marcarBotonSeleccionado() {
-        when (opcionColorElegida) {
+        when (NuevoCortePaso2ViewModel.opcionColorElegida) {
             1 -> {
                 colorRubioButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_seleccionado)
                 colorMarronButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_no_seleccionado)
