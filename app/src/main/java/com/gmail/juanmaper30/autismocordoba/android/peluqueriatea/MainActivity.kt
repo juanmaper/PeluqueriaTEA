@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     VamosPeluqueriaPaso9Fragment.Callbacks,
     AjustesFragment.Callbacks, ElijoMiPeinadoPantallaPrincipalFragment.Callbacks,
     ElijoMiPeinadoMiNuevoCorteDePeloPaso1.Callbacks, ElijoMiPeinadoMiNuevoCorteDePeloPaso2.Callbacks,
-    ElijoMiPeinadoMiNuevoCorteDePeloResultado.Callbacks, ElijoMiPeinadoMisCortesDePelo.Callbacks {
+    ElijoMiPeinadoMiNuevoCorteDePeloResultado.Callbacks, ElijoMiPeinadoMisCortesDePelo.Callbacks,
+    JuegoAsociacionSonidosFragment.Callbacks, JuegoAsociacionSonidosResultado.Callbacks{
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -299,7 +300,27 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     }
 
 
+    override fun juegoAsociacionSonidosPantallaResultado(acierto: Boolean, objeto: ObjetoSonidoPeluqueria,
+                                                         finalDelJuego: Boolean) {
+        Log.d(TAG, "Montando pantalla resultado con acierto = $acierto y nombreObjeto = " +
+                "${objeto.nombreObjeto} y final del juego = $finalDelJuego"
+        )
 
+        val fragmentoJuegoAsociacionSonidosResultadoFragment = JuegoAsociacionSonidosResultado
+            .newInstance(acierto, objeto, finalDelJuego)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoJuegoAsociacionSonidosResultadoFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun juegoAsociacionSonidosTerminado() {
+        Log.d(TAG, "Quitando fragmentos de JuegoAsociacionSonidos. Vuelta a " +
+                "pantalla principal")
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
 
 
 

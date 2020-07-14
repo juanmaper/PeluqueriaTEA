@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillo_menos_claro"
+    android:orientation="horizontal"
+    android:animateLayoutChanges="true">
+
+    <TextView
+        android:id="@+id/juegoAsociacionSonidos_ResultadoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/juegoAsociacionSonidos_ResultadoCorrectoTextView"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#93CF5F"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/juegoAsociacionSonidos_ResultadoImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="13dp"
+
+        android:adjustViewBounds="true"
+        android:contentDescription="Objeto acertado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/juegoAsociacionSonidos_ResultadoComentarioAvanceTextView"
+        app:srcCompat="@drawable/ic_secador" />
+
+    <TextView
+        android:id="@+id/juegoAsociacionSonidos_ResultadoComentarioAvanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/juegoAsociacionSonidos_ResultadoComentarioSiguienteObjetoTextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/juegoAsociacionSonidos_ResultadoTextView" />
+
+    <Button
+        android:id="@+id/juegoAsociacionSonidos_ResultadoPantallaEnteraButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

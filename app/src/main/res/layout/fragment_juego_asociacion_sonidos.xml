@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/amarillo_menos_claro"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:animateLayoutChanges="true">
 
     <TextView
         android:id="@+id/juegoAsociacionSonidosTextView"
@@ -35,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/juegoAsociacionSonidos_sprayImageButton"
-        app:srcCompat="@drawable/ic_tijeras1" />
+        app:srcCompat="@drawable/ic_tijeras2" />
 
     <ImageButton
         android:id="@+id/juegoAsociacionSonidos_secadorImageButton"
@@ -82,6 +83,21 @@
         app:layout_constraintStart_toEndOf="@+id/juegoAsociacionSonidos_secadorImageButton"
         app:srcCompat="@drawable/ic_maquinilla_electrica" />
 
+    <ImageButton
+        android:id="@+id/juegoAsociacionSonidos_casaImageButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/amarillo_menos_claro"
+        android:contentDescription="Volver al menu principal"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_casa5" />
+
     <ImageView
         android:id="@+id/juegoAsociacionSonidos_altavozImageView"
         android:layout_width="100dp"
@@ -94,6 +110,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_altavoz" />
+
+    <TextView
+        android:id="@+id/juegoAsociacionSonidos_comentarioTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/juegoAsociacionSonidos_comentarioTextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/juegoAsociacionSonidosTextView" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

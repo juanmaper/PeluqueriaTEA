@@ -33,6 +33,8 @@
     <color name="amarillo">#edde6e</color>
     <color name="naranja">#dead7a</color>
     <color name="ocre">#c7baad</color>
+    <color name="verde_flecha">#93CF5F</color>
+    <color name="rojo">#D60D0D</color>
 
     <color name="negro">#000000</color>
 </resources>

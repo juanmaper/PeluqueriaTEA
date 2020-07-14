@@ -54,6 +54,17 @@
 
     <!-- Modulo 4 - Juego de asociacion de sonidos -->
     <string name="juegoAsociacionSonidos_TextView">¿Qué objeto suena?</string>
+    <string name="juegoAsociacionSonidos_comentarioTextView">Pulsa el altavoz para escuchar el sonido hasta
+    dos veces</string>
+    <string name="juegoAsociacionSonidos_eleccionTextView">Ahora tienes que elegir un objeto pulsando un botón</string>
+    <string name="juegoAsociacionSonidos_ResultadoCorrectoTextView">¡Correcto, has acertado!</string>
+    <string name="juegoAsociacionSonidos_ResultadoIncorrectoTextView">Inténtalo otra vez</string>
+    <string name="juegoAsociacionSonidos_ResultadoComentarioSiguienteObjetoTextView">
+        Pulsa en cualquier parte de la pantalla para continuar
+    </string>
+    <string name="juegoAsociacionSonidos_ResultadoComentarioAnteriorObjetoTextView">
+        Pulsa en cualquier parte de la pantalla para probar otra vez
+    </string>
 
 
     <!-- Modulo 5 - Ajustes -->
