@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     VamosPeluqueriaPaso7Fragment.Callbacks, VamosPeluqueriaPaso8Fragment.Callbacks,
     VamosPeluqueriaPaso9Fragment.Callbacks,
     AjustesFragment.Callbacks, ElijoMiPeinadoPantallaPrincipalFragment.Callbacks,
-    ElijoMiPeinadoMiNuevoCorteDePeloPaso1.Callbacks, ElijoMiPeinadoMiNuevoCorteDePeloPaso2.Callbacks,
-    ElijoMiPeinadoMiNuevoCorteDePeloResultado.Callbacks, ElijoMiPeinadoMisCortesDePelo.Callbacks,
-    JuegoAsociacionSonidosFragment.Callbacks, JuegoAsociacionSonidosResultado.Callbacks{
+    ElijoMiPeinadoMiNuevoCorteDePeloPaso1Fragment.Callbacks, ElijoMiPeinadoMiNuevoCorteDePeloPaso2Fragment.Callbacks,
+    ElijoMiPeinadoMiNuevoCorteDePeloResultadoFragment.Callbacks, ElijoMiPeinadoMisCortesDePeloFragment.Callbacks,
+    JuegoAsociacionSonidosFragment.Callbacks, JuegoAsociacionSonidosResultadoFragment.Callbacks{
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -224,7 +224,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun elijoMiPeinadoMontarModuloMisCortesDePelo() {
         Log.i(TAG, "Montando modulo Elijo mi peinado Mis Cortes De Pelo")
-        val fragmentoElijoMiPeinadoMisCortesDePelo= ElijoMiPeinadoMisCortesDePelo
+        val fragmentoElijoMiPeinadoMisCortesDePelo= ElijoMiPeinadoMisCortesDePeloFragment
             .newInstance(mainActivityViewModel.listaAvataresGuardados, mainActivityViewModel.numeroAvataresGuardadosEnLista())
 
         supportFragmentManager
@@ -244,7 +244,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun elijoMiPeinadoMontarModuloMiNuevoCorteDePelo() {
         Log.i(TAG, "Montando modulo Elijo mi peinado Mi Nuevo Corte de Pelo Paso 1")
-        val fragmentoElijoMiPeinadoNuevoCorteDePeloPaso1 = ElijoMiPeinadoMiNuevoCorteDePeloPaso1
+        val fragmentoElijoMiPeinadoNuevoCorteDePeloPaso1 = ElijoMiPeinadoMiNuevoCorteDePeloPaso1Fragment
             .newInstance(mainActivityViewModel.opcionChicoElegida)
 
         supportFragmentManager
@@ -259,7 +259,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         mainActivityViewModel.opcionPeinadoEscogida = opcionPeinado
 
         Log.i(TAG, "Montando modulo Elijo mi peinado Mi Nuevo Corte de Pelo Paso 2")
-        val fragmentoElijoMiPeinadoNuevoCorteDePeloPaso2 = ElijoMiPeinadoMiNuevoCorteDePeloPaso2
+        val fragmentoElijoMiPeinadoNuevoCorteDePeloPaso2 = ElijoMiPeinadoMiNuevoCorteDePeloPaso2Fragment
             .newInstance(mainActivityViewModel.opcionChicoElegida, mainActivityViewModel.opcionPeinadoEscogida)
 
         supportFragmentManager
@@ -277,7 +277,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
                 "opcionPeinado = ${mainActivityViewModel.opcionPeinadoEscogida}, " +
                 "opcionColor = ${mainActivityViewModel.opcionColorPeinadoEscogida}")
         Log.i(TAG, "Montando modulo Elijo mi peinado Mi Nuevo Corte de Pelo Resultado")
-        val fragmentoElijoMiPeinadoNuevoCorteDePeloResultado = ElijoMiPeinadoMiNuevoCorteDePeloResultado
+        val fragmentoElijoMiPeinadoNuevoCorteDePeloResultado = ElijoMiPeinadoMiNuevoCorteDePeloResultadoFragment
             .newInstance(mainActivityViewModel.opcionChicoElegida, mainActivityViewModel.opcionPeinadoEscogida,
             mainActivityViewModel.opcionColorPeinadoEscogida)
 
@@ -306,7 +306,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
                 "${objeto.nombreObjeto} y final del juego = $finalDelJuego"
         )
 
-        val fragmentoJuegoAsociacionSonidosResultadoFragment = JuegoAsociacionSonidosResultado
+        val fragmentoJuegoAsociacionSonidosResultadoFragment = JuegoAsociacionSonidosResultadoFragment
             .newInstance(acierto, objeto, finalDelJuego)
 
         supportFragmentManager

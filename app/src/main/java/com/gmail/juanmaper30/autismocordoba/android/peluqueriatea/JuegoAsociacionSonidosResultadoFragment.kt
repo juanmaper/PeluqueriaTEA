@@ -17,7 +17,7 @@ private const val ARG_ACIERTO = "objeto_acertado"
 private const val ARG_OBJETO_PELUQUERIA = "objeto_peluqueria"
 private const val ARG_FINAL_DEL_JUEGO = "final_del_juego"
 
-class JuegoAsociacionSonidosResultado : Fragment() {
+class JuegoAsociacionSonidosResultadoFragment : Fragment() {
 
     // Interfaz para comunicarme con MainActivity y decirle que saque los fragmentos del modulo
     interface Callbacks {
@@ -114,6 +114,14 @@ class JuegoAsociacionSonidosResultado : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i(TAG, "Destruyendo fragmento $TAG")
+
+        if (objetoPeluqueria.reproductor?.isPlaying!!) {
+            objetoPeluqueria.reproductor?.pause()
+
+            if (!acierto) {
+                objetoPeluqueria.reproductor?.seekTo(0)
+            }
+        }
     }
 
     override fun onDetach() {
@@ -129,13 +137,13 @@ class JuegoAsociacionSonidosResultado : Fragment() {
         el objeto en sí, conteniendo el nombre de este y su sonido
          */
         fun newInstance(acierto: Boolean, objeto: ObjetoSonidoPeluqueria, finalDelJuego: Boolean):
-                JuegoAsociacionSonidosResultado {
+                JuegoAsociacionSonidosResultadoFragment {
             val args = Bundle().apply {
                 putSerializable(ARG_ACIERTO, acierto)
                 putSerializable(ARG_OBJETO_PELUQUERIA, objeto as Serializable)
                 putSerializable(ARG_FINAL_DEL_JUEGO, finalDelJuego)
             }
-            return JuegoAsociacionSonidosResultado().apply {
+            return JuegoAsociacionSonidosResultadoFragment().apply {
                 arguments = args
             }
         }

@@ -186,18 +186,22 @@ class JuegoAsociacionSonidosFragment : Fragment() {
             when (juegoSonidosViewModel.listaObjetos[indice].nombreObjeto) {
                 "Secador" -> {
                     secadorImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    secadorImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     secadorImageButton.isEnabled = false
                 }
                 "Maquinilla" -> {
                     maquinillaElectricaImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    maquinillaElectricaImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     maquinillaElectricaImageButton.isEnabled = false
                 }
                 "Spray" -> {
                     sprayImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    sprayImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     sprayImageButton.isEnabled = false
                 }
                 "Tijeras" -> {
                     tijerasImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    tijerasImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     tijerasImageButton.isEnabled = false
                 }
             }

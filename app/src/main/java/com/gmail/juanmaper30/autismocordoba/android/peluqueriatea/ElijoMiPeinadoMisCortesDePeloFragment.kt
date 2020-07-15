@@ -15,7 +15,7 @@ private const val TAG = "ElijoMiPeinadoMisCortes"
 private const val ARG_LISTA_AVATARES = "lista_de_avatares"
 private const val ARG_NUMERO_AVATARES = "numero_de_avatares"
 
-class ElijoMiPeinadoMisCortesDePelo : Fragment() {
+class ElijoMiPeinadoMisCortesDePeloFragment : Fragment() {
 
     interface Callbacks {
         fun elijoMiPeinadoMisCortesDePeloTerminado()
@@ -121,12 +121,12 @@ class ElijoMiPeinadoMisCortesDePelo : Fragment() {
         y el numero de avatares guardados
          */
         fun newInstance(listaAvatares: MutableList<Int>, numeroAvatares: Int)
-                : ElijoMiPeinadoMisCortesDePelo {
+                : ElijoMiPeinadoMisCortesDePeloFragment {
             val args = Bundle().apply {
                 putSerializable(ARG_LISTA_AVATARES, listaAvatares as Serializable)
                 putSerializable(ARG_NUMERO_AVATARES, numeroAvatares)
             }
-            return ElijoMiPeinadoMisCortesDePelo().apply {
+            return ElijoMiPeinadoMisCortesDePeloFragment().apply {
                 arguments = args
             }
         }

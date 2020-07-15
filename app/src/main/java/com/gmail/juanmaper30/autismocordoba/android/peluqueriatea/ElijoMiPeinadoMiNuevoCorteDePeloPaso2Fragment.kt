@@ -17,7 +17,7 @@ private const val ARG_OPCION_PEINADO_ELEGIDA = "opcion_peinado_elegida"
 private const val KEY_COLOR_ELEGIDO = "opcion_color_temporal"
 
 
-class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
+class ElijoMiPeinadoMiNuevoCorteDePeloPaso2Fragment : Fragment() {
 
     interface Callbacks {
         fun elijoMiPeinadoNuevoCorteDePeloMontarResultado(opcionColor: Int)
@@ -247,12 +247,12 @@ class ElijoMiPeinadoMiNuevoCorteDePeloPaso2 : Fragment() {
         pasado como argumento, es decir, el boolean que indica si he de mostrar un chico o una chica y
         el tipo de peinado elegido
          */
-        fun newInstance(opcionChicoElegida: Boolean, opcionPeinadoElegida: Int): ElijoMiPeinadoMiNuevoCorteDePeloPaso2 {
+        fun newInstance(opcionChicoElegida: Boolean, opcionPeinadoElegida: Int): ElijoMiPeinadoMiNuevoCorteDePeloPaso2Fragment {
             val args = Bundle().apply {
                 putSerializable(ARG_OPCION_CHICO_ELEGIDA, opcionChicoElegida)
                 putSerializable(ARG_OPCION_PEINADO_ELEGIDA, opcionPeinadoElegida)
             }
-            return ElijoMiPeinadoMiNuevoCorteDePeloPaso2().apply {
+            return ElijoMiPeinadoMiNuevoCorteDePeloPaso2Fragment().apply {
                 arguments = args
             }
         }
