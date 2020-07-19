@@ -4,29 +4,34 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Switch
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 
 private const val TAG = "AjustesFragment"
 private const val ARG_OPCION_CHICO_ELEGIDA = "opcion_chico_elegida"
+private const val CONFIRMACION_BORRAR_PERSONAJES = "confirmacion_borrar_personajes"
+private const val REQUEST_CONFIRMACION_BORRAR_PERSONAJES = 0
 
-class AjustesFragment : Fragment() {
+class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesFragment.Callbacks {
 
     // Interfaz para comunicarme con MainActivity y decirle que cambie la opcion de chico o chica
     interface Callbacks {
         fun ajustesCambiarOpcionChicoChica(chicoElegido: Boolean)
         fun ajustesReiniciarListaAvataresGuardados()
+        fun ajustesFinalizado()
     }
 
     private var callbacks: Callbacks? = null
 
     private var opcionChicoElegida: Boolean = true
 
-    private lateinit var chicoButton: Button
-    private lateinit var chicaButton: Button
-    private lateinit var reiniciarListaAvataresButton: Button
+    private lateinit var sexoPersonajeSwitch: Switch
+    private lateinit var borrarPersonajesButton: Button
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,6 +44,24 @@ class AjustesFragment : Fragment() {
         saber si he de mostrar un chico o una chica */
         opcionChicoElegida = arguments?.getSerializable(ARG_OPCION_CHICO_ELEGIDA) as Boolean
         Log.i(TAG, "Fragmento $TAG creado con opcion mostrar chico = $opcionChicoElegida")
+
+        /* En los fragmentos no se puede hacer un override a onBackPressed() directamente,
+        asi que creo esta callback para sobreescribir el funcionamiento del back button y llamar
+        a la callback que pone la pantalla en horizontal. Lo hago aqui porque si lo hiciese
+        en destroy o detach si se produce un cambio de configuracion se destruiria el fragmento
+        y se llamaria a la callback, poniendo ajustes en horizontal cuando se reconstruya
+         */
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d(TAG, "Pulsado boton back en ajustes")
+                    isEnabled = false
+                    callbacks?.ajustesFinalizado()
+                    requireActivity().onBackPressed()
+                }
+            }
+        )
     }
 
     override fun onCreateView(
@@ -48,19 +71,10 @@ class AjustesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_ajustes, container, false)
 
-        chicoButton = view.findViewById(R.id.opcionChicoButton)
-        chicaButton = view.findViewById(R.id.opcionChicaButton)
-        reiniciarListaAvataresButton = view.findViewById(R.id.reiniciarListaAvataresButton)
+        sexoPersonajeSwitch = view.findViewById(R.id.ajustes_sexoPersonajeSwitch)
+        borrarPersonajesButton = view.findViewById(R.id.ajustes_reiniciarPersonajesButton)
 
-        if (opcionChicoElegida){
-            Log.i(TAG, "Mostrando boton de chico seleccionado en ajustes")
-            chicoButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_seleccionado)
-            chicaButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_no_seleccionado)
-        } else {
-            Log.i(TAG, "Mostrando boton de chica seleccionado en ajustes")
-            chicoButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_no_seleccionado)
-            chicaButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_seleccionado)
-        }
+        sexoPersonajeSwitch.isChecked = opcionChicoElegida
 
         return view
     }
@@ -68,35 +82,25 @@ class AjustesFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        chicoButton.setOnClickListener{
-            if (opcionChicoElegida == false) {
-                Log.i(TAG, "Pulsado boton de chico, cambiando fondos de boton y la opcion del" +
-                        " viewmodel")
+        sexoPersonajeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 callbacks?.ajustesCambiarOpcionChicoChica(true)
-
-                chicoButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_seleccionado)
-                chicaButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_no_seleccionado)
-
-                opcionChicoElegida = true
-            }
-        }
-
-        chicaButton.setOnClickListener{
-            if (opcionChicoElegida) {
+            } else {
                 callbacks?.ajustesCambiarOpcionChicoChica(false)
-                Log.i(TAG, "Pulsado boton de chica, cambiando fondos de boton y la opcion del" +
-                        " viewmodel")
-
-                chicoButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_no_seleccionado)
-                chicaButton.setBackgroundResource(R.drawable.button_ajustes_chicochica_seleccionado)
-
-                opcionChicoElegida = false
             }
         }
 
-        reiniciarListaAvataresButton.setOnClickListener{
-            callbacks?.ajustesReiniciarListaAvataresGuardados()
+        borrarPersonajesButton.setOnClickListener {
+            ConfirmacionBorrarPersonajesFragment().apply {
+                setTargetFragment(this@AjustesFragment, REQUEST_CONFIRMACION_BORRAR_PERSONAJES)
+                show(this@AjustesFragment.requireActivity().supportFragmentManager, CONFIRMACION_BORRAR_PERSONAJES)
+            }
         }
+
+    }
+
+    override fun confirmacionBorrarPersonajes() {
+        callbacks?.ajustesReiniciarListaAvataresGuardados()
     }
 
     override fun onDestroy() {

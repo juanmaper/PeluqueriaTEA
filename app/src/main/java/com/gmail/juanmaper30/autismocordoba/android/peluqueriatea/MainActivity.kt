@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 
@@ -59,11 +60,11 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         mainActivityViewModel.cargarListaAvataresConCadena(cadenaListaAvatares)
 
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-          window.setFlags(
+        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
-          )
+        )
 
         setContentView(R.layout.activity_main)
 
@@ -106,6 +107,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun moduloConsejosSeleccionado() {
         Log.i(TAG, "Montando modulo consejos")
         val fragmentoConsejos = ConsejosFragment()
+        Log.d(TAG, "Opcion chico: ${recuperarOpcionChicoChica()}")
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoConsejos)
@@ -163,12 +165,16 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         el modulo ajustes */
     override fun moduloAjustesSeleccionado() {
         Log.i(TAG, "Montando modulo ajustes")
-        val fragmentoAjustes = AjustesFragment.newInstance(mainActivityViewModel.getOpcionChicoElegida)
+        val fragmentoAjustes = //SettingsFragment()
+            AjustesFragment.newInstance(mainActivityViewModel.getOpcionChicoElegida)
+
+        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustes)
             .addToBackStack(null)
             .commit()
+
     }
 
 
@@ -338,6 +344,12 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         mainActivityViewModel.reiniciarListaAvatares()
         guardarCadenaListaAvatares()
         Log.d(TAG, "Lista de avatares reiniciada")
+        Toast.makeText(this, R.string.ajustes_personajesBorradosToast, Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    override fun ajustesFinalizado() {
+        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
     override fun onDestroy() {

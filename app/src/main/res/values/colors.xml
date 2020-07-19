@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#008577</color>
 
     <color name="amarillo_claro">#FFFECE</color>
     <color name="amarillo_menos_claro">#FFFEBD</color>
     <color name="malva">#663BC9</color>
     <color name="malva_claro">#8864DC</color>
     <color name="turquesa">#08AE9E</color>
-    <color name="turquesa_tintada">#08887C</color>
+    <color name="turquesa_tintada">#067A6F</color>
+    <color name="turquesa_tintada2">#08887C</color>
     <color name="turquesa_claro">#0BC5B3</color>
     <color name="turquesa_oscuro">#089A8C</color>
     <color name="turquesa_oscuro2">#0A8176</color>
 
     <color name="magenta">#e0a8ff</color>
-    <color name="rosa_claro">#ff85db</color>
+    <color name="rosa">#ff85db</color>
+    <color name="rosa_oscuro">#FD73D4</color>
+    <color name="rosa_claro">#FA9DDE</color>
     <color name="magenta_claro">#d4d4ff</color>
     <color name="naranja_claro">#f5ccc2</color>
     <color name="salmon">#ffb0d1</color>
     <color name="azul">#b0d1ff</color>
-    <color name="azul_claro">#a8edff</color>
+    <color name="azul_oscuro">#8EBCFD</color>
+    <color name="azul_claro">#C6DDFD</color>
     <color name="aguamarina_claro">#99ffd4</color>
     <color name="aguamarina">#94ffb3</color>
     <color name="verde">#8aff78</color>
     <color name="verde_menta">#ade36b</color>
-    <color name="verde_menta_tintada">#779E48</color>
+    <color name="verde_menta_tintada">#597833</color>
+    <color name="verde_menta_tintada2">#779E48</color>
     <color name="verde_menta_claro_siguiente_atras">#B6EF71</color>
     <color name="verde_menta_oscuro">#7FB143</color>
     <color name="verde_menta_claro">#BBEF7C</color>
@@ -39,4 +44,13 @@
     <color name="rojo">#D60D0D</color>
 
     <color name="negro">#000000</color>
+    <color name="gris">#D3CACA</color>
+
+    <color name="switchTrack">#ffd600</color>
+    <color name="switchTrackDisable">#90caf9</color>
+    <color name="switchTrackActive">#1565c0</color>
+    <color name="switchTrackNormal">#90caf9</color>
+    <color name="switchThumbBgActive">#1b5e20</color>
+    <color name="switchThumbActive">#ad1457</color>
+    <color name="switchThumbkNormal">#64b5f6</color>
 </resources>

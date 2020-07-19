@@ -57,7 +57,8 @@
     <string name="juegoAsociacionSonidos_comentarioTextView">Pulsa el altavoz para escuchar el sonido hasta
     dos veces</string>
     <string name="juegoAsociacionSonidos_eleccionTextView">Ahora tienes que elegir un objeto pulsando un botón</string>
-    <string name="juegoAsociacionSonidos_ResultadoCorrectoTextView">¡Correcto, has acertado!</string>
+    <string name="juegoAsociacionSonidos_ResultadoCorrectoTextView">¡Correcto!</string>
+    <string name="juegoAsociacionSonidos_ResultadoCorrectoYFinalTextView">¡Correcto, juego finalizado!</string>
     <string name="juegoAsociacionSonidos_ResultadoIncorrectoTextView">Inténtalo otra vez</string>
     <string name="juegoAsociacionSonidos_ResultadoComentarioSiguienteObjetoTextView">
         Pulsa en cualquier parte de la pantalla para continuar
@@ -68,10 +69,18 @@
 
 
     <!-- Modulo 5 - Ajustes -->
+    <string name="ajustes_personajesTextView">Personajes</string>
+    <string name="ajustes_citasTextView">Citas</string>
+    <string name="ajustes_sexoSwitch">Sexo del personaje a mostrar</string>
     <string name="ajustes_opcionChicoButton">Chico</string>
     <string name="ajustes_opcionChicaButton">Chica</string>
     <string name="ajustes_seleccion_chico_chica">Seleccione el personaje que mostrar</string>
-    <string name="ajustes_reiniciarListaAvatares">Reiniciar personajes creados</string>
+    <string name="ajustes_borrarListaAvatares">Borrar personajes guardados</string>
+    <string name="ajustes_subtituloDialogConfirmacionBorrarAvatares">
+        ¿Desea borrar todos los personajes guardados?</string>
+    <string name="ajustes_personajesBorradosToast">Personajes borrados</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
 
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>

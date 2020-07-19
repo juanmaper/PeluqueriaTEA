@@ -31,8 +31,8 @@ class JuegoAsociacionSonidosResultadoFragment : Fragment() {
     private lateinit var objetoPeluqueria: ObjetoSonidoPeluqueria
     private lateinit var objetoImageView: ImageView
     private lateinit var comentarioTextView: TextView
-    private lateinit var comentarioAvanceTextView: TextView
-    private lateinit var pantallaEnteraButton: Button
+    //private lateinit var comentarioAvanceTextView: TextView
+    //private lateinit var pantallaEnteraButton: Button
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,19 +61,27 @@ class JuegoAsociacionSonidosResultadoFragment : Fragment() {
 
         objetoImageView = view.findViewById(R.id.juegoAsociacionSonidos_ResultadoImageView)
         comentarioTextView = view.findViewById(R.id.juegoAsociacionSonidos_ResultadoTextView)
-        comentarioAvanceTextView = view.findViewById(R.id.juegoAsociacionSonidos_ResultadoComentarioAvanceTextView)
-        pantallaEnteraButton = view.findViewById(R.id.juegoAsociacionSonidos_ResultadoPantallaEnteraButton)
+        //comentarioAvanceTextView = view.findViewById(R.id.juegoAsociacionSonidos_ResultadoComentarioAvanceTextView)
+        //pantallaEnteraButton = view.findViewById(R.id.juegoAsociacionSonidos_ResultadoPantallaEnteraButton)
 
         if (acierto) {
-            comentarioTextView.text = resources.getText(R.string.juegoAsociacionSonidos_ResultadoCorrectoTextView)
-            comentarioAvanceTextView.text = resources.getText(
-                R.string.juegoAsociacionSonidos_ResultadoComentarioSiguienteObjetoTextView)
+            if (finalDelJuego) {
+                comentarioTextView.text = resources
+                    .getText(R.string.juegoAsociacionSonidos_ResultadoCorrectoYFinalTextView)
+                /* comentarioAvanceTextView.text = resources.getText(
+                R.string.juegoAsociacionSonidos_ResultadoComentarioSiguienteObjetoTextView) */
+            } else {
+                comentarioTextView.text =
+                    resources.getText(R.string.juegoAsociacionSonidos_ResultadoCorrectoTextView)
+            }
         } else {
             comentarioTextView.text = resources.getText(R.string.juegoAsociacionSonidos_ResultadoIncorrectoTextView)
             comentarioTextView.setTextColor(resources.getColor(R.color.rojo))
-            comentarioAvanceTextView.text = resources.getText(
-                R.string.juegoAsociacionSonidos_ResultadoComentarioAnteriorObjetoTextView)
+            /* comentarioAvanceTextView.text = resources.getText(
+                R.string.juegoAsociacionSonidos_ResultadoComentarioAnteriorObjetoTextView) */
         }
+
+
 
         when (objetoPeluqueria.nombreObjeto) {
             "Secador" -> objetoImageView.setImageResource(R.drawable.ic_secador)
@@ -86,15 +94,24 @@ class JuegoAsociacionSonidosResultadoFragment : Fragment() {
             Log.d(TAG, "Resultado y suena audio")
         }
 
-        objetoPeluqueria.reproductor?.start()
-
         return view
     }
 
     override fun onStart() {
         super.onStart()
 
-        pantallaEnteraButton.setOnClickListener {
+        objetoPeluqueria.reproductor?.start()
+
+        objetoPeluqueria.reproductor?.setOnCompletionListener {
+            if (finalDelJuego) {
+                callbacks?.juegoAsociacionSonidosTerminado()
+            }
+            else {
+                requireActivity().onBackPressed()
+            }
+        }
+
+        /* pantallaEnteraButton.setOnClickListener {
             if (objetoPeluqueria.reproductor?.isPlaying!!) {
                 objetoPeluqueria.reproductor?.pause()
 
@@ -109,6 +126,8 @@ class JuegoAsociacionSonidosResultadoFragment : Fragment() {
                 requireActivity().onBackPressed()
             }
         }
+
+         */
     }
 
     override fun onDestroy() {

@@ -32,9 +32,9 @@ class JuegoAsociacionSonidosFragment : Fragment() {
     private lateinit var maquinillaElectricaImageButton: ImageButton
     private lateinit var sprayImageButton: ImageButton
     private lateinit var tijerasImageButton: ImageButton
-    private lateinit var casaImageButton: ImageButton
     private lateinit var altavozImageView: ImageView
-    private lateinit var comentarioTextView: TextView
+    //private lateinit var casaImageButton: ImageButton
+    //private lateinit var comentarioTextView: TextView
 
     // Me creo el viewmodel para guardar los reproductores asi como el indice
     private val juegoSonidosViewModel: JuegoAsociacionSonidosViewModel by lazy {
@@ -63,15 +63,15 @@ class JuegoAsociacionSonidosFragment : Fragment() {
         maquinillaElectricaImageButton = view.findViewById(R.id.juegoAsociacionSonidos_maquinillaElectricaImageButton)
         sprayImageButton = view.findViewById(R.id.juegoAsociacionSonidos_sprayImageButton)
         tijerasImageButton = view.findViewById(R.id.juegoAsociacionSonidos_tijerasImageButton)
-        casaImageButton = view.findViewById(R.id.juegoAsociacionSonidos_casaImageButton)
+        //casaImageButton = view.findViewById(R.id.juegoAsociacionSonidos_casaImageButton)
         altavozImageView = view.findViewById(R.id.juegoAsociacionSonidos_altavozImageView)
-        comentarioTextView = view.findViewById(R.id.juegoAsociacionSonidos_comentarioTextView)
+        //comentarioTextView = view.findViewById(R.id.juegoAsociacionSonidos_comentarioTextView)
 
         if (juegoSonidosViewModel.altavozPulsado == 0) {
             ocultarBotones()
         }
         sombrearBotonesElegidos()
-        casaImageButton.visibility = View.INVISIBLE
+        //casaImageButton.visibility = View.INVISIBLE
 
         return view
     }
@@ -84,14 +84,16 @@ class JuegoAsociacionSonidosFragment : Fragment() {
                 juegoSonidosViewModel.reproducirSonidoPasoActual()
 
                 juegoSonidosViewModel.incrementarNumeroPulsacionesAltavoz()
-                sombrearBotonesElegidos()
+                //sombrearBotonesElegidos()
             }
         }
 
+        /*
         casaImageButton.setOnLongClickListener {
             requireActivity().onBackPressed()
             true
         }
+         */
 
         secadorImageButton.setOnClickListener {
             botonPulsado("Secador")
@@ -171,6 +173,7 @@ class JuegoAsociacionSonidosFragment : Fragment() {
 
     fun sombrearBotonesElegidos() {
         // Sombreo y desactivo el altavoz solo si ha sido pulsado dos veces
+        /*
         if (juegoSonidosViewModel.altavozPulsado >= 2) {
             altavozImageView.isEnabled = false
             altavozImageView.setColorFilter(Color.argb(120, 0, 0, 0))
@@ -179,28 +182,28 @@ class JuegoAsociacionSonidosFragment : Fragment() {
             altavozImageView.isEnabled = true
             altavozImageView.clearColorFilter()
             comentarioTextView.text = resources.getText(R.string.juegoAsociacionSonidos_comentarioTextView)
-        }
+        } */
 
         // Sombreo los botones elegidos
         for (indice in 0 until juegoSonidosViewModel.indice) {
             when (juegoSonidosViewModel.listaObjetos[indice].nombreObjeto) {
                 "Secador" -> {
-                    secadorImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    secadorImageButton.setColorFilter(Color.argb(150, 0, 0, 0))
                     secadorImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     secadorImageButton.isEnabled = false
                 }
                 "Maquinilla" -> {
-                    maquinillaElectricaImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    maquinillaElectricaImageButton.setColorFilter(Color.argb(150, 0, 0, 0))
                     maquinillaElectricaImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     maquinillaElectricaImageButton.isEnabled = false
                 }
                 "Spray" -> {
-                    sprayImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    sprayImageButton.setColorFilter(Color.argb(150, 0, 0, 0))
                     sprayImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     sprayImageButton.isEnabled = false
                 }
                 "Tijeras" -> {
-                    tijerasImageButton.setColorFilter(Color.argb(120, 0, 0, 0))
+                    tijerasImageButton.setColorFilter(Color.argb(150, 0, 0, 0))
                     tijerasImageButton.setBackgroundResource(R.drawable.button_pantalla_principal_normal_oscuro)
                     tijerasImageButton.isEnabled = false
                 }

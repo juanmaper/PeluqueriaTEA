@@ -27,35 +27,13 @@
         android:id="@+id/juegoAsociacionSonidos_ResultadoImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="13dp"
 
         android:adjustViewBounds="true"
         android:contentDescription="Objeto acertado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/juegoAsociacionSonidos_ResultadoComentarioAvanceTextView"
+        app:layout_constraintTop_toBottomOf="@+id/juegoAsociacionSonidos_ResultadoTextView"
         app:srcCompat="@drawable/ic_secador" />
-
-    <TextView
-        android:id="@+id/juegoAsociacionSonidos_ResultadoComentarioAvanceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/juegoAsociacionSonidos_ResultadoComentarioSiguienteObjetoTextView"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/juegoAsociacionSonidos_ResultadoTextView" />
-
-    <Button
-        android:id="@+id/juegoAsociacionSonidos_ResultadoPantallaEnteraButton"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
