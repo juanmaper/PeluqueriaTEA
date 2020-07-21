@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 
@@ -23,6 +24,7 @@ class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesFragment.Callbac
     interface Callbacks {
         fun ajustesCambiarOpcionChicoChica(chicoElegido: Boolean)
         fun ajustesReiniciarListaAvataresGuardados()
+        fun ajustesMontarGestionCitas()
         fun ajustesFinalizado()
     }
 
@@ -32,6 +34,7 @@ class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesFragment.Callbac
 
     private lateinit var sexoPersonajeSwitch: Switch
     private lateinit var borrarPersonajesButton: Button
+    private lateinit var gestionCitasButton: Button
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -73,6 +76,7 @@ class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesFragment.Callbac
 
         sexoPersonajeSwitch = view.findViewById(R.id.ajustes_sexoPersonajeSwitch)
         borrarPersonajesButton = view.findViewById(R.id.ajustes_reiniciarPersonajesButton)
+        gestionCitasButton = view.findViewById(R.id.ajustes_gestionCitasButton)
 
         sexoPersonajeSwitch.isChecked = opcionChicoElegida
 
@@ -95,6 +99,10 @@ class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesFragment.Callbac
                 setTargetFragment(this@AjustesFragment, REQUEST_CONFIRMACION_BORRAR_PERSONAJES)
                 show(this@AjustesFragment.requireActivity().supportFragmentManager, CONFIRMACION_BORRAR_PERSONAJES)
             }
+        }
+
+        gestionCitasButton.setOnClickListener {
+            callbacks?.ajustesMontarGestionCitas()
         }
 
     }

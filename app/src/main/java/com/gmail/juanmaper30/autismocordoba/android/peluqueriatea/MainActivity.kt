@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     AjustesFragment.Callbacks, ElijoMiPeinadoPantallaPrincipalFragment.Callbacks,
     ElijoMiPeinadoMiNuevoCorteDePeloPaso1Fragment.Callbacks, ElijoMiPeinadoMiNuevoCorteDePeloPaso2Fragment.Callbacks,
     ElijoMiPeinadoMiNuevoCorteDePeloResultadoFragment.Callbacks, ElijoMiPeinadoMisCortesDePeloFragment.Callbacks,
-    JuegoAsociacionSonidosFragment.Callbacks, JuegoAsociacionSonidosResultadoFragment.Callbacks{
+    JuegoAsociacionSonidosFragment.Callbacks, JuegoAsociacionSonidosResultadoFragment.Callbacks,
+    AjustesGestionCitasFragment.Callbacks{
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -65,6 +66,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
+        //supportActionBar?.title = ""
 
         setContentView(R.layout.activity_main)
 
@@ -346,6 +349,20 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         Log.d(TAG, "Lista de avatares reiniciada")
         Toast.makeText(this, R.string.ajustes_personajesBorradosToast, Toast.LENGTH_SHORT)
             .show()
+    }
+
+    override fun ajustesMontarGestionCitas() {
+        val fragmentoAjustesGestionCitas = AjustesGestionCitasFragment()
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoAjustesGestionCitas)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun loquesea() {
+        Log.d(TAG, "hola")
     }
 
     override fun ajustesFinalizado() {

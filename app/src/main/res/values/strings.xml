@@ -81,6 +81,10 @@
     <string name="ajustes_personajesBorradosToast">Personajes borrados</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="ajustes_gestionCitasButton">Gestión de citas</string>
+    <string name="ajustes_gestionCitasCitaActualTextView">Cita actual</string>
+    <string name="ajustes_gestionCitasRegistroCitasTextView">Registro de citas</string>
+    <string name="ajustes_gestionCitasRegistroCitasSubTextoTextView">Pulse sobre una para editar sus detalles</string>
 
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>

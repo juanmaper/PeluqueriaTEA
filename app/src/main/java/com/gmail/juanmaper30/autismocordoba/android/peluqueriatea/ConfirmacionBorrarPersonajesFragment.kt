@@ -6,6 +6,8 @@ import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 
+private const val TAG = "ConfirmacionBorrarPersonajes"
+
 class ConfirmacionBorrarPersonajesFragment : DialogFragment() {
 
     interface Callbacks {
