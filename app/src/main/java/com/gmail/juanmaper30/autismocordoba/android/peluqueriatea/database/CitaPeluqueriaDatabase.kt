@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.CitaPeluqueria
 
-@Database(entities = [CitaPeluqueria::class], version = 1)
+@Database(entities = [CitaPeluqueria::class], version = 1, exportSchema = false)
 @TypeConverters(CitaPeluqueriaTypeConverters::class)
 abstract class CitaPeluqueriaDatabase : RoomDatabase() {
 

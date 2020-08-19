@@ -4,12 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 
@@ -18,7 +16,7 @@ private const val ARG_OPCION_CHICO_ELEGIDA = "opcion_chico_elegida"
 private const val CONFIRMACION_BORRAR_PERSONAJES = "confirmacion_borrar_personajes"
 private const val REQUEST_CONFIRMACION_BORRAR_PERSONAJES = 0
 
-class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesFragment.Callbacks {
+class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesDialogFragment.Callbacks {
 
     // Interfaz para comunicarme con MainActivity y decirle que cambie la opcion de chico o chica
     interface Callbacks {
@@ -95,7 +93,7 @@ class AjustesFragment : Fragment(), ConfirmacionBorrarPersonajesFragment.Callbac
         }
 
         borrarPersonajesButton.setOnClickListener {
-            ConfirmacionBorrarPersonajesFragment().apply {
+            ConfirmacionBorrarPersonajesDialogFragment().apply {
                 setTargetFragment(this@AjustesFragment, REQUEST_CONFIRMACION_BORRAR_PERSONAJES)
                 show(this@AjustesFragment.requireActivity().supportFragmentManager, CONFIRMACION_BORRAR_PERSONAJES)
             }

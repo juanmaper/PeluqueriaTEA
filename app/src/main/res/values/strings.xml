@@ -75,16 +75,42 @@
     <string name="ajustes_opcionChicoButton">Chico</string>
     <string name="ajustes_opcionChicaButton">Chica</string>
     <string name="ajustes_seleccion_chico_chica">Seleccione el personaje que mostrar</string>
-    <string name="ajustes_borrarListaAvatares">Borrar personajes guardados</string>
+    <string name="ajustes_borrarListaAvatares">Borrar peinados guardados</string>
     <string name="ajustes_subtituloDialogConfirmacionBorrarAvatares">
-        ¿Desea borrar todos los personajes guardados?</string>
+        La siguiente acción elimina los peinados guardados, pero siempre podrá diseñarlos de nuevo.
+        ¿Desea borrar los peinados guardados?</string>
+    <string name="ajustes_borrarCita">Borrar cita</string>
+    <string name="ajustes_subtituloDialogConfirmacionBorrarCita">
+        ¿Desea borrar la cita?</string>
     <string name="ajustes_personajesBorradosToast">Personajes borrados</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="ajustes_gestionCitasButton">Gestión de citas</string>
     <string name="ajustes_gestionCitasCitaActualTextView">Cita actual</string>
     <string name="ajustes_gestionCitasRegistroCitasTextView">Registro de citas</string>
-    <string name="ajustes_gestionCitasRegistroCitasSubTextoTextView">Pulse sobre una para editar sus detalles</string>
+    <string name="ajustes_gestionCitasRegistroCitasSubTextoTextView">Pulse sobre una cita para
+        editar sus detalles o borrarla, o pulse sobre Introducir nueva cita para crear una nueva</string>
+    <string name="ajustes_gestionCitasIntroducirNuevaCitaButton">Introducir nueva cita</string>
+    <string name="ajustes_gestionCitasVolverButton">Volver</string>
+    <string name="ajustes_gestionCitasNoHayCitas">No hay cita actual</string>
+    <string name="ajustes_gestionCitasNoHayComentarios">No hay comentarios</string>
+
+
+
+    <string name="ajustes_nuevaCitaFecha">Fecha</string>
+    <string name="ajustes_nuevaCitaFechaButton">Pulse para introducir la fecha</string>
+    <string name="ajustes_nuevaCitaHora">Hora</string>
+    <string name="ajustes_nuevaCitaHoraButton">Pulse para introducir la hora</string>
+    <string name="ajustes_nuevaCitaComentario">Comentario</string>
+    <string name="ajustes_nuevaCitaComentarioHint">Introduzca un comentario si lo desea</string>
+    <string name="ajustes_nuevaCitaBorrar">Borrar</string>
+    <string name="ajustes_nuevaCitaGuardar">Guardar</string>
+    <string name="ajustes_descartarCambios">¿Descartar cambios?</string>
+    <string name="ajustes_subtituloDialogConfirmacionDescartarCambios">
+       Si vuelve atrás, los cambios realizados no se guardarán. Si quiere conservarlos, pulse Guardar</string>
+    <string name="ajustes_sustituirCita">Añadir cita</string>
+    <string name="ajustes_subtituloDialogConfirmacionSustituirCita">
+       Si añade una cita nueva, se sustituirá la cita actual. ¿Desea proseguir?</string>
 
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>

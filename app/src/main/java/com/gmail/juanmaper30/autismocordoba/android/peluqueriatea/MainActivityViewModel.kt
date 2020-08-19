@@ -1,6 +1,10 @@
 package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
+import android.app.Activity
+import android.content.Context
+import android.content.pm.ActivityInfo
 import android.util.Log
+import android.view.WindowManager
 import androidx.lifecycle.ViewModel
 
 private const val TAG = "MainActivityViewModel"
@@ -18,6 +22,19 @@ class MainActivityViewModel : ViewModel() {
     var opcionPeinadoEscogida: Int = 2
     var opcionColorPeinadoEscogida: Int = 2
     var listaAvataresGuardados = mutableListOf<Int>(0, 0, 0)
+
+    // Variable para saber en qué modo de pantalla estoy
+    var orientacion = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
+    fun cambiarOrientacionPantalla(actividad: Activity) {
+        actividad.requestedOrientation = orientacion
+        actividad.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+    }
+
+
 
     val getIndicePasoActualVamosPeluqueria: Int
         get() = listaIndicesPasosParaMostrar[indiceInternoSecuenciaPasos]

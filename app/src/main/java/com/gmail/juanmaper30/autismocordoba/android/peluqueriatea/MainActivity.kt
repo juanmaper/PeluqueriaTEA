@@ -9,6 +9,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import java.util.*
 
 private const val TAG = "MainActivity"
 
@@ -61,11 +62,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         mainActivityViewModel.cargarListaAvataresConCadena(cadenaListaAvatares)
 
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
-        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        mainActivityViewModel.cambiarOrientacionPantalla(this)
 
         //supportActionBar?.title = ""
 
@@ -171,7 +168,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         val fragmentoAjustes = //SettingsFragment()
             AjustesFragment.newInstance(mainActivityViewModel.getOpcionChicoElegida)
 
-        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        mainActivityViewModel.cambiarOrientacionPantalla(this)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustes)
@@ -361,12 +359,29 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             .commit()
     }
 
-    override fun loquesea() {
-        Log.d(TAG, "hola")
+    override fun ajustesGestionCitasMontarModuloEditarCita(citaPeluqueria: CitaPeluqueria) {
+        val fragmentoAjustesEditarCita = AjustesEditarCitaFragment.newInstance(citaPeluqueria)
+        Log.d(TAG, "Cita: ${citaPeluqueria.id}")
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoAjustesEditarCita)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun ajustesGestionCitasMontarModuloNuevaCita(idCitaActual: UUID, hayCitaActual: Boolean) {
+        val fragmentoAjustesNuevaCita = AjustesNuevaCitaFragment.newInstance(idCitaActual, hayCitaActual)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoAjustesNuevaCita)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun ajustesFinalizado() {
-        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        mainActivityViewModel.cambiarOrientacionPantalla(this)
     }
 
     override fun onDestroy() {

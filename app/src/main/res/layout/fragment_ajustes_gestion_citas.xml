@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="25/07/2020"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasCitaActualTextView" />
@@ -36,24 +36,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="12:17"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasFechaTextView" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="32dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasHoraTextView" />
 
     <TextView
         android:id="@+id/ajustes_gestionCitasRegistroCitasTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="32dp"
 
         android:text="@string/ajustes_gestionCitasRegistroCitasTextView"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasHoraTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <TextView
         android:id="@+id/ajustes_gestionCitasRegistroCitasSubTextoTextView"
@@ -61,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/ajustes_gestionCitasRegistroCitasSubTextoTextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasRegistroCitasTextView" />
@@ -68,13 +79,48 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ajustes_gestionCitasRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasRegistroCitasSubTextoTextView" />
 
+    <Button
+        android:id="@+id/ajustes_gestionCitasIntroducirNuevaCitaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/button_ajustes_gestion_citas"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:text="@string/ajustes_gestionCitasIntroducirNuevaCitaButton"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ajustes_gestionCitasVolverButton"
+        app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasRecyclerView" />
 
+    <Button
+        android:id="@+id/ajustes_gestionCitasVolverButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_ajustes_gestion_citas"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:text="@string/ajustes_gestionCitasVolverButton"
+        android:textAllCaps="false"
+
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/ajustes_gestionCitasIntroducirNuevaCitaButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ajustes_gestionCitasRecyclerView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
