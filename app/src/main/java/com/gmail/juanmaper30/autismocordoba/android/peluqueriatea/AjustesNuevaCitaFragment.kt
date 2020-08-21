@@ -1,16 +1,16 @@
 package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import java.io.Serializable
@@ -31,6 +31,10 @@ private const val REQUEST_DESCARTAR_CAMBIOS = 3
 class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
     TimePickerFragment.Callbacks, ConfirmacionDescartarCambiosDialogFragment.Callbacks{
 
+    interface Callbacks {
+        fun ajustesEdicionCitasFinalizado()
+    }
+
     private lateinit var idCitaActual: UUID
     private var hayCitaActual = false
     private lateinit var fechaTextView: TextView
@@ -38,20 +42,52 @@ class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
     private lateinit var comentarioEditText: EditText
     private lateinit var fechaButton: Button
     private lateinit var horaButton: Button
-    private lateinit var volverButton: Button
     private lateinit var borrarButton: Button
-    private lateinit var guardarButton: Button
+    private var botonGuardarPulsado: Boolean = false
+    private var confirmacionDescartarCambios: Boolean = false
+
+    private var callbacks: Callbacks? = null
 
     // Me creo el viewmodel para guardar los datos y hacer las consultas a la base de datos
     private val nuevaCitaViewModel: AjustesNuevaCitaViewModel by lazy {
         ViewModelProvider(this).get(AjustesNuevaCitaViewModel::class.java)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "Fragmento $TAG creado")
+        setHasOptionsMenu(true)
         idCitaActual = arguments?.getSerializable(ARG_CITA_ACTUAL_ID) as UUID
         hayCitaActual = arguments?.getSerializable(ARG_HAY_CITA_ACTUAL) as Boolean
+
+        /* En los fragmentos no se puede hacer un override a onBackPressed() directamente,
+        asi que creo esta callback para sobreescribir el funcionamiento del back button.
+         */
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d(TAG, "Pulsado boton back")
+
+                    if (!nuevaCitaViewModel.algoHaSidoEditado || botonGuardarPulsado || confirmacionDescartarCambios) {
+                        isEnabled = false
+                        callbacks?.ajustesEdicionCitasFinalizado()
+                        requireActivity().onBackPressed()
+                    } else {
+                        ConfirmacionDescartarCambiosDialogFragment().apply {
+                            setTargetFragment(this@AjustesNuevaCitaFragment, REQUEST_DESCARTAR_CAMBIOS)
+                            show(this@AjustesNuevaCitaFragment.requireActivity().supportFragmentManager,
+                                DESCARTAR_CAMBIOS_DIALOG)
+                        }
+                    }
+                }
+            }
+        )
     }
 
     override fun onCreateView(
@@ -67,9 +103,7 @@ class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
 
         fechaButton = view.findViewById(R.id.ajustes_citaEleccionFechaButton)
         horaButton = view.findViewById(R.id.ajustes_citaEleccionHoraButton)
-        volverButton = view.findViewById(R.id.ajustes_citaVolverButton)
         borrarButton = view.findViewById(R.id.ajustes_citaBorrarButton)
-        guardarButton = view.findViewById(R.id.ajustes_citaGuardarButton)
 
         borrarButton.isEnabled = false
         borrarButton.visibility = View.INVISIBLE
@@ -113,34 +147,37 @@ class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
             override fun afterTextChanged(editable: Editable?) {
             }
         })
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        callbacks = null
+    }
 
-        volverButton.setOnClickListener {
-            if (!nuevaCitaViewModel.algoHaSidoEditado) {
-                requireActivity().onBackPressed()
-            } else {
-                ConfirmacionDescartarCambiosDialogFragment().apply {
-                    setTargetFragment(this@AjustesNuevaCitaFragment, REQUEST_DESCARTAR_CAMBIOS)
-                    show(this@AjustesNuevaCitaFragment.requireActivity().supportFragmentManager,
-                        DESCARTAR_CAMBIOS_DIALOG)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_ajustes_nueva_editar_cita, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.guardar_cita -> {
+                if (nuevaCitaViewModel.nuevaCitaPeluqueria.fecha <= Date()) {
+                    Toast.makeText(requireContext(), "La hora ha de ser posterior a la actual",
+                        Toast.LENGTH_SHORT).show()
+                } else {
+                    if (hayCitaActual) {
+                        nuevaCitaViewModel.borrarCitaActual(idCitaActual)
+                    }
+                    nuevaCitaViewModel.guardarCitaPeluqueria(nuevaCitaViewModel.nuevaCitaPeluqueria)
+                    Toast.makeText(requireActivity(), "Cita creada correctamente", Toast.LENGTH_SHORT)
+                        .show()
+                    botonGuardarPulsado = true
+                    requireActivity().onBackPressed()
                 }
+                true
             }
-        }
-
-
-        guardarButton.setOnClickListener {
-            if (nuevaCitaViewModel.nuevaCitaPeluqueria.fecha <= Date()) {
-                Toast.makeText(requireContext(), "La hora ha de ser posterior a la actual",
-                    Toast.LENGTH_SHORT).show()
-            } else {
-                if (hayCitaActual) {
-                    nuevaCitaViewModel.borrarCitaActual(idCitaActual)
-                }
-                nuevaCitaViewModel.guardarCitaPeluqueria(nuevaCitaViewModel.nuevaCitaPeluqueria)
-                Toast.makeText(requireActivity(), "Cita creada correctamente", Toast.LENGTH_SHORT)
-                    .show()
-                requireActivity().onBackPressed()
-            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 
@@ -169,6 +206,8 @@ class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
 
 
     override fun confirmacionDescartarCambios() {
+        callbacks?.ajustesEdicionCitasFinalizado()
+        confirmacionDescartarCambios = true
         requireActivity().onBackPressed()
     }
 

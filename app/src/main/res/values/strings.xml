@@ -112,6 +112,23 @@
     <string name="ajustes_subtituloDialogConfirmacionSustituirCita">
        Si añade una cita nueva, se sustituirá la cita actual. ¿Desea proseguir?</string>
 
+    <string name="appbar_nuevaCita">Nueva cita</string>
+    <string name="appbar_guardarCita">Guardar</string>
+
+
+    <string name="creditos_desarrollador_principal_titulo">Desarrollador principal</string>
+    <string name="creditos_desarrollador_principal">Juan Manuel Pérez Aguilar, juanmaper30@gmail.com</string>
+    <string name="creditos_coordinadores_titulo">Coordinadores</string>
+    <string name="creditos_coordinadores">Juan Carlos Fernández Caballero, jfcaballero@uco.es. Universidad de Córdoba.
+        \n\nPedro Antonio Gutiérrez Peña, pagutierrez@uco.es. Universidad de Córdoba.
+    </string>
+
+    <string name="creditos_apoyo_titulo">Apoyo</string>
+    <string name="creditos_apoyo">María Muñoz Reyes, direccion@autismocordoba.org. Asociación Autismo Córdoba.</string>
+
+    <string name="creditos_recursos_titulo">Recursos e imágenes utilizadas</string>
+    <string name="creditos_recursos">FlatIcon</string>
+
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>
     <string name="chicoPeinandoseImageView">Niño peinándose</string>

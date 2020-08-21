@@ -26,12 +26,20 @@ class MainActivityViewModel : ViewModel() {
     // Variable para saber en qué modo de pantalla estoy
     var orientacion = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
+    // Si voy a orientacion horizontal, quito la barra de estado y la appbar. Si voy a retrato,
+    // las hago aparecer
     fun cambiarOrientacionPantalla(actividad: Activity) {
-        actividad.requestedOrientation = orientacion
-        actividad.window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        if (orientacion == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            actividad.requestedOrientation = orientacion
+            actividad.window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        } else {
+            actividad.requestedOrientation = orientacion
+            actividad.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        }
+
     }
 
 

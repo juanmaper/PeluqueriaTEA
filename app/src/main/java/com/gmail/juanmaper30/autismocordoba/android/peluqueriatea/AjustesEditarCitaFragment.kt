@@ -1,17 +1,17 @@
 package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.*
 import androidx.lifecycle.Observer
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import java.io.Serializable
@@ -34,18 +34,29 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
     TimePickerFragment.Callbacks, ConfirmacionBorrarCitaDialogFragment.Callbacks,
     ConfirmacionDescartarCambiosDialogFragment.Callbacks{
 
+    interface Callbacks {
+        fun ajustesEdicionCitasFinalizado()
+    }
+
     private lateinit var fechaTextView: TextView
     private lateinit var horaTextView: TextView
     private lateinit var comentarioEditText: EditText
     private lateinit var fechaButton: Button
     private lateinit var horaButton: Button
-    private lateinit var volverButton: Button
     private lateinit var borrarButton: Button
-    private lateinit var guardarButton: Button
+    private var botonGuardarPulsado: Boolean = false
+    private var confirmacionDescartarCambios: Boolean = false
+
+    private var callbacks: Callbacks? = null
 
     // Me creo el viewmodel para guardar los datos y hacer las consultas a la base de datos
     private val editarCitaViewModel: AjustesEditarCitaViewModel by lazy {
         ViewModelProvider(this).get(AjustesEditarCitaViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +65,30 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
         val citaPeluqueriaPasada: CitaPeluqueria = arguments?.getSerializable(ARG_CITA_PELUQUERIA)
                 as CitaPeluqueria
         editarCitaViewModel.cargarCitaPeluqueria(citaPeluqueriaPasada)
+        setHasOptionsMenu(true)
+        /* En los fragmentos no se puede hacer un override a onBackPressed() directamente,
+        asi que creo esta callback para sobreescribir el funcionamiento del back button.
+         */
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d(TAG, "Pulsado boton back")
+
+                    if (!editarCitaViewModel.algoHaSidoEditado || botonGuardarPulsado || confirmacionDescartarCambios) {
+                        isEnabled = false
+                        callbacks?.ajustesEdicionCitasFinalizado()
+                        requireActivity().onBackPressed()
+                    } else {
+                        ConfirmacionDescartarCambiosDialogFragment().apply {
+                            setTargetFragment(this@AjustesEditarCitaFragment, REQUEST_DESCARTAR_CAMBIOS)
+                            show(this@AjustesEditarCitaFragment.requireActivity().supportFragmentManager,
+                                DESCARTAR_CAMBIOS_DIALOG)
+                        }
+                    }
+                }
+            }
+        )
     }
 
     override fun onCreateView(
@@ -69,9 +104,9 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
 
         fechaButton = view.findViewById(R.id.ajustes_citaEleccionFechaButton)
         horaButton = view.findViewById(R.id.ajustes_citaEleccionHoraButton)
-        volverButton = view.findViewById(R.id.ajustes_citaVolverButton)
         borrarButton = view.findViewById(R.id.ajustes_citaBorrarButton)
-        guardarButton = view.findViewById(R.id.ajustes_citaGuardarButton)
+
+        //borrarButton.setBackgroundColor(resources.getColor(R.color.rojo))
 
         actualizarInterfaz()
 
@@ -116,18 +151,6 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
         })
 
 
-        volverButton.setOnClickListener {
-            if (!editarCitaViewModel.algoHaSidoEditado) {
-                requireActivity().onBackPressed()
-            } else {
-                ConfirmacionDescartarCambiosDialogFragment().apply {
-                    setTargetFragment(this@AjustesEditarCitaFragment, REQUEST_DESCARTAR_CAMBIOS)
-                    show(this@AjustesEditarCitaFragment.requireActivity().supportFragmentManager,
-                        DESCARTAR_CAMBIOS_DIALOG)
-                }
-            }
-        }
-
         borrarButton.setOnClickListener {
             ConfirmacionBorrarCitaDialogFragment().apply {
                 setTargetFragment(this@AjustesEditarCitaFragment, REQUEST_BORRAR_CITA)
@@ -136,16 +159,34 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
             }
         }
 
-        guardarButton.setOnClickListener {
-            if (editarCitaViewModel.citaPeluqueria.fecha <= Date() && !editarCitaViewModel.citaAntigua) {
-                Toast.makeText(requireContext(), "La hora ha de ser posterior a la actual",
-                    Toast.LENGTH_SHORT).show()
-            } else {
-                editarCitaViewModel.actualizarCitaPeluqueria(editarCitaViewModel.citaPeluqueria)
-                Toast.makeText(requireActivity(), "Cita editada correctamente", Toast.LENGTH_SHORT)
-                    .show()
-                requireActivity().onBackPressed()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callbacks = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_ajustes_nueva_editar_cita, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.guardar_cita -> {
+                if (editarCitaViewModel.citaPeluqueria.fecha <= Date() && !editarCitaViewModel.citaAntigua) {
+                    Toast.makeText(requireContext(), "La hora ha de ser posterior a la actual",
+                        Toast.LENGTH_SHORT).show()
+                } else {
+                    editarCitaViewModel.actualizarCitaPeluqueria(editarCitaViewModel.citaPeluqueria)
+                    Toast.makeText(requireActivity(), "Cita editada correctamente", Toast.LENGTH_SHORT)
+                        .show()
+                    botonGuardarPulsado = true
+                    requireActivity().onBackPressed()
+                }
+                true
             }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 
@@ -191,10 +232,13 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
         editarCitaViewModel.borrarCitaPeluqueria(editarCitaViewModel.citaPeluqueria)
         Toast.makeText(requireActivity(), "Cita borrada correctamente", Toast.LENGTH_SHORT)
             .show()
+        confirmacionDescartarCambios = true
         requireActivity().onBackPressed()
     }
 
     override fun confirmacionDescartarCambios() {
+        callbacks?.ajustesEdicionCitasFinalizado()
+        confirmacionDescartarCambios = true
         requireActivity().onBackPressed()
     }
 

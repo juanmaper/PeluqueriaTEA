@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import java.util.*
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     ElijoMiPeinadoMiNuevoCorteDePeloPaso1Fragment.Callbacks, ElijoMiPeinadoMiNuevoCorteDePeloPaso2Fragment.Callbacks,
     ElijoMiPeinadoMiNuevoCorteDePeloResultadoFragment.Callbacks, ElijoMiPeinadoMisCortesDePeloFragment.Callbacks,
     JuegoAsociacionSonidosFragment.Callbacks, JuegoAsociacionSonidosResultadoFragment.Callbacks,
-    AjustesGestionCitasFragment.Callbacks{
+    AjustesGestionCitasFragment.Callbacks, AjustesEditarCitaFragment.Callbacks,
+    AjustesNuevaCitaFragment.Callbacks, CreditosFragment.Callbacks {
 
 
     /* Me creo el viewmodel que guarda informacion sobre el indice del paso a mostrar en
@@ -41,7 +43,6 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         /* Miro si hay algo en el bundle, por si el OS ha destruido el proceso, si no, pongo
         el indice a 0 */
         val indiceVamosPeluqueriaActual = savedInstanceState?.getInt(KEY_INDICE_VAMOS_PELUQUERIA, 0) ?: 0
@@ -51,6 +52,9 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             KEY_OPCION_PEINADO_ELEGIDA_ELIJO_MI_PEINADO, 2) ?: 2
         val opcionColorElijoMiPeinadoActual = savedInstanceState?.getInt(
             KEY_OPCION_COLOR_ELEGIDA_ELIJO_MI_PEINADO, 2) ?: 2
+
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         Log.i(TAG, "Valor cogido de savedInstanceState o defecto de VamosPeluqueria: $indiceVamosPeluqueriaActual")
         mainActivityViewModel.indiceInternoSecuenciaPasos = indiceVamosPeluqueriaActual
@@ -63,7 +67,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
         mainActivityViewModel.cambiarOrientacionPantalla(this)
-
+        revelarOcultarAppBar()
         //supportActionBar?.title = ""
 
         setContentView(R.layout.activity_main)
@@ -170,12 +174,33 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
         mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mainActivityViewModel.cambiarOrientacionPantalla(this)
+        revelarOcultarAppBar()
+        supportActionBar?.title = "Configuración"
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustes)
             .addToBackStack(null)
             .commit()
+    }
 
+    /* Sobrescribo la funcion de PantallaPrincipalFragment que uso como interfaz para saber que se
+        ha pulsado el boton del modulo de creditos. Al ser llamada, monto
+        el modulo creditos */
+    override fun moduloCreditosSeleccionado() {
+        Log.i(TAG, "Montando modulo creditos")
+        val fragmentoCreditos = CreditosFragment()
+
+        mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        mainActivityViewModel.cambiarOrientacionPantalla(this)
+        revelarOcultarAppBar()
+        supportActionBar?.title = "Créditos"
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentoCreditos)
+            .addToBackStack(null)
+            .commit()
     }
 
 
@@ -351,7 +376,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun ajustesMontarGestionCitas() {
         val fragmentoAjustesGestionCitas = AjustesGestionCitasFragment()
-
+        supportActionBar?.title = "Citas"
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustesGestionCitas)
@@ -362,6 +387,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun ajustesGestionCitasMontarModuloEditarCita(citaPeluqueria: CitaPeluqueria) {
         val fragmentoAjustesEditarCita = AjustesEditarCitaFragment.newInstance(citaPeluqueria)
         Log.d(TAG, "Cita: ${citaPeluqueria.id}")
+        supportActionBar?.title = "Editar cita"
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustesEditarCita)
@@ -371,7 +397,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun ajustesGestionCitasMontarModuloNuevaCita(idCitaActual: UUID, hayCitaActual: Boolean) {
         val fragmentoAjustesNuevaCita = AjustesNuevaCitaFragment.newInstance(idCitaActual, hayCitaActual)
-
+        supportActionBar?.title = "Nueva cita"
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustesNuevaCita)
@@ -382,6 +408,21 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun ajustesFinalizado() {
         mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         mainActivityViewModel.cambiarOrientacionPantalla(this)
+        revelarOcultarAppBar()
+    }
+
+    override fun creditosFinalizado() {
+        mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        mainActivityViewModel.cambiarOrientacionPantalla(this)
+        revelarOcultarAppBar()
+    }
+
+    override fun ajustesGestionCitasFinalizado() {
+        supportActionBar?.title = "Configuración"
+    }
+
+    override fun ajustesEdicionCitasFinalizado() {
+        supportActionBar?.title = "Citas"
     }
 
     override fun onDestroy() {
@@ -428,6 +469,19 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         val cadenaGuardada = sharedPref.getString(SHARED_PREFERENCES_LISTA_AVATARES, "0,0,0")
         Log.d(TAG, "Recuperada cadena de lista de avatares: $cadenaGuardada")
         return cadenaGuardada!!
+    }
+
+    /* Funcion que revela u oculta la barra de la app */
+    fun revelarOcultarAppBar() {
+        if (mainActivityViewModel.orientacion == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            supportActionBar?.hide()
+        else
+            supportActionBar?.show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

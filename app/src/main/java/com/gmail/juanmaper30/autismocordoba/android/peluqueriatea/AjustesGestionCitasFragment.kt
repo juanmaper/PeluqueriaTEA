@@ -4,11 +4,10 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -28,13 +27,12 @@ class AjustesGestionCitasFragment : Fragment(), ConfirmacionSustituirCitaActual.
     interface Callbacks {
         fun ajustesGestionCitasMontarModuloEditarCita(citaPeluqueria: CitaPeluqueria)
         fun ajustesGestionCitasMontarModuloNuevaCita(idCitaActual: UUID, hayCitaActual: Boolean)
+        fun ajustesGestionCitasFinalizado()
     }
 
 
     private lateinit var fechaCitaActualTextView: TextView
     private lateinit var horaCitaActualTextView: TextView
-    private lateinit var volverButton: Button
-    private lateinit var nuevaCitaButton: Button
     private lateinit var citasPeluqueriaRecyclerView: RecyclerView
     private var adapter: CitaPeluqueriaAdapter? = CitaPeluqueriaAdapter(emptyList())
 
@@ -53,6 +51,22 @@ class AjustesGestionCitasFragment : Fragment(), ConfirmacionSustituirCitaActual.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "Fragmento $TAG creado")
+        setHasOptionsMenu(true)
+
+        /* En los fragmentos no se puede hacer un override a onBackPressed() directamente,
+        asi que creo esta callback para sobreescribir el funcionamiento del back button.
+         */
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d(TAG, "Pulsado boton back")
+                    isEnabled = false
+                    callbacks?.ajustesGestionCitasFinalizado()
+                    requireActivity().onBackPressed()
+                }
+            }
+        )
     }
 
     override fun onCreateView(
@@ -68,8 +82,6 @@ class AjustesGestionCitasFragment : Fragment(), ConfirmacionSustituirCitaActual.
 
         fechaCitaActualTextView = view.findViewById(R.id.ajustes_gestionCitasFechaTextView)
         horaCitaActualTextView = view.findViewById(R.id.ajustes_gestionCitasHoraTextView)
-        volverButton = view.findViewById(R.id.ajustes_gestionCitasVolverButton)
-        nuevaCitaButton = view.findViewById(R.id.ajustes_gestionCitasIntroducirNuevaCitaButton)
 
         return view
     }
@@ -91,28 +103,6 @@ class AjustesGestionCitasFragment : Fragment(), ConfirmacionSustituirCitaActual.
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        volverButton.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-
-        nuevaCitaButton.setOnClickListener {
-            if (gestionCitasViewModel.hayCitaActual) {
-                ConfirmacionSustituirCitaActual().apply {
-                    setTargetFragment(this@AjustesGestionCitasFragment,
-                        REQUEST_SUSTITUIR_CITA_ACTUAL)
-                    show(this@AjustesGestionCitasFragment.requireActivity().supportFragmentManager,
-                        SUSTITUIR_CITA_ACTUAL_DIALOG)
-                }
-            } else {
-                Log.d(TAG, "Boton pulsado")
-                callbacks?.ajustesGestionCitasMontarModuloNuevaCita(gestionCitasViewModel.citaActual.id,
-                    gestionCitasViewModel.hayCitaActual)
-            }
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -123,6 +113,36 @@ class AjustesGestionCitasFragment : Fragment(), ConfirmacionSustituirCitaActual.
         super.onDetach()
         callbacks = null
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_ajustes_gestion_citas, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.nueva_cita -> {
+                if (gestionCitasViewModel.hayCitaActual) {
+                    ConfirmacionSustituirCitaActual().apply {
+                        setTargetFragment(this@AjustesGestionCitasFragment,
+                            REQUEST_SUSTITUIR_CITA_ACTUAL)
+                        show(this@AjustesGestionCitasFragment.requireActivity().supportFragmentManager,
+                            SUSTITUIR_CITA_ACTUAL_DIALOG)
+                    }
+                } else {
+                    Log.d(TAG, "Boton pulsado")
+                    callbacks?.ajustesGestionCitasMontarModuloNuevaCita(gestionCitasViewModel.citaActual.id,
+                        gestionCitasViewModel.hayCitaActual)
+                }
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+
+
+
 
     override fun confirmacionSustituirCita() {
         callbacks?.ajustesGestionCitasMontarModuloNuevaCita(gestionCitasViewModel.citaActual.id, gestionCitasViewModel.hayCitaActual)

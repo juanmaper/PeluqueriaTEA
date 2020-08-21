@@ -19,6 +19,7 @@ class PantallaPrincipalFragment : Fragment() {
         fun moduloElijoMiPeinadoSeleccionado()
         fun moduloJuegoAsociacionSonidosSeleccionado()
         fun moduloAjustesSeleccionado()
+        fun moduloCreditosSeleccionado()
     }
 
     private var callbacks: Callbacks? = null
@@ -29,6 +30,7 @@ class PantallaPrincipalFragment : Fragment() {
     private lateinit var elijoMiPeinadoButton: ImageButton
     private lateinit var juegoButton: ImageButton
     private lateinit var ajustesButton: ImageButton
+    private lateinit var creditosButton: ImageButton
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,6 +54,7 @@ class PantallaPrincipalFragment : Fragment() {
         elijoMiPeinadoButton = view.findViewById(R.id.pantallaPrincipal_elijoMiPeinadoButton) as ImageButton
         ajustesButton = view.findViewById(R.id.pantallaPrincipal_ajustesButton) as ImageButton
         juegoButton = view.findViewById(R.id.pantallaPrincipal_juegosButton) as ImageButton
+        creditosButton = view.findViewById(R.id.pantallaPrincipal_creditosButton) as ImageButton
 
         return view
     }
@@ -78,6 +81,11 @@ class PantallaPrincipalFragment : Fragment() {
 
         ajustesButton.setOnLongClickListener{
             callbacks?.moduloAjustesSeleccionado()
+            true
+        }
+
+        creditosButton.setOnLongClickListener {
+            callbacks?.moduloCreditosSeleccionado()
             true
         }
     }
