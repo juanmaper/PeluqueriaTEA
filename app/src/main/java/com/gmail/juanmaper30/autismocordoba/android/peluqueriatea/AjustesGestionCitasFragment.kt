@@ -217,7 +217,8 @@ class AjustesGestionCitasFragment : Fragment(), ConfirmacionSustituirCitaActual.
         }
 
         override fun onClick(v: View?) {
-            callbacks?.ajustesGestionCitasMontarModuloEditarCita(citaPeluqueria)
+            val citaParaEditar: CitaPeluqueria = this.citaPeluqueria.copy()
+            callbacks?.ajustesGestionCitasMontarModuloEditarCita(citaParaEditar)
         }
     }
 

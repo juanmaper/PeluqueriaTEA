@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         // Aqui bloqueo la actividad para que solo se muestre en modo landscape
         mainActivityViewModel.cambiarOrientacionPantalla(this)
         revelarOcultarAppBar()
-        //supportActionBar?.title = ""
+        cambiarTituloAppBar(mainActivityViewModel.tituloAppBar)
 
         setContentView(R.layout.activity_main)
 
@@ -175,7 +175,9 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mainActivityViewModel.cambiarOrientacionPantalla(this)
         revelarOcultarAppBar()
-        supportActionBar?.title = "Configuración"
+        cambiarTituloAppBar("Configuración")
+        Log.d(TAG, "Montando modulo configuracion con titulo appbar= " +
+                "${supportActionBar?.title}")
 
         supportFragmentManager
             .beginTransaction()
@@ -194,7 +196,9 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mainActivityViewModel.cambiarOrientacionPantalla(this)
         revelarOcultarAppBar()
-        supportActionBar?.title = "Créditos"
+        cambiarTituloAppBar("Créditos")
+        Log.d(TAG, "Montando modulo creditos con titulo appbar= " +
+                "${supportActionBar?.title}")
 
         supportFragmentManager
             .beginTransaction()
@@ -376,7 +380,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun ajustesMontarGestionCitas() {
         val fragmentoAjustesGestionCitas = AjustesGestionCitasFragment()
-        supportActionBar?.title = "Citas"
+        cambiarTituloAppBar("Citas")
+        Log.d(TAG, "Montando modulo citas con titulo appbar= ${supportActionBar?.title}")
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustesGestionCitas)
@@ -387,7 +392,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun ajustesGestionCitasMontarModuloEditarCita(citaPeluqueria: CitaPeluqueria) {
         val fragmentoAjustesEditarCita = AjustesEditarCitaFragment.newInstance(citaPeluqueria)
         Log.d(TAG, "Cita: ${citaPeluqueria.id}")
-        supportActionBar?.title = "Editar cita"
+        cambiarTituloAppBar("Editar cita")
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustesEditarCita)
@@ -397,7 +402,7 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
 
     override fun ajustesGestionCitasMontarModuloNuevaCita(idCitaActual: UUID, hayCitaActual: Boolean) {
         val fragmentoAjustesNuevaCita = AjustesNuevaCitaFragment.newInstance(idCitaActual, hayCitaActual)
-        supportActionBar?.title = "Nueva cita"
+        cambiarTituloAppBar("Nueva cita")
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoAjustesNuevaCita)
@@ -418,11 +423,11 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     }
 
     override fun ajustesGestionCitasFinalizado() {
-        supportActionBar?.title = "Configuración"
+        cambiarTituloAppBar("Configuración")
     }
 
     override fun ajustesEdicionCitasFinalizado() {
-        supportActionBar?.title = "Citas"
+        cambiarTituloAppBar("Citas")
     }
 
     override fun onDestroy() {
@@ -477,6 +482,12 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
             supportActionBar?.hide()
         else
             supportActionBar?.show()
+    }
+
+    /* Funcion para cambiar el titulo de la appbar */
+    fun cambiarTituloAppBar(nuevoTitulo: String) {
+        mainActivityViewModel.tituloAppBar = nuevoTitulo
+        supportActionBar?.title = mainActivityViewModel.tituloAppBar
     }
 
     override fun onSupportNavigateUp(): Boolean {

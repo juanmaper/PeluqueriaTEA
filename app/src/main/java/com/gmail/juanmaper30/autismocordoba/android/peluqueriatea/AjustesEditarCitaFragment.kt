@@ -76,6 +76,7 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
                     Log.d(TAG, "Pulsado boton back")
 
                     if (!editarCitaViewModel.algoHaSidoEditado || botonGuardarPulsado || confirmacionDescartarCambios) {
+                        Log.d(TAG, "Pulsado boton back, salimos.")
                         isEnabled = false
                         callbacks?.ajustesEdicionCitasFinalizado()
                         requireActivity().onBackPressed()
@@ -105,8 +106,6 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
         fechaButton = view.findViewById(R.id.ajustes_citaEleccionFechaButton)
         horaButton = view.findViewById(R.id.ajustes_citaEleccionHoraButton)
         borrarButton = view.findViewById(R.id.ajustes_citaBorrarButton)
-
-        //borrarButton.setBackgroundColor(resources.getColor(R.color.rojo))
 
         actualizarInterfaz()
 
@@ -172,8 +171,10 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d(TAG, "Opcion menu seleccionada")
         return when (item.itemId) {
             R.id.guardar_cita -> {
+                Log.d(TAG, "Opcion guardar seleccionada")
                 if (editarCitaViewModel.citaPeluqueria.fecha <= Date() && !editarCitaViewModel.citaAntigua) {
                     Toast.makeText(requireContext(), "La hora ha de ser posterior a la actual",
                         Toast.LENGTH_SHORT).show()
@@ -237,8 +238,10 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
     }
 
     override fun confirmacionDescartarCambios() {
+        Log.d(TAG, "Confirmacion descartar cambios, confirmacion=$confirmacionDescartarCambios")
         callbacks?.ajustesEdicionCitasFinalizado()
         confirmacionDescartarCambios = true
+        Log.d(TAG, "Saliendo confirmacion cambios, confirmacion=$confirmacionDescartarCambios")
         requireActivity().onBackPressed()
     }
 

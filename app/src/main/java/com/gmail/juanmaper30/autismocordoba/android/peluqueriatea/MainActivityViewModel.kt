@@ -26,6 +26,9 @@ class MainActivityViewModel : ViewModel() {
     // Variable para saber en qué modo de pantalla estoy
     var orientacion = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
+    // Variable para saber el titulo de la appbar
+    var tituloAppBar: String = "Configuración"
+
     // Si voy a orientacion horizontal, quito la barra de estado y la appbar. Si voy a retrato,
     // las hago aparecer
     fun cambiarOrientacionPantalla(actividad: Activity) {
@@ -41,6 +44,7 @@ class MainActivityViewModel : ViewModel() {
         }
 
     }
+
 
 
 
