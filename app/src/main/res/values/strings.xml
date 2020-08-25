@@ -112,8 +112,14 @@
     <string name="ajustes_subtituloDialogConfirmacionSustituirCita">
        Si añade una cita nueva, se sustituirá la cita actual. ¿Desea proseguir?</string>
 
+    <string name="ajustes_grabarCitaCalendarioConfirmacion">Calendario</string>
+    <string name="ajustes_subtituloGrabarCitaCalendarioConfirmacion">¿Desea guardar la cita en el
+        calendario del smartphone?</string>
+
     <string name="appbar_nuevaCita">Nueva cita</string>
     <string name="appbar_guardarCita">Guardar</string>
+
+
 
 
     <string name="creditos_desarrollador_principal_titulo">Desarrollador principal</string>

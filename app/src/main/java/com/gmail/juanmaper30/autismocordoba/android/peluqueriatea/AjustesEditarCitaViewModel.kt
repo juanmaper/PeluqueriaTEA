@@ -38,4 +38,8 @@ class AjustesEditarCitaViewModel : ViewModel() {
     fun borrarCitaActual(idCitaActual: UUID) {
         citaPeluqueriaRepositorio.deleteCitaActualPeluqueriaPorID(idCitaActual)
     }
+
+    fun convertirCitaALong(): Long {
+        return this.citaPeluqueria.fecha.time
+    }
 }

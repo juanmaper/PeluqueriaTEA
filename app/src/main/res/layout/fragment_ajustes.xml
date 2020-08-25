@@ -11,7 +11,7 @@
         android:id="@+id/ajustes_personajesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
 
         android:text="@string/ajustes_personajesTextView"
@@ -25,14 +25,14 @@
         android:id="@+id/ajustes_sexoPersonajeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
-        android:switchPadding="80dp"
+        android:switchPadding="60dp"
         android:text="@string/ajustes_sexoSwitch"
         android:textSize="15sp"
-        android:track="@drawable/switch_track_selector"
         android:thumb="@drawable/switch_thumb_selector"
+        android:track="@drawable/switch_track_selector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ajustes_personajesTextView" />
 
@@ -40,15 +40,15 @@
         android:id="@+id/ajustes_reiniciarPersonajesButton"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:textAlignment="viewStart"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
         android:fontFamily="sans-serif"
         android:text="@string/ajustes_borrarListaAvatares"
+        android:textAlignment="viewStart"
         android:textAllCaps="false"
-        android:textSize="15sp"
 
-        android:background="@android:color/transparent"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ajustes_sexoPersonajeSwitch" />
 
@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
 
         android:text="@string/ajustes_citasTextView"
@@ -80,15 +80,15 @@
         android:id="@+id/ajustes_gestionCitasButton"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:textAlignment="viewStart"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
         android:fontFamily="sans-serif"
         android:text="@string/ajustes_gestionCitasButton"
+        android:textAlignment="viewStart"
         android:textAllCaps="false"
-        android:textSize="15sp"
 
-        android:background="@android:color/transparent"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ajustes_citasTextView" />
 

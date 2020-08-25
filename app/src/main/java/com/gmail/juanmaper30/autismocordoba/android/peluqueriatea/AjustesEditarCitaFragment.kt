@@ -1,7 +1,9 @@
 package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -29,10 +31,14 @@ private const val CONFIRMACION_BORRAR_CITA_DIALOG = "confirmacionBorrarCitaDialo
 private const val REQUEST_BORRAR_CITA = 2
 private const val DESCARTAR_CAMBIOS_DIALOG = "descartarCambios"
 private const val REQUEST_DESCARTAR_CAMBIOS = 3
+private const val GRABAR_CITA_CALENDARIO_DIALOG = "grabarCitaCalendario"
+private const val REQUEST_GRABAR_CITA_CALENDARIO = 4
+private const val SHARED_PREFERENCES_CITA_LONG = "cita_en_forma_long_recordatorio_modulo_2"
 
 class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
     TimePickerFragment.Callbacks, ConfirmacionBorrarCitaDialogFragment.Callbacks,
-    ConfirmacionDescartarCambiosDialogFragment.Callbacks{
+    ConfirmacionDescartarCambiosDialogFragment.Callbacks,
+    ConfirmacionGrabarCitaCalendarioDialogFragment.Callbacks{
 
     interface Callbacks {
         fun ajustesEdicionCitasFinalizado()
@@ -183,12 +189,43 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
                     Toast.makeText(requireActivity(), "Cita editada correctamente", Toast.LENGTH_SHORT)
                         .show()
                     botonGuardarPulsado = true
-                    requireActivity().onBackPressed()
+
+                    if (!editarCitaViewModel.citaAntigua) {
+                        guardarLongCita()
+                        ConfirmacionGrabarCitaCalendarioDialogFragment().apply {
+                            setTargetFragment(this@AjustesEditarCitaFragment, REQUEST_GRABAR_CITA_CALENDARIO)
+                            show(this@AjustesEditarCitaFragment.requireActivity().supportFragmentManager,
+                                GRABAR_CITA_CALENDARIO_DIALOG)
+                        }
+                    } else {
+                        requireActivity().onBackPressed()
+                    }
                 }
                 true
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun cancelarGrabarCitaCalendario() {
+        requireActivity().onBackPressed()
+    }
+
+    override fun confirmacionGrabarCitaCalendario() {
+        val citaEnMilisegundosInicio: Long = editarCitaViewModel.citaPeluqueria.fecha.time
+        val citaEnMilisegundosFinal: Long = citaEnMilisegundosInicio + 1000*60*60
+
+        val intent = Intent(Intent.ACTION_INSERT)
+            .setData(CalendarContract.Events.CONTENT_URI)
+            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, citaEnMilisegundosInicio)
+            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, citaEnMilisegundosFinal)
+            .putExtra(CalendarContract.Events.TITLE, "Cita de peluquería")
+        //.putExtra(CalendarContract.Events.DESCRIPTION, "Group class")
+        //.putExtra(CalendarContract.Events.EVENT_LOCATION, "The gym")
+        //.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY)
+        //.putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com")
+        startActivity(intent)
+        requireActivity().onBackPressed()
     }
 
     fun actualizarInterfaz() {
@@ -234,6 +271,11 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
         Toast.makeText(requireActivity(), "Cita borrada correctamente", Toast.LENGTH_SHORT)
             .show()
         confirmacionDescartarCambios = true
+
+        if (!editarCitaViewModel.citaAntigua) {
+            resetearLongCita()
+        }
+
         requireActivity().onBackPressed()
     }
 
@@ -244,6 +286,31 @@ class AjustesEditarCitaFragment : Fragment(), DatePickerFragment.Callbacks,
         Log.d(TAG, "Saliendo confirmacion cambios, confirmacion=$confirmacionDescartarCambios")
         requireActivity().onBackPressed()
     }
+
+    fun guardarLongCita() {
+        val long = editarCitaViewModel.convertirCitaALong()
+        Log.d(TAG, "Fecha guardada: ${editarCitaViewModel.citaPeluqueria.fecha}")
+        Log.d(TAG, "Fecha convertida a long: $long")
+
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            putLong(SHARED_PREFERENCES_CITA_LONG, long)
+            apply()
+        }
+    }
+
+    fun resetearLongCita() {
+        val long = 10000000000
+        Log.d(TAG, "Fecha convertida a long: $long")
+
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            putLong(SHARED_PREFERENCES_CITA_LONG, long)
+            apply()
+        }
+    }
+
+
 
     /* Companion object, se puede llamar a la funcion como si fuese un metodo */
     companion object {

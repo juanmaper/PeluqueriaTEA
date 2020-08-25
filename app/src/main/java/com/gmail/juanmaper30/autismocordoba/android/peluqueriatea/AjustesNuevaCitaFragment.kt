@@ -1,7 +1,9 @@
 package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -17,6 +19,7 @@ import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.time.milliseconds
 
 private const val TAG = "AjustesNuevaCita"
 private const val ARG_CITA_ACTUAL_ID = "cita_actual_id"
@@ -26,10 +29,14 @@ private const val REQUEST_FECHA = 0
 private const val HORA_DIALOG = "horaDialog"
 private const val REQUEST_HORA = 1
 private const val DESCARTAR_CAMBIOS_DIALOG = "descartarCambios"
-private const val REQUEST_DESCARTAR_CAMBIOS = 3
+private const val REQUEST_DESCARTAR_CAMBIOS = 2
+private const val GRABAR_CITA_CALENDARIO_DIALOG = "grabarCitaCalendario"
+private const val REQUEST_GRABAR_CITA_CALENDARIO = 3
+private const val SHARED_PREFERENCES_CITA_LONG = "cita_en_forma_long_recordatorio_modulo_2"
 
 class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
-    TimePickerFragment.Callbacks, ConfirmacionDescartarCambiosDialogFragment.Callbacks{
+    TimePickerFragment.Callbacks, ConfirmacionDescartarCambiosDialogFragment.Callbacks,
+    ConfirmacionGrabarCitaCalendarioDialogFragment.Callbacks{
 
     interface Callbacks {
         fun ajustesEdicionCitasFinalizado()
@@ -77,6 +84,8 @@ class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
                     if (!nuevaCitaViewModel.algoHaSidoEditado || botonGuardarPulsado || confirmacionDescartarCambios) {
                         isEnabled = false
                         callbacks?.ajustesEdicionCitasFinalizado()
+                        /* Toast.makeText(requireActivity(), "Cita creada correctamente", Toast.LENGTH_SHORT)
+                            .show() */
                         requireActivity().onBackPressed()
                     } else {
                         ConfirmacionDescartarCambiosDialogFragment().apply {
@@ -170,14 +179,33 @@ class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
                         nuevaCitaViewModel.borrarCitaActual(idCitaActual)
                     }
                     nuevaCitaViewModel.guardarCitaPeluqueria(nuevaCitaViewModel.nuevaCitaPeluqueria)
-                    Toast.makeText(requireActivity(), "Cita creada correctamente", Toast.LENGTH_SHORT)
+                     Toast.makeText(requireActivity(), "Cita creada correctamente", Toast.LENGTH_SHORT)
                         .show()
                     botonGuardarPulsado = true
-                    requireActivity().onBackPressed()
+
+                    guardarLongCita()
+
+                    ConfirmacionGrabarCitaCalendarioDialogFragment().apply {
+                        setTargetFragment(this@AjustesNuevaCitaFragment, REQUEST_GRABAR_CITA_CALENDARIO)
+                        show(this@AjustesNuevaCitaFragment.requireActivity().supportFragmentManager,
+                            GRABAR_CITA_CALENDARIO_DIALOG)
+                    }
                 }
                 true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun guardarLongCita() {
+        val long = nuevaCitaViewModel.convertirCitaALong()
+        Log.d(TAG, "Fecha guardada: ${nuevaCitaViewModel.nuevaCitaPeluqueria.fecha}")
+        Log.d(TAG, "Fecha convertida a long: $long")
+
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            putLong(SHARED_PREFERENCES_CITA_LONG, long)
+            apply()
         }
     }
 
@@ -208,6 +236,27 @@ class AjustesNuevaCitaFragment : Fragment(), DatePickerFragment.Callbacks,
     override fun confirmacionDescartarCambios() {
         callbacks?.ajustesEdicionCitasFinalizado()
         confirmacionDescartarCambios = true
+        requireActivity().onBackPressed()
+    }
+
+    override fun cancelarGrabarCitaCalendario() {
+        requireActivity().onBackPressed()
+    }
+
+    override fun confirmacionGrabarCitaCalendario() {
+        val citaEnMilisegundosInicio: Long = nuevaCitaViewModel.nuevaCitaPeluqueria.fecha.time
+        val citaEnMilisegundosFinal: Long = citaEnMilisegundosInicio + 1000*60*60
+
+        val intent = Intent(Intent.ACTION_INSERT)
+            .setData(CalendarContract.Events.CONTENT_URI)
+            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, citaEnMilisegundosInicio)
+            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, citaEnMilisegundosFinal)
+            .putExtra(CalendarContract.Events.TITLE, "Cita de peluquería")
+            //.putExtra(CalendarContract.Events.DESCRIPTION, "Group class")
+            //.putExtra(CalendarContract.Events.EVENT_LOCATION, "The gym")
+            //.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY)
+            //.putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com")
+        startActivity(intent)
         requireActivity().onBackPressed()
     }
 

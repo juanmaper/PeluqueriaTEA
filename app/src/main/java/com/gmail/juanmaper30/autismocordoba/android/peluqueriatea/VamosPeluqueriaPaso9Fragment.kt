@@ -1,6 +1,7 @@
 package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,9 +12,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 private const val TAG = "VamosPeluqueriaPaso9"
 private const val ARG_OPCION_CHICO_ELEGIDA = "opcion_chico_elegida"
+private const val SHARED_PREFERENCES_CITA_LONG = "cita_en_forma_long_recordatorio_modulo_2"
 
 class VamosPeluqueriaPaso9Fragment : Fragment() {
 
@@ -26,11 +31,16 @@ class VamosPeluqueriaPaso9Fragment : Fragment() {
     private var callbacks: Callbacks? = null
 
     private var opcionChicoElegida: Boolean = true
+    private var citaFormaLong: Long = 0
+    private var citaRecordatorioTexto: String = ""
+    private val fechaCitaActual: Date = Date()
+    private var hayQueRecordarLaCita: Boolean = false
 
     private lateinit var atrasButton: ImageButton
     private lateinit var siguienteButton: ImageButton
     private lateinit var pictogramaChicoChicaImageView: ImageView
     private lateinit var pasoTextView: TextView
+    private lateinit var recordatorioTextView: TextView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -44,6 +54,22 @@ class VamosPeluqueriaPaso9Fragment : Fragment() {
         saber si he de mostrar un chico o una chica */
         opcionChicoElegida = arguments?.getSerializable(ARG_OPCION_CHICO_ELEGIDA) as Boolean
         Log.i(TAG, "Fragmento $TAG creado con opcion mostrar chico = $opcionChicoElegida")
+
+        val fechaAntiguaPorDefecto = Date()
+        fechaAntiguaPorDefecto.time -= 100000
+
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        citaFormaLong = sharedPref.getLong(
+            SHARED_PREFERENCES_CITA_LONG, fechaAntiguaPorDefecto.time)
+
+        fechaCitaActual.time = citaFormaLong
+
+        Log.d(TAG, "Long recuperado: $citaFormaLong")
+        Log.d(TAG, "Fecha cita: ${fechaCitaActual.toString()}")
+
+
+        hayQueRecordarLaCita = fechaCitaActual > Date()
+        Log.d(TAG, "Hay que recordar la cita: $hayQueRecordarLaCita")
 
         /* En los fragmentos no se puede hacer un override a onBackPressed() directamente,
         asi que creo esta callback para sobreescribir el funcionamiento del back button. Le digo
@@ -72,6 +98,7 @@ class VamosPeluqueriaPaso9Fragment : Fragment() {
         siguienteButton = view.findViewById(R.id.vamosPeluqueria_siguienteButton) as ImageButton
         pictogramaChicoChicaImageView = view.findViewById(R.id.vamosPeluqueria_pictogramaChicoSentadoImageView) as ImageView
         pasoTextView = view.findViewById(R.id.vamosPeluqueria_paso9TextView) as TextView
+        recordatorioTextView = view.findViewById(R.id.recordatorioCitaTextView) as TextView
 
         if (opcionChicoElegida) {
             pictogramaChicoChicaImageView.setImageResource(R.drawable.ic_chico_tocandose_cabeza)
@@ -79,6 +106,13 @@ class VamosPeluqueriaPaso9Fragment : Fragment() {
         } else {
             pictogramaChicoChicaImageView.setImageResource(R.drawable.ic_chica_tocandose_cabeza)
             pasoTextView.setText(R.string.vamosPeluqueria_chica_paso_9)
+        }
+
+        if (hayQueRecordarLaCita) {
+            recordatorioTextView.text = SimpleDateFormat("'Tu cita es el' dd 'de' MMMM 'a las' HH:mm")
+                .format(fechaCitaActual)
+        } else {
+            recordatorioTextView.visibility = View.INVISIBLE
         }
 
         return view
