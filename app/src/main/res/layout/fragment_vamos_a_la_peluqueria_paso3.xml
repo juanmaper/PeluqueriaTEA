@@ -11,12 +11,12 @@
         android:id="@+id/vamosPeluqueria_paso3TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="@string/vamosPeluqueria_paso_3"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/primary_text_light_nodisable"
-        android:textSize="36sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,12 +78,12 @@
         android:id="@+id/RectanguloAmarilloTextView"
         android:layout_width="140dp"
         android:layout_height="60dp"
-        android:layout_marginTop="205dp"
+        android:layout_marginTop="123dp"
         android:background="@color/amarillo_menos_claro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/vamosPeluqueria_paso3TextView" />
 
     <ImageView
         android:id="@+id/capaImageView"
