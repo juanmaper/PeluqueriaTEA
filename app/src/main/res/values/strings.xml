@@ -79,9 +79,9 @@
     <string name="ajustes_subtituloDialogConfirmacionBorrarAvatares">
         La siguiente acción elimina los peinados guardados, pero siempre podrá diseñarlos de nuevo.
         ¿Desea borrar los peinados guardados?</string>
-    <string name="ajustes_borrarCita">Borrar cita</string>
+    <string name="ajustes_borrarCita">Eliminar cita</string>
     <string name="ajustes_subtituloDialogConfirmacionBorrarCita">
-        ¿Desea borrar la cita?</string>
+        ¿Desea eliminar la cita?</string>
     <string name="ajustes_personajesBorradosToast">Personajes borrados</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
@@ -103,7 +103,7 @@
     <string name="ajustes_nuevaCitaHoraButton">Pulse para introducir la hora</string>
     <string name="ajustes_nuevaCitaComentario">Comentario</string>
     <string name="ajustes_nuevaCitaComentarioHint">Introduzca un comentario si lo desea</string>
-    <string name="ajustes_nuevaCitaBorrar">Borrar</string>
+    <string name="ajustes_nuevaCitaBorrar">Eliminar cita</string>
     <string name="ajustes_nuevaCitaGuardar">Guardar</string>
     <string name="ajustes_descartarCambios">¿Descartar cambios?</string>
     <string name="ajustes_subtituloDialogConfirmacionDescartarCambios">
@@ -114,7 +114,10 @@
 
     <string name="ajustes_grabarCitaCalendarioConfirmacion">Calendario</string>
     <string name="ajustes_subtituloGrabarCitaCalendarioConfirmacion">¿Desea guardar la cita en el
-        calendario del smartphone?</string>
+        calendario asociado en el teléfono además de en la propia aplicación (se gestionarán independientemente)?</string>
+
+    <string name="no">NO</string>
+    <string name="si">SÍ</string>
 
     <string name="appbar_nuevaCita">Nueva cita</string>
     <string name="appbar_guardarCita">Guardar</string>
@@ -124,16 +127,23 @@
 
     <string name="creditos_desarrollador_principal_titulo">Desarrollador principal</string>
     <string name="creditos_desarrollador_principal">Juan Manuel Pérez Aguilar, juanmaper30@gmail.com</string>
-    <string name="creditos_coordinadores_titulo">Coordinadores</string>
-    <string name="creditos_coordinadores">Juan Carlos Fernández Caballero, jfcaballero@uco.es. Universidad de Córdoba.
-        \n\nPedro Antonio Gutiérrez Peña, pagutierrez@uco.es. Universidad de Córdoba.
+    <string name="creditos_coordinadores_titulo">Dirección y coordinación</string>
+    <string name="creditos_coordinadores">Juan Carlos Fernández Caballero, jfcaballero@uco.es. Universidad de Córdoba,
+        grupo de investigación AYRNA (https://www.uco.es/ayrna/)
+        \n\nPedro Antonio Gutiérrez Peña, pagutierrez@uco.es. Universidad de Córdoba,
+        grupo de investigación AYRNA (https://www.uco.es/ayrna/)
     </string>
 
     <string name="creditos_apoyo_titulo">Apoyo</string>
-    <string name="creditos_apoyo">María Muñoz Reyes, direccion@autismocordoba.org. Asociación Autismo Córdoba.</string>
+    <string name="creditos_apoyo">María Muñoz Reyes, direccion@autismocordoba.org. Asociación Autismo Córdoba,
+        https://www.autismocordoba.org/</string>
 
-    <string name="creditos_recursos_titulo">Recursos e imágenes utilizadas</string>
-    <string name="creditos_recursos">FlatIcon</string>
+    <string name="creditos_recursos_titulo">Iconos, imágenes y pictogramas</string>
+    <string name="creditos_recursos">Flaticon, https://www.flaticon.es/
+
+Freepik Company, S.L
+
+    Licencia premium</string>
 
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>

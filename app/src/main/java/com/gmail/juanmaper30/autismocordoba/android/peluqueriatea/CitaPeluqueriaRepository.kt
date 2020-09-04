@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.database.CitaPeluqueriaDatabase
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
 import java.util.*
 import java.util.concurrent.Executors
 

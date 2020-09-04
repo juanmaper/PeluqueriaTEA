@@ -5,11 +5,22 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.Avatar
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.ObjetoSonidoPeluqueria
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_1.ConsejosFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_2.*
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_3.*
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_4.JuegoAsociacionSonidosFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_4.JuegoAsociacionSonidosResultadoFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesEditarCitaFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesGestionCitasFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesNuevaCitaFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_6.CreditosFragment
 import java.util.*
 
 private const val TAG = "MainActivity"
@@ -110,7 +121,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         ha pulsado el boton del modulo de consejos. Al ser llamada, monto el modulo Consejos */
     override fun moduloConsejosSeleccionado() {
         Log.i(TAG, "Montando modulo consejos")
-        val fragmentoConsejos = ConsejosFragment()
+        val fragmentoConsejos =
+            ConsejosFragment()
         Log.d(TAG, "Opcion chico: ${recuperarOpcionChicoChica()}")
         supportFragmentManager
             .beginTransaction()
@@ -125,7 +137,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun moduloVamosPeluqueriaSeleccionado() {
         Log.i(TAG, "Montando modulo vamos a la peluqueria")
         mainActivityViewModel.reiniciarIndice()
-        val fragmentoVamosPeluqueria = VamosPeluqueriaPaso1Fragment()
+        val fragmentoVamosPeluqueria =
+            VamosPeluqueriaPaso1Fragment()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoVamosPeluqueria)
@@ -139,7 +152,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     override fun moduloElijoMiPeinadoSeleccionado() {
         Log.i(TAG, "Montando modulo Elijo mi peinado")
         if (mainActivityViewModel.numeroAvataresGuardadosEnLista() != 0) {
-            val fragmentoElijoMiPeinado = ElijoMiPeinadoPantallaPrincipalFragment()
+            val fragmentoElijoMiPeinado =
+                ElijoMiPeinadoPantallaPrincipalFragment()
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragmentoElijoMiPeinado)
@@ -155,7 +169,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         el modulo Elijo mi peinado */
     override fun moduloJuegoAsociacionSonidosSeleccionado() {
         Log.i(TAG, "Montando modulo juego asociacion de sonidos")
-        val fragmentoJuegoAsociacionSonidosFragment = JuegoAsociacionSonidosFragment()
+        val fragmentoJuegoAsociacionSonidosFragment =
+            JuegoAsociacionSonidosFragment()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragmentoJuegoAsociacionSonidosFragment)
@@ -191,7 +206,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
         el modulo creditos */
     override fun moduloCreditosSeleccionado() {
         Log.i(TAG, "Montando modulo creditos")
-        val fragmentoCreditos = CreditosFragment()
+        val fragmentoCreditos =
+            CreditosFragment()
 
         mainActivityViewModel.orientacion = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mainActivityViewModel.cambiarOrientacionPantalla(this)
@@ -379,7 +395,8 @@ class MainActivity : AppCompatActivity(), PantallaPrincipalFragment.Callbacks,
     }
 
     override fun ajustesMontarGestionCitas() {
-        val fragmentoAjustesGestionCitas = AjustesGestionCitasFragment()
+        val fragmentoAjustesGestionCitas =
+            AjustesGestionCitasFragment()
         cambiarTituloAppBar("Citas")
         Log.d(TAG, "Montando modulo citas con titulo appbar= ${supportActionBar?.title}")
         supportFragmentManager
