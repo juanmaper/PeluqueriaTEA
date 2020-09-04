@@ -1,9 +1,8 @@
-package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
+package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.database.CitaPeluqueriaDatabase
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
 import java.util.*
 import java.util.concurrent.Executors
@@ -54,12 +53,16 @@ class CitaPeluqueriaRepository private constructor(context: Context){
 
         fun inicializar(context: Context) {
             if (INSTANCE == null) {
-                INSTANCE = CitaPeluqueriaRepository(context)
+                INSTANCE =
+                    CitaPeluqueriaRepository(
+                        context
+                    )
             }
         }
 
         fun get(): CitaPeluqueriaRepository {
-            return INSTANCE ?:
+            return INSTANCE
+                ?:
                     throw IllegalStateException("CitaPeluqueriaRepository debe ser inicializado")
         }
     }

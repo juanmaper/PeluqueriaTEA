@@ -2,7 +2,7 @@ package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5
 
 import androidx.lifecycle.ViewModel
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.CitaPeluqueriaRepository
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.database.CitaPeluqueriaRepository
 import java.util.*
 
 class AjustesNuevaCitaViewModel : ViewModel() {
