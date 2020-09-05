@@ -8,9 +8,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.Avatar
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.ObjetoSonidoPeluqueria
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_1.ConsejosFragment
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_2.*
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_3.*

@@ -2,7 +2,7 @@ package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.CitaPeluqueria
 import java.util.*
 
 // Dao = Data Access Object

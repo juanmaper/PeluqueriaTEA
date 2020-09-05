@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.CitaPeluqueria
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
 import java.text.DateFormat
 import java.text.SimpleDateFormat

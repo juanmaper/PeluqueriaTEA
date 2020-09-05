@@ -16,7 +16,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.*
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.CitaPeluqueria
 import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat

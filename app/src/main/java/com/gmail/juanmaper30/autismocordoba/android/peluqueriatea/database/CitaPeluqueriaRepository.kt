@@ -3,7 +3,7 @@ package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos.CitaPeluqueria
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.CitaPeluqueria
 import java.util.*
 import java.util.concurrent.Executors
 

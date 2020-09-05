@@ -1,4 +1,4 @@
-package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modelos
+package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
 
 import android.content.Context
 import android.media.MediaPlayer
