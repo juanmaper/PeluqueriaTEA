@@ -1,4 +1,4 @@
-package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
+package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

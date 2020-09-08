@@ -1,4 +1,4 @@
-package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea
+package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_3
 
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
 

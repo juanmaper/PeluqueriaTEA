@@ -3,7 +3,6 @@ package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_4
 import androidx.lifecycle.ViewModel
 import android.content.Context
 import android.util.Log
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.ObjetoSonidoPeluqueria
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
 
 private const val TAG = "JuegoSonidosViewModel"

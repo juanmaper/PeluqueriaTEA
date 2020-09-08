@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.util.Log
 import android.view.WindowManager
 import androidx.lifecycle.ViewModel
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_3.Avatar
 
 private const val TAG = "MainActivityViewModel"
 

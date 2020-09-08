@@ -31,7 +31,6 @@ class VamosPeluqueriaPaso9Fragment : Fragment() {
 
     private var opcionChicoElegida: Boolean = true
     private var citaFormaLong: Long = 0
-    private var citaRecordatorioTexto: String = ""
     private val fechaCitaActual: Date = Date()
     private var hayQueRecordarLaCita: Boolean = false
 

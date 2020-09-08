@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.ObjetoSonidoPeluqueria
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
 import java.io.Serializable
 

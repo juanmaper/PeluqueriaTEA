@@ -9,7 +9,7 @@ import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
 
 private const val TAG = "ConfirmacionSustituirCita"
 
-class ConfirmacionSustituirCitaActual : DialogFragment(){
+class ConfirmacionSustituirCitaActualDialogFragment : DialogFragment(){
 
     interface Callbacks {
         fun confirmacionSustituirCita()

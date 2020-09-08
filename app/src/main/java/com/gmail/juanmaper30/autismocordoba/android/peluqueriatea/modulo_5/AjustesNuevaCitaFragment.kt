@@ -265,14 +265,14 @@ class AjustesNuevaCitaFragment : Fragment(),
     override fun confirmacionGrabarCitaCalendario() {
         val citaEnMilisegundosInicio: Long = nuevaCitaViewModel.nuevaCitaPeluqueria.fecha.time
         val citaEnMilisegundosFinal: Long = citaEnMilisegundosInicio + 1000*60*60
-        val descripcion: String = nuevaCitaViewModel.nuevaCitaPeluqueria.comentario
+        //val descripcion: String = nuevaCitaViewModel.nuevaCitaPeluqueria.comentario
 
         val intent = Intent(Intent.ACTION_INSERT)
             .setData(CalendarContract.Events.CONTENT_URI)
             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, citaEnMilisegundosInicio)
             .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, citaEnMilisegundosFinal)
             .putExtra(CalendarContract.Events.TITLE, "Cita de peluquería")
-            .putExtra(CalendarContract.Events.DESCRIPTION, descripcion)
+            //.putExtra(CalendarContract.Events.DESCRIPTION, descripcion)
             //.putExtra(CalendarContract.Events.EVENT_LOCATION, "The gym")
             //.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY)
             //.putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com")

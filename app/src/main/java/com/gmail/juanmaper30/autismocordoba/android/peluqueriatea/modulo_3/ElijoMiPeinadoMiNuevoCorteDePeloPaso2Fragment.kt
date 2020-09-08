@@ -10,7 +10,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.Avatar
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
 
 private const val TAG = "ElijoMiPeinadoNuevoCor2"

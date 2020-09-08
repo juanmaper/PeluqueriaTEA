@@ -13,10 +13,8 @@ import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_2.*
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_3.*
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_4.JuegoAsociacionSonidosFragment
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_4.JuegoAsociacionSonidosResultadoFragment
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesEditarCitaFragment
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesFragment
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesGestionCitasFragment
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.AjustesNuevaCitaFragment
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_4.ObjetoSonidoPeluqueria
+import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_5.*
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_6.CreditosFragment
 import java.util.*
 

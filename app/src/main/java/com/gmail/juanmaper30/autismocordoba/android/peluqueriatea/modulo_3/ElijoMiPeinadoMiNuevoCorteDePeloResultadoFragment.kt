@@ -10,7 +10,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.Avatar
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
 
 private const val TAG = "ElijoMiPeinadoNuevoResu"
