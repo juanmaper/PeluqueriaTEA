@@ -7,12 +7,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
         <TextView
             android:id="@+id/creditos_desarrollador_tituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
 
             android:text="@string/creditos_desarrollador_principal_titulo"
@@ -26,7 +28,7 @@
             android:id="@+id/creditos_desarrolladorTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/creditos_desarrollador_principal"
             android:textSize="14sp"
@@ -39,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:text="@string/creditos_coordinador_titulo"
             android:textColor="@color/colorPrimary"
@@ -51,10 +53,10 @@
             android:id="@+id/creditos_coordinadoresTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="32dp"
-            android:textSize="14sp"
             android:text="@string/creditos_coordinador"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/creditos_coordinadores_tituloTextView" />
@@ -64,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:text="@string/creditos_equipoInvestigador_titulo"
             android:textColor="@color/colorPrimary"
@@ -76,10 +78,10 @@
             android:id="@+id/creditos_equipoInvestigadorTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="32dp"
-            android:textSize="14sp"
             android:text="@string/creditos_equipoInvestigador"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/creditos_equipoInvestigador_tituloTextView" />
@@ -89,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:text="@string/creditos_apoyo_titulo"
             android:textColor="@color/colorPrimary"
@@ -101,10 +103,10 @@
             android:id="@+id/creditos_apoyoTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="32dp"
-            android:textSize="14sp"
             android:text="@string/creditos_apoyo"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/creditos_apoyo_tituloTextView" />
@@ -114,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:text="@string/creditos_recursos_titulo"
             android:textColor="@color/colorPrimary"
@@ -126,10 +128,10 @@
             android:id="@+id/creditos_recursosTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="32dp"
-            android:textSize="14sp"
             android:text="@string/creditos_recursos"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/creditos_recursos_tituloTextView" />
