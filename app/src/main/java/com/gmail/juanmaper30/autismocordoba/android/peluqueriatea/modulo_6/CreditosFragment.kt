@@ -2,10 +2,12 @@ package com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.modulo_6
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.gmail.juanmaper30.autismocordoba.android.peluqueriatea.R
@@ -20,6 +22,13 @@ class CreditosFragment : Fragment() {
     }
 
     private var callbacks: Callbacks? = null
+
+    private lateinit var desarrolladorTextView: TextView
+    private lateinit var coordinadorTextView: TextView
+    private lateinit var equipoInvestigadorTextView: TextView
+    private lateinit var apoyoTextView: TextView
+    private lateinit var recursosTextView: TextView
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,7 +63,21 @@ class CreditosFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_creditos, container, false)
+        val view = inflater.inflate(R.layout.fragment_creditos, container, false)
+
+        desarrolladorTextView = view.findViewById(R.id.creditos_desarrolladorTextView)
+        coordinadorTextView = view.findViewById(R.id.creditos_coordinadoresTextView)
+        equipoInvestigadorTextView = view.findViewById(R.id.creditos_equipoInvestigadorTextView)
+        apoyoTextView = view.findViewById(R.id.creditos_apoyoTextView)
+        recursosTextView = view.findViewById(R.id.creditos_recursosTextView)
+
+        desarrolladorTextView.movementMethod = LinkMovementMethod.getInstance()
+        coordinadorTextView.movementMethod = LinkMovementMethod.getInstance()
+        equipoInvestigadorTextView.movementMethod = LinkMovementMethod.getInstance()
+        apoyoTextView.movementMethod = LinkMovementMethod.getInstance()
+        recursosTextView.movementMethod = LinkMovementMethod.getInstance()
+
+        return view
     }
 
 

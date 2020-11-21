@@ -32,6 +32,9 @@ class ConfirmacionGrabarCitaCalendarioDialogFragment : DialogFragment(){
                     (fragment as Callbacks).cancelarGrabarCitaCalendario()
                 }
             })
+            .apply {
+                isCancelable = false
+            }
             .create()
     }
 }

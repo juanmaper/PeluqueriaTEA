@@ -216,13 +216,14 @@ class AjustesEditarCitaFragment : Fragment(),
                         guardarLongCita()
                         ConfirmacionGrabarCitaCalendarioDialogFragment()
                             .apply {
-                            setTargetFragment(this@AjustesEditarCitaFragment,
-                                REQUEST_GRABAR_CITA_CALENDARIO
-                            )
-                            show(this@AjustesEditarCitaFragment.requireActivity().supportFragmentManager,
-                                GRABAR_CITA_CALENDARIO_DIALOG
-                            )
-                        }
+                                //isCancelable = false
+                                setTargetFragment(this@AjustesEditarCitaFragment,
+                                    REQUEST_GRABAR_CITA_CALENDARIO
+                                )
+                                show(this@AjustesEditarCitaFragment.requireActivity().supportFragmentManager,
+                                    GRABAR_CITA_CALENDARIO_DIALOG
+                                )
+                            }
                     } else {
                         requireActivity().onBackPressed()
                     }

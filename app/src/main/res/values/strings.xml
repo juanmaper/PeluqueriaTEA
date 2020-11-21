@@ -126,24 +126,36 @@
 
 
     <string name="creditos_desarrollador_principal_titulo">Desarrollador principal</string>
-    <string name="creditos_desarrollador_principal">Juan Manuel Pérez Aguilar, juanmaper30@gmail.com</string>
-    <string name="creditos_coordinadores_titulo">Dirección y coordinación</string>
-    <string name="creditos_coordinadores">Juan Carlos Fernández Caballero, jfcaballero@uco.es. Universidad de Córdoba,
-        grupo de investigación AYRNA (https://www.uco.es/ayrna/)
-        \n\nPedro Antonio Gutiérrez Peña, pagutierrez@uco.es. Universidad de Córdoba,
-        grupo de investigación AYRNA (https://www.uco.es/ayrna/)
+    <string name="creditos_desarrollador_principal">Juan Manuel Pérez Aguilar,
+        <a href="mailto:juanmaper30@gmail.com">juanmaper30@gmail.com</a>,
+        Graduado en Ingeniería Informática</string>
+    <string name="creditos_coordinador_titulo">Dirección y coordinación</string>
+    <string name="creditos_coordinador">Juan Carlos Fernández Caballero,
+        <a href="mailto:jfcaballero@uco.es">jfcaballero@uco.es</a>.
+        Universidad de Córdoba, grupo de investigación AYRNA (<a href="https://www.uco.es/ayrna/">https://www.uco.es/ayrna/</a>)
     </string>
+    
+    <string name="creditos_equipoInvestigador_titulo">Equipo investigador</string>
+    <string name="creditos_equipoInvestigador">Pedro Antonio Gutiérrez Peña,
+        <a href="mailto:pagutierrez@uco.es">pagutierrez@uco.es</a>.
+        Universidad de Córdoba, grupo de investigación AYRNA (<a href="https://www.uco.es/ayrna/">https://www.uco.es/ayrna/</a>)
+    \n\n César Hervás Martínez, <a href="mailto:chervas@uco.es">chervas@uco.es</a>.
+        Universidad de Córdoba, grupo de investigación AYRNA
+        (<a href="https://www.uco.es/ayrna/">https://www.uco.es/ayrna/</a>)
+</string>
 
     <string name="creditos_apoyo_titulo">Apoyo</string>
-    <string name="creditos_apoyo">María Muñoz Reyes, direccion@autismocordoba.org. Asociación Autismo Córdoba,
-        (https://www.autismocordoba.org/)</string>
+    <string name="creditos_apoyo">María Muñoz Reyes, <a href="mailto:direccion@autismocordoba.org">direccion@autismocordoba.org</a>.
+        Asociación Autismo Córdoba,
+        (<a href="https://www.autismocordoba.org/">https://www.autismocordoba.org/</a>)
+    \n\n Alicia Heras Ruiz, <a href="mailto:direccion@autismocordoba.org">direccion@autismocordoba.org</a>.
+        Terapeuta ocupacional en Autismo Córdoba
+        (<a href="https://www.autismocordoba.org/">https://www.autismocordoba.org/</a>)</string>
 
     <string name="creditos_recursos_titulo">Iconos, imágenes y pictogramas</string>
-    <string name="creditos_recursos">Flaticon, https://www.flaticon.es/
-
-Freepik Company, S.L
-
-    Licencia premium</string>
+    <string name="creditos_recursos">Flaticon,
+        (<a href="https://www.flaticon.es/">https://www.flaticon.es/</a>)
+Freepik Company, S.L Licencia premium</string>
 
     <string name="atrasButton">Atrás</string>
     <string name="siguienteButton">Siguiente</string>

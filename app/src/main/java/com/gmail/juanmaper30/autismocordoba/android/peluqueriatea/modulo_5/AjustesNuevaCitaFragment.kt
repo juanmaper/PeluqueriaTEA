@@ -202,13 +202,14 @@ class AjustesNuevaCitaFragment : Fragment(),
 
                     ConfirmacionGrabarCitaCalendarioDialogFragment()
                         .apply {
-                        setTargetFragment(this@AjustesNuevaCitaFragment,
-                            REQUEST_GRABAR_CITA_CALENDARIO
-                        )
-                        show(this@AjustesNuevaCitaFragment.requireActivity().supportFragmentManager,
-                            GRABAR_CITA_CALENDARIO_DIALOG
-                        )
-                    }
+                            //isCancelable = false
+                            setTargetFragment(this@AjustesNuevaCitaFragment,
+                                REQUEST_GRABAR_CITA_CALENDARIO
+                            )
+                            show(this@AjustesNuevaCitaFragment.requireActivity().supportFragmentManager,
+                                GRABAR_CITA_CALENDARIO_DIALOG
+                            )
+                        }
                 }
                 true
             }
