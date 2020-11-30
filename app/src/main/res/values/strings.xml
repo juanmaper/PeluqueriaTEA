@@ -152,6 +152,13 @@
         Terapeuta ocupacional en Autismo Córdoba
         (<a href="https://www.autismocordoba.org/">https://www.autismocordoba.org/</a>)</string>
 
+    <string name="creditos_financiacion_titulo">Financiación</string>
+    <string name="creditos_financiacion">VI Plan Propio GALILEO de Innovación y Transferencia de la
+        Universidad de Córdoba. Modalidad IV, proyectos UCO-SOCIAL-INNOVA</string>
+
+    <string name="contentDescriptionLogoUco">Logo de la Universidad de Córdoba</string>
+    <string name="contentDescriptionLogoPlanGalileo">Logo del sexto Plan Propio GALILEO</string>
+
     <string name="creditos_recursos_titulo">Iconos, imágenes y pictogramas</string>
     <string name="creditos_recursos">Flaticon,
         (<a href="https://www.flaticon.es/">https://www.flaticon.es/</a>)

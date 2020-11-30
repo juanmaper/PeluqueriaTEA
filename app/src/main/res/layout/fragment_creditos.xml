@@ -112,6 +112,56 @@
             app:layout_constraintTop_toBottomOf="@+id/creditos_apoyo_tituloTextView" />
 
         <TextView
+            android:id="@+id/creditos_financiacion_tituloTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/creditos_financiacion_titulo"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creditos_apoyoTextView" />
+
+        <TextView
+            android:id="@+id/creditos_financiacionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/creditos_financiacion"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creditos_financiacion_tituloTextView" />
+
+
+        <ImageView
+            android:id="@+id/ucoLogoImageView"
+            android:layout_width="150dp"
+            android:layout_height="170dp"
+            android:contentDescription="@string/contentDescriptionLogoUco"
+            app:layout_constraintBottom_toTopOf="@+id/creditos_recursos_tituloTextView"
+            app:layout_constraintEnd_toStartOf="@+id/planGalileoLogoImageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creditos_financiacionTextView"
+            app:srcCompat="@drawable/ic_logo_uco_1" />
+
+        <ImageView
+            android:id="@+id/planGalileoLogoImageView"
+            android:layout_width="200dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/contentDescriptionLogoPlanGalileo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ucoLogoImageView"
+            app:layout_constraintTop_toBottomOf="@+id/creditos_financiacionTextView"
+            app:srcCompat="@drawable/ic_logo_plan_galileo" />
+
+        <TextView
             android:id="@+id/creditos_recursos_tituloTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,7 +172,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/creditos_apoyoTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/planGalileoLogoImageView" />
 
         <TextView
             android:id="@+id/creditos_recursosTextView"
@@ -135,6 +185,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/creditos_recursos_tituloTextView" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
